@@ -9,5 +9,5 @@ git remote add origin https://github.com/yb030832/fluxweb.git
 ```
 连接远程git仓库成功后，拉取代码到本地仓库
 ```shell
-$ git pull origin master
+git pull origin master
 ```
