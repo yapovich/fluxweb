@@ -44,6 +44,21 @@ $ browserify main.js > bundle.js
 <script src="bundle.js"></script>
 ```
 因此，框架采用Browserify的模块化方式组织我们的javascript代码，进一步提高了代码的可维护性和可测试性，后面将结合nodeunit模块详细介绍如何进行js模块的单元测试
+## 构建/运行依赖
+1. node.js - server-side JS engine
+2. npm - node package manager
+## node,npm安装说明
+node.js - [https://github.com/nodejs/node](https://github.com/nodejs/node)
+
+npm - [https://github.com/npm/npm](https://github.com/npm/npm)
+(npm在最近的node.js发布系列版中已加入，不需要单独安装)
+## fluxweb安装说明
+运行以下命令：
+```
+git clone https://github.com/yb030832/fluxweb.git
+cd fluxweb
+npm install
+```
 ## 一个例子
 ### 1. 创建页面
 /public/index.html
