@@ -211,5 +211,6 @@ node ./bin/www
 ~~~
 grunt monitor
 ~~~
-注意在Window开发环境下，不要关闭Shell窗口哦，Linux环境下可通过nohup命令在后台运行:)
+注意在Window开发环境下，不要关闭Shell，Linux开发环境下可通过nohup命令在后台运行:)
+
 OK，访问http://localhost:3000来看看结果吧！
