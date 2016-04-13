@@ -44,8 +44,8 @@ $ browserify main.js > bundle.js
 <script src="bundle.js"></script>
 ```
 因此，框架采用Browserify的模块化方式组织我们的javascript代码，进一步提高了代码的可维护性和可测试性，后面将结合nodeunit模块详细介绍如何进行js模块的单元测试
-### 一个例子
-#### 创建页面
+## 一个例子
+### 创建页面
 ```
 <!DOCTYPE html>
 <html>
