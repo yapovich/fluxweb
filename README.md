@@ -15,6 +15,7 @@ Flux是一个系统架构，用于推进应用中的数据单向流动。
 [http://facebook.github.io/flux/](http://facebook.github.io/flux/ "")
 ### Browserify
 Browserify 可以让你使用类似于 node 的 require() 的方式来组织浏览器端的 Javascript 代码，通过预编译让前端 Javascript 可以直接使用 Node NPM 安装的一些库。
+
 安装：
 ```
 npm install -g browserify
