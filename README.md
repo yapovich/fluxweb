@@ -65,7 +65,7 @@ $ browserify main.js > bundle.js
 <script type="text/javascript" src="javascripts/bundle.js"></script>
 <!--sourcejs end-->
 ```
-以上是初始页面的基本结构，其中&lt;!--sourcecss ...--&gt;标签是页面预编译参数，
+以上是初始页面的基本结构，其中&lt;!--sourcecss ...--&gt;,&lt;!--sourcejs ...--&gt;标签是页面预编译参数，不能省略，
 在正式编译后，此类标签内的脚本或样式将被编译后版本替换。
 显然，框架样式是基于less开发的，因此引入了less样式文件以及less编译脚本，bundle.js是未压缩版本的broswerify合并文件，将在编译时被压缩。
 编译后的页面结构如下：
