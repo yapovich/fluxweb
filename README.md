@@ -217,7 +217,6 @@ OK，访问http://localhost:3000来看看结果吧！
 ## 文档
 想要了解更多关于如何编译打包web应用的信息,如下所示:
 
-* [如何修改Gruntfile.js文件](https://github.com/yb030832/fluxweb/wiki/%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9Gruntfile.js%E6%96%87%E4%BB%B6)
-* [如何编译打包工程](https://github.com/yb030832/fluxweb/wiki/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B)
+* [如何编译打包工程](https://github.com/yb030832/fluxweb/wiki/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E5%B7%A5%E7%A8%8B)
 
 进入我们的[Wiki](https://github.com/yb030832/fluxweb/wiki)可了解更多
