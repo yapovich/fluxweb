@@ -44,3 +44,28 @@ $ browserify main.js > bundle.js
 <script src="bundle.js"></script>
 ```
 因此，框架采用Browserify的模块化方式组织我们的javascript代码，进一步提高了代码的可维护性和可测试性，后面将结合nodeunit模块详细介绍如何进行js模块的单元测试
+### 一个例子
+#### 创建页面
+```
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--sourcecss begin-->
+    <link rel="stylesheet/less" type="text/css" href="stylesheets/less/login.less"/>
+    <script type="text/javascript" src="javascripts/vendor/less/less.min.js"></script>
+    <!--sourcecss end-->
+</head>
+<body>
+<div id="container"></div>
+</body>
+</html>
+<!--sourcejs begin-->
+<script type="text/javascript" src="javascripts/bundle.js"></script>
+<!--sourcejs end-->
+```
+以上是初始页面的基本结构，其中&lt;!--sourcecss ...--&gt;标签是页面预编译参数，
+在正式编译后，此类标签内的脚本或样式将被编译后版本替换。
+显然，框架样式是基于less开发的，因此引入了less样式文件以及less编译脚本，bundle.js是
+未压缩版本的broswerify合并文件，将在编译时被压缩。
