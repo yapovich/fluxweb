@@ -130,7 +130,7 @@ var IndexStore = Flux.createStore({
 });
 module.exports = IndexStore;
 ```
-### 4.创建动作
+### 4.创建动作(Action)
 /public/javascripts/actions/IndexAction.js
 ```
 var Flux = require('../vendor/util/FluxUtil');
@@ -148,7 +148,7 @@ module.exports = IndexAction;
 比如发送一个ajax请求，我们也是在Action的updateSomething方法中去实现，
 并在请求返回时dispatch出去，
 Store只负责存放最后的结果和结果运算,不负责前后端通讯。
-### 5.创建视图(React组件)
+### 5.创建视图(React)
 /public/javascripts/components/Index.js
 ```
 var Flux = require('../vendor/util/FluxUtil');
