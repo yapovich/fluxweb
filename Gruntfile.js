@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 		/*清除临时和编译目标文件夹*/
 		clean: {
 			build: {
-				src: ["public/javascripts/tmp"]
+				src: ["dist"]
 			},
 			options: {
 				force: true
@@ -90,11 +90,7 @@ module.exports = function(grunt) {
 						expand: true, src: ['public/javascripts/vendor/bootstrap/fonts/**'],
 						dest: 'dist'
 					},
-					{expand: true, src: ['public/images/**'], dest: 'dist'},
-					{expand: true, src: ['bin/**'], dest: 'dist'},
-					{expand: true, src: ['lib/**'], dest: 'dist'},
-					{expand: true, src: ['routes/**'], dest: 'dist'},
-					{expand: true, src: ['package.json'], dest: 'dist'}]
+					{expand: true, src: ['public/images/**'], dest: 'dist'}]
 			}
 		},
 		browserify: {
@@ -115,7 +111,7 @@ module.exports = function(grunt) {
 					'public/javascripts/stores/**/*.js'],
 				tasks: ['browserify'],
 				options: {
-					debounceDelay: 250,
+					debounceDelay: 250
 				}
 			}
 		}
@@ -132,6 +128,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-react');//react语法解析工具
 	grunt.loadNpmTasks('grunt-browserify');//require模块化工具
 	// 注册任务
-	grunt.registerTask("default", ['less','cssmin','replace','browserify','uglify',"copy"]);
+	grunt.registerTask("default", ['clean','less','cssmin','replace','browserify','uglify',"copy"]);
 	grunt.registerTask("monitor", ['browserify','watch']);
 };
