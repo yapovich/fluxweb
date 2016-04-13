@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 		less: {
 			development: {
 				files: {
-					"public/stylesheets/css/login.css": "public/stylesheets/less/login.less"
+					"public/stylesheets/css/index.css": "public/stylesheets/less/index.less"
 				}
 			}
 		},
