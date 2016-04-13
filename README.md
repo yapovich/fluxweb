@@ -1,6 +1,6 @@
 # fluxweb
 react+flux+browserify前端组件式开发框架
-## 说在前面
+## 写在前面
 ### React
 React是一个JavaScript框架，用于构建“可预期的”和“声明式的”Web用户界面，它已经使Facebook更快地开发Web应用。
 可通过Facebook的github网址了解详情：
