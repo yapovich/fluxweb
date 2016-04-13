@@ -70,6 +70,8 @@ $ browserify main.js > bundle.js
 在正式编译后，此类标签内的脚本或样式将被编译后版本替换。
 显然，框架样式是基于less开发的，因此引入了less样式文件以及less编译脚本，bundle.js是未压缩版本的broswerify合并文件，将在编译时被压缩。
 编译后的页面结构如下：
+
+/dist/public/index.html
 ```
 <!DOCTYPE html>
 <html>
