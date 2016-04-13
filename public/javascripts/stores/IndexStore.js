@@ -3,7 +3,7 @@
  */
 var Flux = require('../vendor/util/FluxUtil');
 var resultText="";
-var LoginStore = Flux.createStore({
+var IndexStore = Flux.createStore({
     update:function(action) {
         var text = action.text.trim();
         switch(action.actionType) {
@@ -20,4 +20,4 @@ var LoginStore = Flux.createStore({
         return resultText;
     }
 });
-module.exports = LoginStore;
+module.exports = IndexStore;

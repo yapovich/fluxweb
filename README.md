@@ -92,10 +92,15 @@ $ browserify main.js > bundle.js
 @baseBackgroundColor:#ffffff;
 @width:100%;
 @height:100%;
+html,body{
+  width:@width;
+  height:@height;
+  overflow:hidden;
+}
 #container{
-   width:@width;
-   height:@height;
-   background-color:@baseBackgroundColor;
+  width:@width;
+  height:@height;
+  background-color:@baseBackgroundColor;
 }
 ```
 ### 3.创建存储(Store)
@@ -146,11 +151,11 @@ Store只负责存放最后的结果和结果运算,不负责前后端通讯。
 ### 5.创建视图(React组件)
 /public/javascripts/components/Index.js
 ```
-var Flux = require('../../vendor/util/FluxUtil');
-var FluxConstant=require("../../vendor/util/FluxConstant");
+var Flux = require('../vendor/util/FluxUtil');
+var FluxConstant=require("../vendor/util/FluxConstant");
 var React = require('react');
-var LoginStore = require('../../stores/IndexStore');
-var LoginAction = require('../../actions/IndexAction');
+var IndexStore = require('../stores/IndexStore');
+var IndexAction = require('../actions/IndexAction');
 var Index = Flux.createView({
     //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
     getStore: function(){
@@ -162,7 +167,7 @@ var Index = Flux.createView({
     },
     //发起一个动作，此例为点击事件发起
     handleClick:function(){
-        LoginAction.updateText("this is my first update");
+        IndexAction.updateText("this is my first update");
     },
     //视图渲染，发生状态变化时自动调用
     render: function() {
@@ -196,9 +201,15 @@ ReactDOM.render(
     document.getElementById('container')
 );
 ```
-### 7.启动本地服务并访问
-当上述代码编写完成后，就可以利用框架安装的node express开启一个http服务来测试例子：
+### 7.启动本地服务
+通过框架安装的node express开启一个http服务来测试例子：
 ~~~
-node bin/www
+node ./bin/www
 ~~~
-访问http://localhost:3000来看看结果吧！
+### 8.编译并启动文件监控
+启动框架已配置的grunt任务编译代码，并开始文件监控，下次我们再修改代码，就能自动编译啦！
+~~~
+grunt monitor
+~~~
+注意在Window开发环境下，不要关闭Shell窗口哦，Linux环境下可通过nohup命令在后台运行:)
+OK，访问http://localhost:3000来看看结果吧！

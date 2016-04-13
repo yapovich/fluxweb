@@ -6,10 +6,9 @@ var Jquery=require('./vendor/jquery/jquery-1.9.1');
 //应用node模块
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ContainerMain=require('./components/container/main');
-var Login=require('./components/container/login');
+var Index=require('./components/Index');
 //渲染初始页面
 ReactDOM.render(
-    <Login/>,
+    <Index/>,
     document.getElementById('container')
 );

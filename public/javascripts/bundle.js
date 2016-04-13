@@ -19676,13 +19676,13 @@ module.exports = require('./lib/React');
  * Created by yebo on 2016/4/8.
  */
 var Flux = require('../vendor/util/FluxUtil');
-var LoginAction = Flux.createAction({
+var IndexAction = Flux.createAction({
     updateText: function(text) {
         this.dispatch("updateText",text);
     }
 });
-module.exports = LoginAction;
-},{"../vendor/util/FluxUtil":175}],165:[function(require,module,exports){
+module.exports = IndexAction;
+},{"../vendor/util/FluxUtil":171}],165:[function(require,module,exports){
 /**
  * Created by yebo on 2016/4/8.
  */
@@ -19691,14 +19691,53 @@ var Jquery=require('./vendor/jquery/jquery-1.9.1');
 //应用node模块
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ContainerMain=require('./components/container/main');
-var Login=require('./components/container/login');
+var Index=require('./components/Index');
 //渲染初始页面
 ReactDOM.render(
-    React.createElement(Login, null),
+    React.createElement(Index, null),
     document.getElementById('container')
 );
-},{"./components/container/login":167,"./components/container/main":168,"./vendor/jquery/jquery-1.9.1":173,"react":163,"react-dom":7}],166:[function(require,module,exports){
+},{"./components/Index":166,"./vendor/jquery/jquery-1.9.1":169,"react":163,"react-dom":7}],166:[function(require,module,exports){
+/**
+ * Created by yebo on 2016/4/11.
+ */
+var Flux = require('../vendor/util/FluxUtil');
+var FluxConstant=require("../vendor/util/FluxConstant");
+var React = require('react');
+var IndexStore = require('../stores/IndexStore');
+var IndexAction = require('../actions/IndexAction');
+var Button=require('./bootstrap/Button');
+var Index = Flux.createView({
+    //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
+getStore: function(){
+    return [IndexStore];
+},
+//获取当前视图状态，通常都是从Store中获取
+getState: function(){
+    return {text: IndexStore.getResultText()};
+},
+//发起一个动作，此例为点击事件发起
+handleClick:function(){
+    IndexAction.updateText("this is my first update");
+},
+//视图渲染，发生状态变化时自动调用
+render: function() {
+    return (
+        React.createElement("div", null, 
+        React.createElement("label", null, this.state.text), 
+        React.createElement(Button, {id: "loginBtn", className: "btn-danger btn-large", onClick: this.handleClick}, "登 录")
+        )
+   )
+},
+//尺寸重绘，发生窗体大小变化时自动调用
+resize: function() {
+    //获取当前页面的尺寸
+    var width=FluxConstant.view.PAGE_WIDTH;
+    var height=FluxConstant.view.PAGE_HEIGHT;
+}
+});
+module.exports = Index;
+},{"../actions/IndexAction":164,"../stores/IndexStore":168,"../vendor/util/FluxConstant":170,"../vendor/util/FluxUtil":171,"./bootstrap/Button":167,"react":163}],167:[function(require,module,exports){
 /**
  * Created by yebo on 2016/4/11.
  */
@@ -19716,164 +19755,13 @@ var Button = Flux.createView({
      }
 });
 module.exports = Button;
-},{"../../vendor/util/FluxUtil":175,"react":163}],167:[function(require,module,exports){
-/**
- * Created by yebo on 2016/4/11.
- */
-var Flux = require('../../vendor/util/FluxUtil');
-var FluxConstant=require("../../vendor/util/FluxConstant");
-var React = require('react');
-var Button=require('../bootstrap/button');
-var LoginStore = require('../../stores/LoginStore');
-var LoginAction = require('../../actions/LoginAction');
-var Login = Flux.createView({
-    getStore: function(){
-        return [LoginStore];
-    },
-    getState: function(){
-        return {username: LoginStore.getResultText()};
-    },
-    handleClick:function(){
-        LoginAction.updateText(this.refs.username.value);
-    },
-    handleChange:function(){
-        this.setState({username:this.refs.username.value});
-    },
-    render: function() {
-        return (
-            React.createElement("div", {className: "login_bg", style: {width:"100%",height:"100%"}}, 
-            React.createElement("div", {className: "login_wrapper"}, 
-            React.createElement("div", {className: "login_container"}, 
-            React.createElement("div", {className: "login_formContainer"}, 
-            React.createElement("div", {className: "login_logo"}, 
-                React.createElement("strong", null)
-            ), 
-            React.createElement("div", {className: "login_foot"}, React.createElement("span", null, "©2015 海康威视研究院  大数据技术部")), 
-            React.createElement("div", {className: "login_form"}, 
-            React.createElement("div", {className: "login_formTitle"}, 
-               React.createElement("strong", null, "欢迎登录")
-            ), 
-            React.createElement("div", {className: "login_validateLabel"}), 
-            React.createElement("div", {className: "login_MainForm"}, 
-               React.createElement("div", {className: "form-group", style: {marginBottom:10}}, 
-                  React.createElement("div", {className: "input-group"}, 
-                      React.createElement("div", {className: "input-group-addon"}, 
-                         React.createElement("img", {src: "images/login/username.png"})
-                      ), 
-                      React.createElement("input", {ref: "username", autocomplete: "off", className: "form-control", type: "text", id: "login_username", name: "login_username", 
-                             placeholder: "用户名"})
-                  )
-               ), 
-               React.createElement("div", {className: "form-group", style: {marginBottom:10}}, 
-                    React.createElement("div", {className: "input-group"}, 
-                       React.createElement("div", {className: "input-group-addon"}, 
-                         React.createElement("img", {src: "images/login/pwd.png"})
-                       ), 
-                       React.createElement("input", {ref: "password", autocomplete: "off", className: "form-control", type: "password", id: "login_password", name: "login_password", 
-                           placeholder: "密码"})
-                )
-            ), 
-            React.createElement("div", {className: "checkbox"}, React.createElement("label", null, React.createElement("input", {type: "checkbox", id: "rememberMe"}), "记住密码")), 
-            React.createElement("div", {style: {textAlign:"right",paddingTop:50}}, 
-                 React.createElement(Button, {id: "loginBtn", className: "btn-danger btn-large form-control", onClick: this.handleClick}, "登 录")
-             )
-           )
-           )
-           )
-           )
-           )
-           )
-        );
-     },
-     //尺寸重绘
-     resize: function() {
-         var width=FluxConstant.view.PAGE_WIDTH;
-         var height=FluxConstant.view.PAGE_HEIGHT;
-         //console.log({width: FluxConstant.view.PAGE_WIDTH, height: FluxConstant.view.PAGE_HEIGHT});
-     }
-});
-module.exports = Login;
-},{"../../actions/LoginAction":164,"../../stores/LoginStore":172,"../../vendor/util/FluxConstant":174,"../../vendor/util/FluxUtil":175,"../bootstrap/button":166,"react":163}],168:[function(require,module,exports){
-/**
- * Created by yebo on 2016/4/8.
- */
-var React = require('react');
-var Flux = require('../../vendor/util/FluxUtil');
-var Top=require('./top');
-var Menu=require('./menu');
-var Stage=require('./stage');
-var Main = Flux.createView({
-    getState: function() {
-        return {showTop:true};
-    },
-    handleClick: function(evt){
-        this.setState({showTop:this.refs.cb.checked})
-    },
-    render: function() {
-        return (
-            React.createElement("div", {className: "container"}, 
-                React.createElement("input", {type: "checkbox", ref: "cb", checked: this.state.showTop, onChange: this.handleClick}), 
-                React.createElement("div", {style: {display:(this.state.showTop?"block":"none")}}, "showTop"), 
-                React.createElement(Top, React.__spread({},  this.props)), 
-                React.createElement(Menu, React.__spread({},  this.props)), 
-                React.createElement(Stage, React.__spread({},  this.props))
-            ))
-    }
-});
-module.exports = Main;
-},{"../../vendor/util/FluxUtil":175,"./menu":169,"./stage":170,"./top":171,"react":163}],169:[function(require,module,exports){
-/**
- * Created by yebo on 2016/4/8.
- */
-var React = require('react');
-var Flux = require('../../vendor/util/FluxUtil');
-var Menu = Flux.createView({
-    render: function() {
-        return (
-            React.createElement("div", {className: "menu"}, "this is menu!my name is ", this.props.menuName));
-     }
-});
-module.exports = Menu;
-},{"../../vendor/util/FluxUtil":175,"react":163}],170:[function(require,module,exports){
-/**
- * Created by yebo on 2016/4/8.
- */
-var React = require('react');
-var Flux = require('../../vendor/util/FluxUtil');
-var Stage = Flux.createView({
-    render: function() {
-        return (
-            React.createElement("div", {"data-attribute": "http://www.baidu.com", className: "stage", style: {color:"green"}}, "this is stage!my name is ", this.props.stageName)
-        );
-    }
-});
-module.exports = Stage;
-},{"../../vendor/util/FluxUtil":175,"react":163}],171:[function(require,module,exports){
-/**
- * Created by yebo on 2016/4/8.
- */
-var React = require('react');
-var Flux = require('../../vendor/util/FluxUtil');
-var LoginStore = require('../../stores/LoginStore');
-var LoginAction = require('../../actions/LoginAction');
-var Button=require('../bootstrap/button');
-var Top = Flux.createView({
-  render: function() {
-    return (
-            React.createElement("div", {className: "top"}, 
-              React.createElement("input", {ref: "myinput", type: "text"})
-            )
-    );
-  }
-});
-module.exports = Top;
-},{"../../actions/LoginAction":164,"../../stores/LoginStore":172,"../../vendor/util/FluxUtil":175,"../bootstrap/button":166,"react":163}],172:[function(require,module,exports){
+},{"../../vendor/util/FluxUtil":171,"react":163}],168:[function(require,module,exports){
 /**
  * Created by yebo on 2016/4/8.
  */
 var Flux = require('../vendor/util/FluxUtil');
 var resultText="";
-var LoginStore = Flux.createStore({
+var IndexStore = Flux.createStore({
     update:function(action) {
         var text = action.text.trim();
         switch(action.actionType) {
@@ -19890,8 +19778,8 @@ var LoginStore = Flux.createStore({
         return resultText;
     }
 });
-module.exports = LoginStore;
-},{"../vendor/util/FluxUtil":175}],173:[function(require,module,exports){
+module.exports = IndexStore;
+},{"../vendor/util/FluxUtil":171}],169:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
@@ -29490,7 +29378,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 })( window );
 
-},{}],174:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 /**
  * Created by yebo on 2016/4/8.
  */
@@ -29504,7 +29392,7 @@ var FluxConstant={
     }
 }
 module.exports = FluxConstant;
-},{}],175:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 /**
  * Created by yebo on 2016/4/8.
  */
@@ -29627,4 +29515,4 @@ var dispatchEvent=function(obj,eventName){
 dispatchEvent(window,"resize");
 //-----------------------------------------end
 module.exports = FluxUtil;
-},{"./FluxConstant":174,"events":1,"flux":3,"object-assign":5,"react":163}]},{},[165]);
+},{"./FluxConstant":170,"events":1,"flux":3,"object-assign":5,"react":163}]},{},[165]);
