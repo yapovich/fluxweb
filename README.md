@@ -47,6 +47,7 @@ $ browserify main.js > bundle.js
 ## 构建/运行依赖
 1. node.js - server-side JS engine
 2. npm - node package manager
+
 ## node,npm安装说明
 node.js - [https://github.com/nodejs/node](https://github.com/nodejs/node)
 
