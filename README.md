@@ -7,14 +7,14 @@ React是一个JavaScript框架，用于构建“可预期的”和“声明式�
 [http://facebook.github.io/react/](http://facebook.github.io/react/ "")
 ### Flux
 Flux 是一个Facebook开发的、利用单向数据流实现的应用架构，用于 React。
-Flux应用有四个主要的部分组成：调度(Dispatcher)、存储(Store)、动作(Action)和视图（React）。
+Flux应用有四个主要的部分组成：调度(Dispatcher)、存储(Store)、动作(Action)和视图(React)。
 Facebook工程经理Tom Occhino说，由于他们“非常巨大”的代码库和庞大的组织，因而需要“以某种方式使代码结构化，使其更加可预测”。
 这已经通过 Flux 和 React 完成。
 Flux是一个系统架构，用于推进应用中的数据单向流动。
 可通过Facebook的github网址了解详情：
 [http://facebook.github.io/flux/](http://facebook.github.io/flux/ "")
 ### Browserify
-Browserify 可以让你使用类似于 node 的 require() 的方式来组织浏览器端的 Javascript 代码，通过预编译让前端 Javascript 可以直接使用 Node NPM 安装的一些库。
+Browserify 可以让你使用类似于 node 的 require() 的方式来组织浏览器端的 Javascript 代码，通过预编译让前端 javascript 可以直接使用 node npm 安装的一些库。
 
 安装：
 ```
@@ -43,3 +43,4 @@ $ browserify main.js > bundle.js
 ```
 <script src="bundle.js"></script>
 ```
+因此，框架采用Browserify的模块化方式组织我们的javascript代码，进一步提高了代码的可维护性和可测试性，后面将结合nodeunit模块详细介绍如何进行js模块的单元测试
