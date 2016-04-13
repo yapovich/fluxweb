@@ -98,3 +98,104 @@ $ browserify main.js > bundle.js
    background-color:@baseBackgroundColor;
 }
 ```
+### 3.创建存储(Store)
+/public/javascripts/stores/IndexStore.js
+```
+var Flux = require('../vendor/util/FluxUtil');
+var resultText="";
+var IndexStore = Flux.createStore({
+    //更新存储结果，update为约定函数名，必须实现
+    update:function(action) {
+        var text = action.text.trim();
+        switch(action.actionType) {
+            case "updateText"://注册updateText动作处理逻辑
+                if (text !== '') {
+                    resultText=text;
+                }
+                break;
+            default:
+            // no op
+        }
+    },
+    //获取存储结果，getResultText为自定义函数名，可选实现
+    //一般来说,至少有一个getSomething函数,以便获取存储数据
+    getResultText: function() {
+        return resultText;
+    }
+});
+module.exports = IndexStore;
+```
+### 4.创建动作
+/public/javascripts/actions/IndexAction.js
+```
+var Flux = require('../vendor/util/FluxUtil');
+var IndexAction = Flux.createAction({
+    //发起更新动作，updateText为自定义函数名，可选实现
+    //一般来说,至少有一个updateSomething函数,以便发起动作
+    updateText: function(text) {
+        //广播更新动作，所有的Store都将接收到
+        this.dispatch("updateText",text);
+    }
+});
+module.exports = IndexAction;
+```
+注意：通常，我们在发起一个动作的时候，会跟服务端进行数据传输，
+比如发送一个ajax请求，我们也是在Action的updateSomething方法中去实现，
+并在请求返回时dispatch出去，
+Store只负责存放最后的结果和结果运算,不负责前后端通讯。
+### 5.创建视图(React组件)
+/public/javascripts/components/Index.js
+```
+var Flux = require('../../vendor/util/FluxUtil');
+var FluxConstant=require("../../vendor/util/FluxConstant");
+var React = require('react');
+var LoginStore = require('../../stores/IndexStore');
+var LoginAction = require('../../actions/IndexAction');
+var Index = Flux.createView({
+    getStore: function(){
+        return [LoginStore];
+    },
+    getState: function(){
+        return {text: LoginStore.getResultText()};
+    },
+    handleClick:function(){
+        LoginAction.updateText("this is my first update");
+    },
+    //视图渲染，发生状态变化时自动调用
+    render: function() {
+        return (
+            <div>
+               <label>{this.state.text}</label>
+               <button onClick={this.handleClick}></button>
+            </div>
+     },
+     //尺寸重绘，发生窗体大小变化时自动调用
+     resize: function() {
+         //获取当前页面的尺寸
+         var width=FluxConstant.view.PAGE_WIDTH;
+         var height=FluxConstant.view.PAGE_HEIGHT;
+     }
+});
+module.exports = Index;
+```
+### 6.调用视图
+/public/app.js
+```
+var Jquery=require('./vendor/jquery/jquery-1.9.1');
+//应用node模块
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ContainerMain=require('./components/container/main');
+var Index=require('./components/Index');
+//渲染初始页面
+ReactDOM.render(
+    <Index/>,
+    document.getElementById('container')
+);
+```
+### 7.启动本地服务并访问
+当上述代码编写完成后，就可以利用框架自带的node express开启一个http服务来测试例子：
+~~~
+node bin/www
+~~~
+访问http://localhost:3000来看看结果吧！
