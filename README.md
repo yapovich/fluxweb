@@ -201,7 +201,7 @@ ReactDOM.render(
     document.getElementById('container')
 );
 ```
-### 7.启动本地服务
+### 7.启动本地HTTP服务
 通过框架安装的node express开启一个http服务来测试例子：
 ~~~
 node ./bin/www
