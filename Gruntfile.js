@@ -8,8 +8,7 @@ module.exports = function(grunt) {
 		less: {
 			development: {
 				files: {
-					"public/stylesheets/css/login.css": "public/stylesheets/less/login.less",
-					"public/stylesheets/css/index.css": "public/stylesheets/less/index.less"
+					"public/stylesheets/css/login.css": "public/stylesheets/less/login.less"
 				}
 			}
 		},
@@ -134,5 +133,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-browserify');//require模块化工具
 	// 注册任务
 	grunt.registerTask("default", ['less','cssmin','replace','browserify','uglify',"copy"]);
-	grunt.registerTask("develop", ['browserify','watch']);
+	grunt.registerTask("monitor", ['browserify','watch']);
 };
