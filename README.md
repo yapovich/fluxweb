@@ -197,7 +197,7 @@ ReactDOM.render(
 );
 ```
 ### 7.启动本地服务并访问
-当上述代码编写完成后，就可以利用框架自带的node express开启一个http服务来测试例子：
+当上述代码编写完成后，就可以利用框架安装的node express开启一个http服务来测试例子：
 ~~~
 node bin/www
 ~~~
