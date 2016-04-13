@@ -152,12 +152,15 @@ var React = require('react');
 var LoginStore = require('../../stores/IndexStore');
 var LoginAction = require('../../actions/IndexAction');
 var Index = Flux.createView({
+    //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
     getStore: function(){
-        return [LoginStore];
+        return [IndexStore];
     },
+    //获取当前视图状态，通常都是从Store中获取
     getState: function(){
         return {text: LoginStore.getResultText()};
     },
+    //发起一个动作，此例为点击事件发起
     handleClick:function(){
         LoginAction.updateText("this is my first update");
     },
