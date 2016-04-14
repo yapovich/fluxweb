@@ -93,6 +93,39 @@ module.exports = function(grunt) {
 					{expand: true, src: ['public/images/**'], dest: 'dist'}]
 			}
 		},
+		/*哈希命名*/
+		filerev: {
+			options: {
+				encoding: 'utf8',
+				algorithm: 'md5',
+				length: 16,
+				process: function(basename, name, extension){
+					var hash=function(name,algorithm){
+						var crypto=require("crypto")
+						var hash = crypto.createHash(algorithm);
+						hash.update(name, "utf8");
+						return hash.digest("hex").slice(0, 16);
+					}
+					var resultname=hash(basename+new Date(),"md5");
+                    return basename+"."+resultname+"."+extension;
+	            }
+			},
+			assets: {
+				files: [{
+					src: [
+						'dist/public/stylesheets/css/all.css',
+						'dist/public/javascripts/bundle.min.js'
+					]
+				}]
+			}
+		},
+		/*HASH版本文件名自动替换*/
+		usemin:{
+			html: 'dist/public/index.html',
+			options: {
+				assetsDirs: []
+			}
+		},
 		browserify: {
 			options: {
 				transform: [require('grunt-react').browserify]
@@ -127,7 +160,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-replace');// 替换工具
 	grunt.loadNpmTasks('grunt-react');//react语法解析工具
 	grunt.loadNpmTasks('grunt-browserify');//require模块化工具
+	grunt.loadNpmTasks('grunt-filerev');//哈希化
+	grunt.loadNpmTasks('grunt-usemin');//哈希化
 	// 注册任务
-	grunt.registerTask("default", ['clean','less','cssmin','replace','browserify','uglify',"copy"]);
+	grunt.registerTask("default", ['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
 	grunt.registerTask("monitor", ['browserify','watch']);
 };
