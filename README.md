@@ -62,7 +62,7 @@ npm install
 ```
 ## 一个例子
 ### 1. 创建页面
-/public/index.html
+`/public/index.html`
 ```
 <!DOCTYPE html>
 <html>
@@ -87,7 +87,7 @@ npm install
 显然，框架样式是基于less开发的，因此引入了less样式文件以及less编译脚本，bundle.js是未压缩版本的broswerify合并文件，将在编译时被压缩。
 编译后的页面结构如下：
 
-/dist/public/index.html
+`/dist/public/index.html`
 ```
 <!DOCTYPE html>
 <html>
@@ -103,7 +103,7 @@ npm install
 <script type="text/javascript" src="javascripts/bundle.min.js"></script>
 ```
 ### 2.创建样式
-/public/stylesheets/less/index.less
+`/public/stylesheets/less/index.less`
 ```
 @baseBackgroundColor:#ffffff;
 @width:100%;
@@ -120,7 +120,7 @@ html,body{
 }
 ```
 ### 3.创建存储(Store)
-/public/javascripts/stores/IndexStore.js
+`/public/javascripts/stores/IndexStore.js`
 ```
 var Flux = require('../vendor/util/FluxUtil');
 var resultText="";
@@ -147,7 +147,7 @@ var IndexStore = Flux.createStore({
 module.exports = IndexStore;
 ```
 ### 4.创建动作(Action)
-/public/javascripts/actions/IndexAction.js
+`/public/javascripts/actions/IndexAction.js`
 ```
 var Flux = require('../vendor/util/FluxUtil');
 var IndexAction = Flux.createAction({
@@ -165,7 +165,7 @@ module.exports = IndexAction;
 并在请求返回时dispatch出去，
 Store只负责存放最后的结果和结果运算,不负责前后端通讯。
 ### 5.创建视图(React)
-/public/javascripts/components/Index.js
+`/public/javascripts/components/Index.js`
 ```
 var Flux = require('../vendor/util/FluxUtil');
 var FluxConstant=require("../vendor/util/FluxConstant");
@@ -203,7 +203,7 @@ var Index = Flux.createView({
 module.exports = Index;
 ```
 ### 6.调用视图
-/public/app.js
+`/public/app.js`
 ```
 var Jquery=require('./vendor/jquery/jquery-1.9.1');
 //应用node模块
