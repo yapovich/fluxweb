@@ -1,5 +1,5 @@
 # fluxweb
-react+flux+browserify前端组件式开发框架，基于上述三大框架做了工程化和约定俗成的封装，屏蔽了显式的调用过程，使开发人员专注于组件及其业务逻辑的开发。
+react+flux+browserify前端组件式开发框架，本框架基于上述三大框架做了工程化和约定俗成的封装，屏蔽了显式的调用过程，使开发人员专注于组件及其业务逻辑的开发。
 ## 写在前面
 ### React
 React是一个JavaScript框架，用于构建“可预期的”和“声明式的”Web用户界面，它已经使Facebook更快地开发Web应用。
@@ -236,3 +236,4 @@ OK，访问http://localhost:3000来看看结果吧！
 * [如何编译打包工程](https://github.com/yb030832/fluxweb/wiki/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E5%B7%A5%E7%A8%8B)
 
 进入我们的[Wiki](https://github.com/yb030832/fluxweb/wiki)可了解更多
+this is boboweiqi's github
