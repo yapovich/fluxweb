@@ -74,10 +74,10 @@ module.exports = function(grunt) {
 		copy: {
 			main: {
 				files: [
-					/*{
-						expand: true, src: ['public/javascripts/bundle.js'],
+					{
+						expand: true, src: ['public/javascripts/app/*bundle.js'],
 						dest: 'dist'
-					},*/
+					},
 					{
 						expand: true, src: ['public/javascripts/vendor/bootstrap/css/bootstrap.min.css'],
 						dest: 'dist'
@@ -140,11 +140,11 @@ module.exports = function(grunt) {
 				},
 				output: {
 					publicPath: "javascripts/app/",
-					path: './dist/public/javascripts/app',
+					path: './public/javascripts/app',
 					filename: 'bundle.js'
 				},
 				resolve: {
-					extensions: ['', '.js', '.jsx']
+					extensions: ['','.js','.jsx','.less','.css']
 				},
 				module: {
 					loaders: [
@@ -168,6 +168,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-usemin');//哈希化
 	grunt.loadNpmTasks('grunt-webpack');//模块化工具
 	// 注册任务
-	grunt.registerTask("default", ['clean','webpack','uglify','less','cssmin','replace','copy']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
+	grunt.registerTask("default", ['clean','webpack','less','cssmin','copy','uglify','replace']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
 	grunt.registerTask("monitor", ['webpack','watch']);
 };

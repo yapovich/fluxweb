@@ -2,7 +2,7 @@
  * Created by yebo on 2016/4/8.
  */
 //引用样式
-//var css=require("!style!css!less!../stylesheets/less/index.less");
+//var css=require("javascripts/vendor/bootstrap/css/bootstrap.min.css");
 //引用第三方静态库
 //var Jquery=require('./vendor/jquery/jquery-1.9.1');
 //应用node模块
