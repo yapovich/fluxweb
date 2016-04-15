@@ -7,9 +7,11 @@ module.exports = function(grunt) {
 		/*less文件编译*/
 		less: {
 			development: {
-				files: {
-					"public/stylesheets/css/index.css": "public/stylesheets/less/index.less"
-				}
+				files:
+					[{
+						src: 'public/stylesheets/**/*.less',
+						dest: 'dist/public/stylesheets/all.css'
+					}]
 			}
 		},
 		/*css压缩及合并*/
@@ -20,8 +22,8 @@ module.exports = function(grunt) {
 			},
 			target: {
 				files: {
-					'dist/public/stylesheets/css/all.css': [
-						'public/stylesheets/**/**.css']
+					'dist/public/stylesheets/all.css': [
+					'dist/public/stylesheets/all.css']
 				}
 			}
 		},
@@ -31,23 +33,13 @@ module.exports = function(grunt) {
 				mangle: false//如果是js的压缩，此变量设置是否混淆函数和变量名称
 			},
 			my_target: {
-				files: {
-					'dist/public/javascripts/bundle.min.js': ['public/javascripts/bundle.js']
-				}
-			}
-		},
-		/*js合并*/
-		concat: {
-			options: {
-				stripBanners: true,
-				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-				'<%= grunt.template.today("yyyy-mm-dd") %> */',
-			},
-			dist: {
-				files: {
-					'public/javascripts/all.js': ['public/javascripts/bundle.min.js']
-				}
-			}
+				files:[{
+					expand: true,
+					cwd: 'dist/public/javascripts/app',
+					src: '**/*bundle.js',
+					dest: 'dist/public/javascripts/app'
+				}]
+		     }
 		},
 		/*清除临时和编译目标文件夹*/
 		clean: {
@@ -65,11 +57,11 @@ module.exports = function(grunt) {
 					patterns: [
 						{//替换引用压缩版本的脚本
 							match: new RegExp("<!--sourcejs begin-->([\\s\\S]*)<!--sourcejs end-->", "g"),
-							replacement: '<script type="text/javascript" src="javascripts/bundle.min.js"></script>'
+							replacement: '<script type="text/javascript" src="javascripts/app/bundle.js"></script>'
 						},
 						{//替换引用压缩版本的样式
 							match: new RegExp("<!--sourcecss begin-->([\\s\\S]*)<!--sourcecss end-->", "g"),
-							replacement: '<link rel="stylesheet" type="text/css" href="stylesheets/css/all.css"/>'
+							replacement: '<link rel="stylesheet" type="text/css" href="stylesheets/all.css"/>'
 						}
 					]
 				},
@@ -82,6 +74,10 @@ module.exports = function(grunt) {
 		copy: {
 			main: {
 				files: [
+					/*{
+						expand: true, src: ['public/javascripts/bundle.js'],
+						dest: 'dist'
+					},*/
 					{
 						expand: true, src: ['public/javascripts/vendor/bootstrap/css/bootstrap.min.css'],
 						dest: 'dist'
@@ -98,7 +94,7 @@ module.exports = function(grunt) {
 			options: {
 				encoding: 'utf8',
 				algorithm: 'md5',
-				length: 16,
+				length: 20/*,
 				process: function(basename, name, extension){
 					var hash=function(name,algorithm){
 						var crypto=require("crypto")
@@ -108,13 +104,12 @@ module.exports = function(grunt) {
 					}
 					var resultname=hash(basename+new Date(),"md5");
                     return basename+"."+resultname+"."+extension;
-	            }
+	            }*/
 			},
 			assets: {
 				files: [{
 					src: [
-						'dist/public/stylesheets/css/all.css',
-						'dist/public/javascripts/bundle.min.js'
+						'dist/public/stylesheets/all.css'
 					]
 				}]
 			}
@@ -123,28 +118,39 @@ module.exports = function(grunt) {
 		usemin:{
 			html: 'dist/public/index.html',
 			options: {
-				assetsDirs: []
-			}
-		},
-		browserify: {
-			options: {
-				transform: [require('grunt-react').browserify]
-			},
-			app: {
-				src: 'public/javascripts/app.js',
-				dest: 'public/javascripts/bundle.js'
+				assetsDirs: ['dist/public']
 			}
 		},
 		watch: {
-			browserify:{
+			webpack:{
 				files: [
-					'public/javascripts/app.js',
-					'public/javascripts/actions/**/*.js',
-					'public/javascripts/components/**/*.js',
-					'public/javascripts/stores/**/*.js'],
-				tasks: ['browserify'],
+					'public/javascripts/app.jsx',
+					'public/javascripts/app/**/*.jsx',
+					'public/javascripts/app/**/*.js'],
+				tasks: ['webpack'],
 				options: {
 					debounceDelay: 250
+				}
+			}
+		},
+		webpack: {
+			target: {
+				entry: {
+					app: './public/javascripts/app.jsx'
+				},
+				output: {
+					publicPath: "javascripts/app/",
+					path: './dist/public/javascripts/app',
+					filename: 'bundle.js'
+				},
+				resolve: {
+					extensions: ['', '.js', '.jsx']
+				},
+				module: {
+					loaders: [
+						{test: /\.js$/,loader: 'babel?presets[]=es2015'},
+						{test: /\.jsx$/,loader: 'babel?presets[]=es2015!jsx'}
+					]
 				}
 			}
 		}
@@ -158,11 +164,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');// 清除工具
 	grunt.loadNpmTasks('grunt-contrib-copy');// 拷贝工具
 	grunt.loadNpmTasks('grunt-replace');// 替换工具
-	grunt.loadNpmTasks('grunt-react');//react语法解析工具
-	grunt.loadNpmTasks('grunt-browserify');//require模块化工具
 	grunt.loadNpmTasks('grunt-filerev');//哈希化
 	grunt.loadNpmTasks('grunt-usemin');//哈希化
+	grunt.loadNpmTasks('grunt-webpack');//模块化工具
 	// 注册任务
-	grunt.registerTask("default", ['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
-	grunt.registerTask("monitor", ['browserify','watch']);
+	grunt.registerTask("default", ['clean','webpack','uglify','less','cssmin','replace','copy']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
+	grunt.registerTask("monitor", ['webpack','watch']);
 };
