@@ -22,7 +22,7 @@
       <h1>
 <a id="fluxweb" class="anchor" href="#fluxweb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>fluxweb</h1>
 
-<p>react+flux+browserify前端组件式开发框架，基于上述三大框架做了工程化和约定俗成的封装，屏蔽了显式的调用过程，使开发人员专注于组件及其业务逻辑的开发。</p>
+<p>react+flux前端组件式开发框架，基于上述框架做了工程化和约定俗成的封装，屏蔽了显式的调用过程，使开发人员专注于组件及其业务逻辑的开发。</p>
 
 <h2>
 <a id="写在前面" class="anchor" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>写在前面</h2>
@@ -44,45 +44,6 @@ Facebook工程经理Tom Occhino说，由于他们“非常巨大”的代码库�
 Flux是一个系统架构，用于推进应用中的数据单向流动。
 可通过Facebook的github网址了解详情：
 <a href="http://facebook.github.io/flux/">http://facebook.github.io/flux/</a></p>
-
-<h3>
-<a id="browserify" class="anchor" href="#browserify" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browserify</h3>
-
-<p>Browserify 可以让你使用类似于 node 的 require() 的方式来组织浏览器端的 Javascript 代码，通过预编译让前端 javascript 可以直接使用 node npm 安装的一些库。</p>
-
-<p>安装：</p>
-
-<pre><code>npm install -g browserify
-</code></pre>
-
-<p>这是 main.js 的内容，像普通的 nodejs 程序那样使用 require() 加载库和文件：</p>
-
-<pre><code>var foo = require('./foo.js');
-var bar = require('../lib/bar.js');
-var gamma = require('gamma');
-var elem = document.getElementById('result');
-var x = foo(100) + bar('baz');
-elem.textContent = gamma(x);
-</code></pre>
-
-<p>导出的方法：</p>
-
-<pre><code>module.exports = function (n) { return n * 111 }
-</code></pre>
-
-<p>使用 browserify 编译：</p>
-
-<pre><code>$ browserify main.js &gt; bundle.js
-</code></pre>
-
-<p>现在 main.js 需要的所有其它文件都会被编译进 bundle.js 中，包括很多层 require() 的情况也会一起被递归式的编译过来。</p>
-
-<p>编译好的 js 可以直接拿到浏览器使用</p>
-
-<pre><code>&lt;script src="bundle.js"&gt;&lt;/script&gt;
-</code></pre>
-
-<p>因此，框架采用Browserify的模块化方式组织我们的javascript代码，进一步提高了代码的可维护性和可测试性，后面将结合nodeunit模块详细介绍如何进行js模块的单元测试</p>
 
 <h2>
 <a id="构建运行依赖" class="anchor" href="#%E6%9E%84%E5%BB%BA%E8%BF%90%E8%A1%8C%E4%BE%9D%E8%B5%96" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>构建/运行依赖</h2>
@@ -116,7 +77,7 @@ npm install
 <h3>
 <a id="1-创建页面" class="anchor" href="#1-%E5%88%9B%E5%BB%BA%E9%A1%B5%E9%9D%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. 创建页面</h3>
 
-<p>/public/index.html</p>
+<p><code>/public/index.html</code></p>
 
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -124,7 +85,7 @@ npm install
     &lt;meta charset="UTF-8"&gt;
     &lt;title&gt;&lt;/title&gt;
     &lt;!--sourcecss begin--&gt;
-    &lt;link rel="stylesheet/less" type="text/css" href="stylesheets/less/index.less"/&gt;
+    &lt;link rel="stylesheet/less" type="text/css" href="stylesheets/index.less"/&gt;
     &lt;script type="text/javascript" src="javascripts/vendor/less/less.min.js"&gt;&lt;/script&gt;
     &lt;!--sourcecss end--&gt;
 &lt;/head&gt;
@@ -133,7 +94,7 @@ npm install
 &lt;/body&gt;
 &lt;/html&gt;
 &lt;!--sourcejs begin--&gt;
-&lt;script type="text/javascript" src="javascripts/bundle.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="javascripts/app/bundle.js"&gt;&lt;/script&gt;
 &lt;!--sourcejs end--&gt;
 </code></pre>
 
@@ -142,7 +103,7 @@ npm install
 显然，框架样式是基于less开发的，因此引入了less样式文件以及less编译脚本，bundle.js是未压缩版本的broswerify合并文件，将在编译时被压缩。
 编译后的页面结构如下：</p>
 
-<p>/dist/public/index.html</p>
+<p><code>/dist/public/index.html</code></p>
 
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -155,13 +116,13 @@ npm install
 &lt;div id="container"&gt;&lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-&lt;script type="text/javascript" src="javascripts/bundle.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="javascripts/app/bundle.js"&gt;&lt;/script&gt;
 </code></pre>
 
 <h3>
 <a id="2创建样式" class="anchor" href="#2%E5%88%9B%E5%BB%BA%E6%A0%B7%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.创建样式</h3>
 
-<p>/public/stylesheets/less/index.less</p>
+<p><code>/public/stylesheets/index.less</code></p>
 
 <pre><code>@baseBackgroundColor:#ffffff;
 @width:100%;
@@ -181,9 +142,9 @@ html,body{
 <h3>
 <a id="3创建存储store" class="anchor" href="#3%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.创建存储(Store)</h3>
 
-<p>/public/javascripts/stores/IndexStore.js</p>
+<p><code>/public/javascripts/app/stores/IndexStore.js</code></p>
 
-<pre><code>var Flux = require('../vendor/util/FluxUtil');
+<pre><code>var Flux = require('../../vendor/util/FluxUtil');
 var resultText="";
 var IndexStore = Flux.createStore({
     //更新存储结果，update为约定函数名，必须实现
@@ -211,9 +172,9 @@ module.exports = IndexStore;
 <h3>
 <a id="4创建动作action" class="anchor" href="#4%E5%88%9B%E5%BB%BA%E5%8A%A8%E4%BD%9Caction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.创建动作(Action)</h3>
 
-<p>/public/javascripts/actions/IndexAction.js</p>
+<p><code>/public/javascripts/app/actions/IndexAction.js</code></p>
 
-<pre><code>var Flux = require('../vendor/util/FluxUtil');
+<pre><code>var Flux = require('../../vendor/util/FluxUtil');
 var IndexAction = Flux.createAction({
     //发起更新动作，updateText为自定义函数名，可选实现
     //一般来说,至少有一个updateSomething函数,以便发起动作
@@ -233,10 +194,10 @@ Store只负责存放最后的结果和结果运算,不负责前后端通讯。</
 <h3>
 <a id="5创建视图react" class="anchor" href="#5%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BEreact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.创建视图(React)</h3>
 
-<p>/public/javascripts/components/Index.js</p>
+<p><code>/public/javascripts/app/components/Index.jsx</code></p>
 
-<pre><code>var Flux = require('../vendor/util/FluxUtil');
-var FluxConstant=require("../vendor/util/FluxConstant");
+<pre><code>var Flux = require('../../vendor/util/FluxUtil');
+var FluxConstant=require("../../vendor/util/FluxConstant");
 var React = require('react');
 var IndexStore = require('../stores/IndexStore');
 var IndexAction = require('../actions/IndexAction');
@@ -274,7 +235,7 @@ module.exports = Index;
 <h3>
 <a id="6调用视图" class="anchor" href="#6%E8%B0%83%E7%94%A8%E8%A7%86%E5%9B%BE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6.调用视图</h3>
 
-<p>/public/app.js</p>
+<p><code>/public/app.jsx</code></p>
 
 <pre><code>var Jquery=require('./vendor/jquery/jquery-1.9.1');
 //应用node模块
