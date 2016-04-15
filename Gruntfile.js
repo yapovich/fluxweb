@@ -86,7 +86,9 @@ module.exports = function(grunt) {
 						expand: true, src: ['public/javascripts/vendor/bootstrap/fonts/**'],
 						dest: 'dist'
 					},
-					{expand: true, src: ['public/images/**'], dest: 'dist'}]
+					{expand: true, src: ['public/images/**'], dest: 'dist'},
+					{expand: true, src: ['bin/**'], dest: 'dist'},
+					{expand: true, src: ['lib/**'], dest: 'dist'}]
 			}
 		},
 		/*哈希命名*/
