@@ -1,0 +1,51 @@
+{
+  "name": "fluxweb",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "public/javascripts/app.js",
+  "scripts": {
+    "start": "nohup node ./bin/www &"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "ejs": "~2.3.3",
+    "express": "~4.13.1",
+    "express-session": "^1.12.1",
+    "flux": "^2.0.1",
+    "less-middleware": "1.0.x",
+    "mongodb": "*",
+    "morgan": "~1.6.1",
+    "multiparty": "^4.1.2",
+    "object-assign": "^1.0.0",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "serve-favicon": "~2.3.0",
+    "soap": "^0.11.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "css-loader": "^0.23.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^1.2.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.1",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-filerev": "^2.3.1",
+    "grunt-replace": "^0.11.0",
+    "grunt-usemin": "^3.1.1",
+    "grunt-webpack": "^1.0.11",
+    "jsx-loader": "^0.13.2",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "uglify-loader": "^1.3.0",
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
