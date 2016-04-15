@@ -135,7 +135,7 @@ module.exports = IndexAction;
 并在请求返回时dispatch出去，
 Store只负责存放最后的结果和结果运算,不负责前后端通讯。
 ### 5.创建视图(React)
-`/public/javascripts/app/components/Index.js`
+`/public/javascripts/app/components/Index.jsx`
 ```
 var Flux = require('../../vendor/util/FluxUtil');
 var FluxConstant=require("../../vendor/util/FluxConstant");
