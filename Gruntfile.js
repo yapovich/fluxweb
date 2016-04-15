@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 				files:
 					[{
 						src: 'public/stylesheets/**/*.less',
-						dest: 'dist/public/stylesheets/all.css'
+						dest: 'dist/target/public/stylesheets/all.css'
 					}]
 			}
 		},
@@ -22,8 +22,8 @@ module.exports = function(grunt) {
 			},
 			target: {
 				files: {
-					'dist/public/stylesheets/all.css': [
-					'dist/public/stylesheets/all.css']
+					'dist/target/public/stylesheets/all.css': [
+					'dist/target/public/stylesheets/all.css']
 				}
 			}
 		},
@@ -35,9 +35,9 @@ module.exports = function(grunt) {
 			my_target: {
 				files:[{
 					expand: true,
-					cwd: 'dist/public/javascripts/app',
+					cwd: 'dist/target/public/javascripts/app',
 					src: '**/*bundle.js',
-					dest: 'dist/public/javascripts/app'
+					dest: 'dist/target/public/javascripts/app'
 				}]
 		     }
 		},
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
 					]
 				},
 				files: [
-					{expand: true, flatten: true, src: ['public/index.html'], dest: 'dist/public'}
+					{expand: true, flatten: true, src: ['public/index.html'], dest: 'dist/target/public'}
 				]
 			}
 		},
@@ -76,19 +76,20 @@ module.exports = function(grunt) {
 				files: [
 					{
 						expand: true, src: ['public/javascripts/app/*bundle.js'],
-						dest: 'dist'
+						dest: 'dist/target'
 					},
 					{
 						expand: true, src: ['public/javascripts/vendor/bootstrap/css/bootstrap.min.css'],
-						dest: 'dist'
+						dest: 'dist/target'
 					},
 					{
 						expand: true, src: ['public/javascripts/vendor/bootstrap/fonts/**'],
-						dest: 'dist'
+						dest: 'dist/target'
 					},
-					{expand: true, src: ['public/images/**'], dest: 'dist'},
-					{expand: true, src: ['bin/**'], dest: 'dist'},
-					{expand: true, src: ['lib/**'], dest: 'dist'}]
+					{expand: true, src: ['public/images/**'], dest: 'dist/target'},
+					{expand: true, src: ['bin/**'], dest: 'dist/target'},
+					{expand: true, src: ['lib/**'], dest: 'dist/target'},
+					{expand: true, src: ['package.json'], dest: 'dist/target'}]
 			}
 		},
 		/*哈希命名*/
@@ -111,16 +112,16 @@ module.exports = function(grunt) {
 			assets: {
 				files: [{
 					src: [
-						'dist/public/stylesheets/all.css'
+						'dist/target/public/stylesheets/all.css'
 					]
 				}]
 			}
 		},
 		/*HASH版本文件名自动替换*/
 		usemin:{
-			html: 'dist/public/index.html',
+			html: 'dist/target/public/index.html',
 			options: {
-				assetsDirs: ['dist/public']
+				assetsDirs: ['dist/target/public']
 			}
 		},
 		watch: {
@@ -155,6 +156,18 @@ module.exports = function(grunt) {
 					]
 				}
 			}
+		},
+		compress: {
+			main: {
+				options: {
+					archive: 'dist/fluxweb.zip',
+					pretty: true
+				},
+				expand: true,
+				cwd: 'dist/target',
+				src: ['**/*'],
+				dest: '/'
+			}
 		}
 	});
 	// 告诉grunt我们将使用插件
@@ -165,11 +178,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');// js压缩工具
 	grunt.loadNpmTasks('grunt-contrib-clean');// 清除工具
 	grunt.loadNpmTasks('grunt-contrib-copy');// 拷贝工具
+	grunt.loadNpmTasks('grunt-contrib-compress');// 文件夹压缩工具
 	grunt.loadNpmTasks('grunt-replace');// 替换工具
 	grunt.loadNpmTasks('grunt-filerev');//哈希化
 	grunt.loadNpmTasks('grunt-usemin');//哈希化
 	grunt.loadNpmTasks('grunt-webpack');//模块化工具
 	// 注册任务
-	grunt.registerTask("default", ['clean','webpack','less','cssmin','copy','uglify','replace']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
+	grunt.registerTask("default", ['clean','webpack','less','cssmin','copy','uglify','replace','compress']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
 	grunt.registerTask("monitor", ['webpack','watch']);
 };
