@@ -6,12 +6,13 @@ module.exports = function(grunt) {
 	// 任务配置
 	grunt.initConfig({
 		pkg: _pkg,
+
 		/*less文件编译*/
 		less: {
 			development: {
 				files:
 					[{
-						src: 'public/stylesheets/**/*.less',
+						src: 'public/stylesheets/import_production.less',
 						dest: 'dist/target/public/stylesheets/all.css'
 					}]
 			}
@@ -60,18 +61,23 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					patterns: [
-						{//替换引用压缩版本的样式
+						{//引用压缩版本的样式
 							match: new RegExp("<!--sourcecss begin-->([\\s\\S]*)<!--sourcecss end-->", "g"),
 							replacement: '<link rel="stylesheet" type="text/css" href="stylesheets/all.css"/>'
 						},
-						{//替换引用压缩版本的样式
+						{//开发环境参数
 							match: new RegExp("#DEVELOPMENT#", "g"),
 							replacement: ''
+						},
+						{//替换引用压缩版本的样式
+							match: new RegExp("../fonts", "g"),
+							replacement: '../javascripts/vendor/bootstrap/fonts'
 						}
 					]
 				},
 				files: [
-					{expand: true, flatten: true, src: ['dist/target/public/index.html'], dest: 'dist/target/public'}
+					{expand: true, flatten: true, src: ['dist/target/public/index.html'], dest: 'dist/target/public'},
+					{expand: true, flatten: true, src: ['dist/target/public/stylesheets/all.css'], dest: 'dist/target/public/stylesheets'}
 				]
 			}
 		},
@@ -199,7 +205,7 @@ module.exports = function(grunt) {
 				options: {
 					archive: 'dist/fluxweb.zip',
 					pretty: true,
-					mode:"tgz"
+					mode:"zip"
 				},
 				expand: true,
 				cwd: 'dist/target',
@@ -232,8 +238,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-filerev');//哈希化
 	grunt.loadNpmTasks('grunt-usemin');//哈希化
 	grunt.loadNpmTasks('grunt-webpack');//模块化工具
+	grunt.loadNpmTasks('grunt-css-import');
 	// 注册任务
 	grunt.registerTask("default", ['clean:build','webpack:build','watch']);
 	grunt.registerTask("dist", ['clean:dist','webpack:dist','less','cssmin','copy','uglify','replace','filerev','usemin','compress:zip','compress:tgz']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
-
+	grunt.registerTask("test", ['css_import']);
 };

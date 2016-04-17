@@ -27,8 +27,9 @@ render: function() {
         <div>
         <label>{this.state.text}</label>
         <Button id="loginBtn" className="btn-danger btn-large" onClick={this.handleClick}>
-            登陆
+            登陆按钮
         </Button>
+            <span className="glyphicon glyphicon-hand-left"></span>
         </div>
    )
 },

@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 160:
+/***/ 162:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -10,12 +10,12 @@ webpackJsonp([1],{
 	/**
 	 * Created by yebo on 2016/4/11.
 	 */
-	var Flux = __webpack_require__(161);
-	var FluxConstant = __webpack_require__(167);
-	var React = __webpack_require__(2);
-	var IndexStore = __webpack_require__(168);
-	var IndexAction = __webpack_require__(169);
-	var Button = __webpack_require__(170);
+	var Flux = __webpack_require__(163);
+	var FluxConstant = __webpack_require__(169);
+	var React = __webpack_require__(4);
+	var IndexStore = __webpack_require__(170);
+	var IndexAction = __webpack_require__(171);
+	var Button = __webpack_require__(172);
 	//console.log($("#container").width()+"########"+$("#container").height());
 	var Index = Flux.createView({
 	    //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
@@ -32,7 +32,7 @@ webpackJsonp([1],{
 	    },
 	    //视图渲染，发生状态变化时自动调用
 	    render: function render() {
-	        return React.createElement("div", null, React.createElement("label", null, this.state.text), React.createElement(Button, { id: "loginBtn", className: "btn-danger btn-large", onClick: this.handleClick }, "登陆"));
+	        return React.createElement("div", null, React.createElement("label", null, this.state.text), React.createElement(Button, { id: "loginBtn", className: "btn-danger btn-large", onClick: this.handleClick }, "登陆按钮"), React.createElement("span", { className: "glyphicon glyphicon-hand-left" }));
 	    },
 	    //尺寸重绘，发生窗体大小变化时自动调用
 	    resize: function resize() {
@@ -47,7 +47,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 161:
+/***/ 163:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -57,11 +57,11 @@ webpackJsonp([1],{
 	/**
 	 * Created by yebo on 2016/4/8.
 	 */
-	var React = __webpack_require__(2);
-	var AppDispatcher = new (__webpack_require__(162).Dispatcher)();
-	var EventEmitter = __webpack_require__(165).EventEmitter;
-	var assign = __webpack_require__(166);
-	var FluxConstant = __webpack_require__(167);
+	var React = __webpack_require__(4);
+	var AppDispatcher = new (__webpack_require__(164).Dispatcher)();
+	var EventEmitter = __webpack_require__(167).EventEmitter;
+	var assign = __webpack_require__(168);
+	var FluxConstant = __webpack_require__(169);
 	var BaseAction = {
 	    dispatch: function dispatch(type, text) {
 	        AppDispatcher.dispatch({
@@ -184,7 +184,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 162:
+/***/ 164:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -200,13 +200,13 @@ webpackJsonp([1],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(163);
+	module.exports.Dispatcher = __webpack_require__(165);
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 
-/***/ 163:
+/***/ 165:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -234,7 +234,7 @@ webpackJsonp([1],{
 	  }
 	}
 
-	var invariant = __webpack_require__(164);
+	var invariant = __webpack_require__(166);
 
 	var _prefix = 'ID_';
 
@@ -448,11 +448,11 @@ webpackJsonp([1],{
 	module.exports = Dispatcher;
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Dispatcher.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
 
-/***/ 164:
+/***/ 166:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -508,11 +508,11 @@ webpackJsonp([1],{
 	module.exports = invariant;
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "invariant.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
 
-/***/ 165:
+/***/ 167:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -791,7 +791,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 166:
+/***/ 168:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -838,7 +838,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 167:
+/***/ 169:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -863,7 +863,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 168:
+/***/ 170:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -873,7 +873,7 @@ webpackJsonp([1],{
 	/**
 	 * Created by yebo on 2016/4/8.
 	 */
-	var Flux = __webpack_require__(161);
+	var Flux = __webpack_require__(163);
 	var resultText = "init value";
 	var IndexStore = Flux.createStore({
 	    update: function update(action) {
@@ -898,7 +898,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 169:
+/***/ 171:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -908,7 +908,7 @@ webpackJsonp([1],{
 	/**
 	 * Created by yebo on 2016/4/8.
 	*/
-	var Flux = __webpack_require__(161);
+	var Flux = __webpack_require__(163);
 	var IndexAction = Flux.createAction({
 	    updateText: function updateText(text) {
 	        this.dispatch("updateText", text);
@@ -920,7 +920,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 170:
+/***/ 172:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\proj\\node\\fluxweb\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -930,8 +930,8 @@ webpackJsonp([1],{
 	/**
 	 * Created by yebo on 2016/4/11.
 	 */
-	var React = __webpack_require__(2);
-	var Flux = __webpack_require__(161);
+	var React = __webpack_require__(4);
+	var Flux = __webpack_require__(163);
 	var Button = Flux.createView({
 	    render: function render() {
 	        return React.createElement("button", {
