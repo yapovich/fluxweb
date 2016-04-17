@@ -26,7 +26,9 @@ render: function() {
     return (
         <div>
         <label>{this.state.text}</label>
-        <Button id="loginBtn" className="btn-danger btn-large" onClick={this.handleClick}>登&nbsp;录</Button>
+        <Button id="loginBtn" className="btn-danger btn-large" onClick={this.handleClick}>
+            登陆
+        </Button>
         </div>
    )
 },

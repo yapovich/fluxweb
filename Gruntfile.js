@@ -1,9 +1,11 @@
 //包装函数
+var HtmlWebpackPlugin=require('html-webpack-plugin')
 module.exports = function(grunt) {
 	// grunt.file.defaultEncoding = 'utf8';
+	var _pkg= grunt.file.readJSON('package.json');
 	// 任务配置
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+		pkg: _pkg,
 		/*less文件编译*/
 		less: {
 			development: {
@@ -36,15 +38,18 @@ module.exports = function(grunt) {
 				files:[{
 					expand: true,
 					cwd: 'dist/target/public/javascripts/app',
-					src: '**/*bundle.js',
+					src: '**/*bundle*.js',
 					dest: 'dist/target/public/javascripts/app'
 				}]
 		     }
 		},
 		/*清除临时和编译目标文件夹*/
 		clean: {
-			build: {
+			dist: {
 				src: ["dist"]
+			},
+			build:{
+				src: ["public/index.html","public/javascripts/app/*bundle*.js"]
 			},
 			options: {
 				force: true
@@ -55,18 +60,18 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					patterns: [
-						{//替换引用压缩版本的脚本
-							match: new RegExp("<!--sourcejs begin-->([\\s\\S]*)<!--sourcejs end-->", "g"),
-							replacement: '<script type="text/javascript" src="javascripts/app/bundle.js"></script>'
-						},
 						{//替换引用压缩版本的样式
 							match: new RegExp("<!--sourcecss begin-->([\\s\\S]*)<!--sourcecss end-->", "g"),
 							replacement: '<link rel="stylesheet" type="text/css" href="stylesheets/all.css"/>'
+						},
+						{//替换引用压缩版本的样式
+							match: new RegExp("#DEVELOPMENT#", "g"),
+							replacement: ''
 						}
 					]
 				},
 				files: [
-					{expand: true, flatten: true, src: ['public/index.html'], dest: 'dist/target/public'}
+					{expand: true, flatten: true, src: ['dist/target/public/index.html'], dest: 'dist/target/public'}
 				]
 			}
 		},
@@ -74,14 +79,10 @@ module.exports = function(grunt) {
 		copy: {
 			main: {
 				files: [
-					{
-						expand: true, src: ['public/javascripts/app/*bundle.js'],
-						dest: 'dist/target'
-					},
-					{
+					/*{
 						expand: true, src: ['public/javascripts/vendor/bootstrap/css/bootstrap.min.css'],
 						dest: 'dist/target'
-					},
+					},*/
 					{
 						expand: true, src: ['public/javascripts/vendor/bootstrap/fonts/**'],
 						dest: 'dist/target'
@@ -128,19 +129,22 @@ module.exports = function(grunt) {
 			webpack:{
 				files: [
 					'public/javascripts/app.jsx',
-					'public/javascripts/app/**/*.jsx',
-					'public/javascripts/app/**/*.js'],
-				tasks: ['webpack'],
+					'public/javascripts/app/actions/**/*.js',
+					'public/javascripts/app/components/**/*.jsx',
+					'public/javascripts/app/stores/**/*.js',
+					'public/javascripts/vendor/**/*.jsx',
+					'public/javascripts/vendor/**/*.js'],
+				tasks: ['clean:build','webpack:build'],
 				options: {
 					debounceDelay: 250
 				}
 			}
 		},
 		webpack: {
-			target: {
-				entry: {
-					app: './public/javascripts/app.jsx'
-				},
+			build: {
+				entry: [
+					'./public/javascripts/app.jsx'
+				],
 				output: {
 					publicPath: "javascripts/app/",
 					path: './public/javascripts/app',
@@ -151,17 +155,62 @@ module.exports = function(grunt) {
 				},
 				module: {
 					loaders: [
-						{test: /\.js$/,loader: 'babel?presets[]=es2015'},
-						{test: /\.jsx$/,loader: 'babel?presets[]=es2015!jsx'}
+						{test: /\.js$/,loaders: ['react-hot','babel?presets[]=es2015']},
+						{test: /\.jsx$/,loaders: ['react-hot','babel?presets[]=es2015','jsx']}
 					]
-				}
+				},
+				plugins:[
+					new HtmlWebpackPlugin({
+						title:_pkg.name,
+						filename:'../../index.html',
+						template:'public/tpl/index.ejs'
+					})
+				]
+			},
+			dist: {
+				entry: [
+					'./public/javascripts/app.jsx'
+				],
+				output: {
+					publicPath: "javascripts/app/",
+					path: './dist/target/public/javascripts/app',
+					filename: 'bundle.[hash].js'
+				},
+				resolve: {
+					extensions: ['','.js','.jsx','.less','.css']
+				},
+				module: {
+					loaders: [
+						{test: /\.js$/,loaders: ['react-hot','babel?presets[]=es2015']},
+						{test: /\.jsx$/,loaders: ['react-hot','babel?presets[]=es2015','jsx']}
+					]
+				},
+				plugins:[
+					new HtmlWebpackPlugin({
+						title:_pkg.name,
+						filename:'../../index.html',
+						template:'public/tpl/index.ejs'
+					})
+				]
 			}
 		},
 		compress: {
-			main: {
+			zip: {
 				options: {
 					archive: 'dist/fluxweb.zip',
-					pretty: true
+					pretty: true,
+					mode:"tgz"
+				},
+				expand: true,
+				cwd: 'dist/target',
+				src: ['**/*'],
+				dest: '/'
+			},
+			tgz: {
+				options: {
+					archive: 'dist/fluxweb.tar.gz',
+					pretty: true,
+					mode:"tgz"
 				},
 				expand: true,
 				cwd: 'dist/target',
@@ -184,6 +233,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-usemin');//哈希化
 	grunt.loadNpmTasks('grunt-webpack');//模块化工具
 	// 注册任务
-	grunt.registerTask("default", ['clean','webpack','less','cssmin','copy','uglify','replace','compress']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
-	grunt.registerTask("monitor", ['webpack','watch']);
+	grunt.registerTask("default", ['clean:build','webpack:build','watch']);
+	grunt.registerTask("dist", ['clean:dist','webpack:dist','less','cssmin','copy','uglify','replace','filerev','usemin','compress:zip','compress:tgz']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
+
 };
