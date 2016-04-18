@@ -13,6 +13,7 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "express-session": "^1.12.1",
+    "less-middleware": "^2.1.0",
     "flux": "^2.0.1",
     "mongodb": "*",
     "morgan": "~1.6.1",

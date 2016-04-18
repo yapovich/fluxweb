@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'dist/target',
 				src: ['**/*'],
-				dest: '/'
+				dest: '/fluxweb'
 			},
 			tgz: {
 				options: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'dist/target',
 				src: ['**/*'],
-				dest: '/'
+				dest: '/fluxweb'
 			}
 		}
 	});
