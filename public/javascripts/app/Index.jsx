@@ -1,12 +1,12 @@
 /**
  * Created by yebo on 2016/4/11.
  */
-var Flux = require('../../vendor/util/FluxUtil');
-var FluxConstant=require("../../vendor/util/FluxConstant");
+var Flux = require('../vendor/util/FluxUtil');
+var FluxConstant=require("../vendor/util/FluxConstant");
 var React = require('react');
 var IndexStore = require('../stores/IndexStore');
 var IndexAction = require('../actions/IndexAction');
-var Button=require('./bootstrap/Button');
+var Button=require('../components/bootstrap/Button');
 //console.log($("#container").width()+"########"+$("#container").height());
 var Index = Flux.createView({
     //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
@@ -27,7 +27,7 @@ render: function() {
         <div>
         <label>{this.state.text}</label>
         <Button id="loginBtn" className="btn-danger btn-large" onClick={this.handleClick}>
-            登陆按钮
+            我的点击按钮
         </Button>
             <span className="glyphicon glyphicon-hand-left"></span>
         </div>
