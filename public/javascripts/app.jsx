@@ -3,6 +3,8 @@
  */
 //导入样式
 require('./vendor/bootstrap/css/bootstrap');
+require('./vendor/jquery/jquery-easyui-1.3.6/themes/gray/easyui');
+require('./vendor/jquery/scrollbar/jquery.mCustomScrollbar');
 require('../stylesheets/index.less');
 //应用node模块
 var React = require('react');

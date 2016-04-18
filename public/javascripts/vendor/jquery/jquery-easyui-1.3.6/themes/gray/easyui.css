@@ -1253,7 +1253,7 @@
 }
 /*.datagrid-toolbar,*/
 .datagrid-toolbar{
-  background: url(images/card_tittle_bg.png);
+  /*background: url(images/card_tittle_bg.png);*/
 }
 .datagrid-pager {
   background: #fafafa;
