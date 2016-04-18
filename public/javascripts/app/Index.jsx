@@ -7,6 +7,7 @@ var React = require('react');
 var IndexStore = require('../stores/IndexStore');
 var IndexAction = require('../actions/IndexAction');
 var Button=require('../components/bootstrap/Button');
+var $=require('jquery');
 console.log($("#container").width()+"########"+$("#container").height());
 var Index = Flux.createView({
     //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新

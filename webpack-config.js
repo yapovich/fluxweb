@@ -7,7 +7,6 @@ module.exports = {
     entry: {
         app: './public/javascripts/app.jsx',
         vendor:[
-            //'./public/javascripts/vendor/jquery/jquery-1.9.1.js',
             './public/javascripts/vendor/jquery/jquery.form.js',
             './public/javascripts/vendor/jquery/jquery.uploadPreview.min.js',
             './public/javascripts/vendor/jquery/jquery.i18n.properties-1.0.9.js',
@@ -20,21 +19,20 @@ module.exports = {
         filename: 'app.js'
     },
     resolve: {
-        extensions: ['','.js','.jsx','.less','.css'],
-        alias:{
-            jquery:path.join(__dirname, '/public/javascripts/vendor/jquery/jquery-1.9.1.js')
-        }
+        extensions: ['','.js','.jsx','.less','.css']
     },
     module: {
         loaders: [
             {
                 test: /\.js$/,
                 loaders: ['react-hot','babel?presets[]=es2015'],
-                exclude: "node_modules"},
+                exclude: "node_modules"
+            },
             {
                 test: /\.jsx$/,
                 loaders: ['react-hot','babel?presets[]=es2015','jsx'],
-                exclude: "node_modules"},
+                exclude: "node_modules"
+            },
             {
                 test: /\.less$/,
                 loaders: ['style','css','less'],
@@ -64,21 +62,21 @@ module.exports = {
             template:'public/tpl/index.ejs',
             inject:'head'
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name:"vendor",
+            filename:"verdor.js"
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery",
             "window.$": "jquery"
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name:"vendor",
-            filename:"verdor.js"
-        })/*,
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
-        })*/
+        })
         //,new ExtractTextPlugin("[name].css")
     ]
 };

@@ -8,7 +8,6 @@ module.exports = {
     entry: {
         app: './public/javascripts/app.jsx',
         vendor:[
-            './public/javascripts/vendor/jquery/jquery-1.9.1.js',
             './public/javascripts/vendor/jquery/jquery.form.js',
             './public/javascripts/vendor/jquery/jquery.uploadPreview.min.js',
             './public/javascripts/vendor/jquery/jquery.i18n.properties-1.0.9.js',
@@ -21,10 +20,7 @@ module.exports = {
         filename: 'bundle.[hash].js'
     },
     resolve: {
-        extensions: ['','.js','.jsx','.less','.css'],
-        alias:{
-            jquery:path.join(__dirname, '/public/javascripts/vendor/jquery/jquery-1.9.1.js')
-        }
+        extensions: ['','.js','.jsx','.less','.css']
     },
     module: {
         loaders: [
