@@ -6,9 +6,12 @@ require('./vendor/bootstrap/css/bootstrap');
 require('./vendor/jquery/jquery-easyui-1.3.6/themes/gray/easyui');
 require('./vendor/jquery/scrollbar/jquery.mCustomScrollbar');
 require('../stylesheets/index.less');
+//导入语言环境相关文件
+var lang = $.i18n.browserLang().replace("-", "_");
+require("./vendor/jquery/jquery-easyui-1.3.6/locale/easyui-lang-" + lang)
 //应用node模块
-var React = require('react');
-var ReactDOM = require('react-dom');
+//var React = require('react');
+//var ReactDOM = require('react-dom');
 var loadModule=function(name) {
     require(['./app/' + name], function (Index) {
         //var array = [1, 2, 3];

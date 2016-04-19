@@ -44,11 +44,14 @@ var BaseView={
         return {};
     },
     componentWillMount: function() {
-        if(this.resize) {
-            this.resize.call(this);
+        if(this.willMount){
+            this.willMount.call(this);
         }
     },
     componentDidMount: function() {
+        if(this.didMount){
+            this.didMount.call(this);
+        }
         if(this.getStore){
             var store=this.getStore();
             if(store) {
@@ -61,6 +64,9 @@ var BaseView={
         }
     },
     componentWillUnmount: function() {
+        if(this.willUnMount){
+            this.willUnMount.call(this);
+        }
         if(this.getStore){
             var store=this.getStore();
             if(store) {

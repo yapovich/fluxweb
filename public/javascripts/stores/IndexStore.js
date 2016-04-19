@@ -1,7 +1,6 @@
 /**
  * Created by yebo on 2016/4/8.
  */
-var Flux = require('../vendor/util/FluxUtil');
 var resultText="init value";
 var IndexStore = Flux.createStore({
     update:function(action) {
@@ -20,4 +19,6 @@ var IndexStore = Flux.createStore({
         return resultText;
     }
 });
+//for(var i=0;i<1000;i++)
+    //resultText+="波波维奇";
 module.exports = IndexStore;
