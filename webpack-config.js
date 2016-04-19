@@ -18,7 +18,8 @@ module.exports = {
             './node_modules/react-dom',
             './public/javascripts/util/FluxConstant',
             './public/javascripts/util/FluxUtil',
-            './public/javascripts/util/DateUtil'
+            './public/javascripts/util/DateUtil',
+            './public/javascripts/components/bootstrap/Bootstrap'
             ]
     },
     output: {
@@ -90,7 +91,8 @@ module.exports = {
             ReactDOM:"react-dom",
             Flux:path.resolve(__dirname, "./public/javascripts/util/FluxUtil"),
             FluxConstant:path.resolve(__dirname, "./public/javascripts/util/FluxConstant"),
-            DateUtil:path.resolve(__dirname, "./public/javascripts/util/DateUtil")
+            DateUtil:path.resolve(__dirname, "./public/javascripts/util/DateUtil"),
+            BootstrapComp:path.resolve(__dirname, "./public/javascripts/components/bootstrap/Bootstrap")
         })/*,
         new webpack.optimize.UglifyJsPlugin({
             compress: {
