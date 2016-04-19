@@ -24,7 +24,7 @@ module.exports = {
     },
     output: {
         publicPath: "resources/",
-        path: 'public/resources/',
+        path: 'browser/resources/',
         filename: 'app.js'
     },
     resolve: {
@@ -69,8 +69,7 @@ module.exports = {
     },
     plugins:[
         new CleanWebpackPlugin([
-            "public/index.html",
-            "public/resources"
+            "browser"
         ]),
         new HtmlWebpackPlugin({
             title:"fluxweb!wonderful web development framework",

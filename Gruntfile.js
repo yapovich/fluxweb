@@ -28,8 +28,8 @@ module.exports = function(grunt) {
 					mode:"zip"
 				},
 				expand: true,
-				cwd: 'dist/target',
-				src: ['**/*'],
+				cwd: 'dist',
+				src: ['bin/**/*','server/**/*','browser/**/*'],
 				dest: '/fluxweb'
 			},
 			tgz: {
@@ -39,8 +39,8 @@ module.exports = function(grunt) {
 					mode:"tgz"
 				},
 				expand: true,
-				cwd: 'dist/target',
-				src: ['**/*'],
+				cwd: 'dist',
+				src: ['bin/**/*','server/**/*','browser/**/*'],
 				dest: '/fluxweb'
 			}
 		}
@@ -51,5 +51,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-compress');// 文件夹压缩工具
 	// 注册任务
 	grunt.registerTask("default", ['exec:webpackConfig']);
-	grunt.registerTask("dist", ['exec:webpackConfigPro','clean:dist','compress:zip','compress:tgz']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
+	grunt.registerTask("dist", ['exec:webpackConfigPro','compress:zip','compress:tgz']);//,'uglify','copy','less','cssmin','replace']);//['clean','less','cssmin','replace','browserify','uglify',"copy","filerev","usemin"]);
 };

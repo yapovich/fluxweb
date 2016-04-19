@@ -19,12 +19,13 @@ module.exports = {
             './node_modules/react-dom',
             './public/javascripts/util/FluxConstant',
             './public/javascripts/util/FluxUtil',
-            './public/javascripts/util/DateUtil'
+            './public/javascripts/util/DateUtil',
+            './public/javascripts/components/bootstrap/Bootstrap'
         ]
     },
     output: {
         publicPath: "resources/",
-        path: 'dist/target/public/resources/',
+        path: 'dist/browser/resources/',
         filename: 'app.[hash].js'
     },
     resolve: {
@@ -88,7 +89,8 @@ module.exports = {
             ReactDOM:"react-dom",
             Flux:path.resolve(__dirname, "./public/javascripts/util/FluxUtil"),
             FluxConstant:path.resolve(__dirname, "./public/javascripts/util/FluxConstant"),
-            DateUtil:path.resolve(__dirname, "./public/javascripts/util/DateUtil")
+            DateUtil:path.resolve(__dirname, "./public/javascripts/util/DateUtil"),
+            BootstrapComp:path.resolve(__dirname, "./public/javascripts/components/bootstrap/Bootstrap")
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
@@ -97,7 +99,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {from: 'bin',to: '../../bin'},
-            {from: 'lib',to: '../../lib'},
+            {from: 'server',to: '../../server'},
             {from: 'package.json',to: '../../package.json'}
         ])
         //,new ExtractTextPlugin("[name].css")
