@@ -8,11 +8,19 @@ module.exports = {
     entry: {
         app: './public/javascripts/app.jsx',
         vendor:[
+            //'./public/javascripts/vendor/jquery/jquery-1.9.1.js',
             './public/javascripts/vendor/jquery/jquery.form.js',
             './public/javascripts/vendor/jquery/jquery.uploadPreview.min.js',
             './public/javascripts/vendor/jquery/jquery.i18n.properties-1.0.9.js',
-            './public/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',
-            './public/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.concat.min.js']
+            './public/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',/*
+             './public/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
+             './public/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'*/
+            './node_modules/react',
+            './node_modules/react-dom',
+            './public/javascripts/util/FluxConstant',
+            './public/javascripts/util/FluxUtil',
+            './public/javascripts/util/DateUtil'
+        ]
     },
     output: {
         publicPath: "resources/",
@@ -20,7 +28,10 @@ module.exports = {
         filename: 'app.[hash].js'
     },
     resolve: {
-        extensions: ['','.js','.jsx','.less','.css']
+        extensions: ['','.js','.jsx','.less','.css']/*,
+        alias:{
+            "jquery":path.resolve(__dirname, "./node_modules/jquery")
+        }*/
     },
     module: {
         loaders: [
@@ -67,6 +78,17 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name:"vendor",
             filename:"verdor.[hash].js"
+        }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery",
+            "window.$": "jquery",
+            React:"react",
+            ReactDOM:"react-dom",
+            Flux:path.resolve(__dirname, "./public/javascripts/util/FluxUtil"),
+            FluxConstant:path.resolve(__dirname, "./public/javascripts/util/FluxConstant"),
+            DateUtil:path.resolve(__dirname, "./public/javascripts/util/DateUtil")
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
