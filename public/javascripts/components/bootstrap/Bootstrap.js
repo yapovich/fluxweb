@@ -4,7 +4,7 @@
 var Button=require('./Button');
 var Bootstrap = {
     Button: function() {
-        return Button
+        return new Button();
     }
 };
 module.exports = Bootstrap;

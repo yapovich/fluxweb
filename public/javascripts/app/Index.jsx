@@ -3,7 +3,6 @@
  */
 var IndexStore = require('../stores/IndexStore');
 var IndexAction = require('../actions/IndexAction');
-var Bootstrap=require('../components/bootstrap/Bootstrap');
 console.log($("#container").width()+"########"+$("#container").height());
 var Index = Flux.createView({
     //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
@@ -24,9 +23,9 @@ var Index = Flux.createView({
             <div className="indexContainer" style={{width:400,height:100}}>
                 <label>{this.state.text}</label>
                 <input type="text" id="beginDateTxt"/>
-                <Bootstrap.Button id="loginBtn" className="btn-danger btn-large" onClick={this.handleClick}>
+                <BootstrapComp.Button id="loginBtn" className="btn-danger btn-large" onClick={this.handleClick}>
                     按钮
-                </Bootstrap.Button>
+                </BootstrapComp.Button>
                 <span className="glyphicon glyphicon-hand-left"></span>
             </div>
         )
