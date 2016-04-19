@@ -15,9 +15,9 @@ module.exports = {
             './public/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.concat.min.js']
     },
     output: {
-        publicPath: "bundle/",
-        path: 'dist/target/public/bundle/',
-        filename: 'bundle.[hash].js'
+        publicPath: "resources/",
+        path: 'dist/target/public/resources/',
+        filename: 'app.[hash].js'
     },
     resolve: {
         extensions: ['','.js','.jsx','.less','.css']

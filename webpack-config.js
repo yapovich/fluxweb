@@ -14,8 +14,8 @@ module.exports = {
             './public/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.concat.min.js']
     },
     output: {
-        publicPath: "bundle/",
-        path: 'public/bundle/',
+        publicPath: "resources/",
+        path: 'public/resources/',
         filename: 'app.js'
     },
     resolve: {
@@ -54,7 +54,7 @@ module.exports = {
     plugins:[
         new CleanWebpackPlugin([
             "public/index.html",
-            "public/bundle"
+            "public/resources"
         ]),
         new HtmlWebpackPlugin({
             title:"fluxweb!wonderful web development framework",
