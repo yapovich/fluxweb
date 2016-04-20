@@ -6,21 +6,21 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 //var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     entry: {
-        app: './public/javascripts/app.jsx',
+        app: './browser/javascripts/app.jsx',
         vendor:[
-            //'./public/javascripts/vendor/jquery/jquery-1.9.1.js',
-            './public/javascripts/vendor/jquery/jquery.form.js',
-            './public/javascripts/vendor/jquery/jquery.uploadPreview.min.js',
-            './public/javascripts/vendor/jquery/jquery.i18n.properties-1.0.9.js',
-            './public/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',/*
-             './public/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
-             './public/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'*/
+            //'./browser/javascripts/vendor/jquery/jquery-1.9.1.js',
+            './browser/javascripts/vendor/jquery/jquery.form.js',
+            './browser/javascripts/vendor/jquery/jquery.uploadPreview.min.js',
+            './browser/javascripts/vendor/jquery/jquery.i18n.properties-1.0.9.js',
+            './browser/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',/*
+             './browser/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
+             './browser/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'*/
             './node_modules/react',
             './node_modules/react-dom',
-            './public/javascripts/util/FluxConstant',
-            './public/javascripts/util/FluxUtil',
-            './public/javascripts/util/DateUtil',
-            './public/javascripts/components/bootstrap/Bootstrap'
+            './browser/javascripts/util/FluxConstant',
+            './browser/javascripts/util/FluxUtil',
+            './browser/javascripts/util/DateUtil',
+            './browser/javascripts/components/bootstrap/Bootstrap'
         ]
     },
     output: {
@@ -69,7 +69,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title:"fluxweb!wonderful web development framework",
             filename:'../index.html',
-            template:'public/tpl/index_pro.ejs'
+            template:'browser/tpl/index_pro.ejs'
         }),
         new webpack.ProvidePlugin({
             $: "jquery",
@@ -87,10 +87,10 @@ module.exports = {
             "window.$": "jquery",
             React:"react",
             ReactDOM:"react-dom",
-            Flux:path.resolve(__dirname, "./public/javascripts/util/FluxUtil"),
-            FluxConstant:path.resolve(__dirname, "./public/javascripts/util/FluxConstant"),
-            DateUtil:path.resolve(__dirname, "./public/javascripts/util/DateUtil"),
-            BootstrapComp:path.resolve(__dirname, "./public/javascripts/components/bootstrap/Bootstrap")
+            Flux:path.resolve(__dirname, "./browser/javascripts/util/FluxUtil"),
+            FluxConstant:path.resolve(__dirname, "./browser/javascripts/util/FluxConstant"),
+            DateUtil:path.resolve(__dirname, "./browser/javascripts/util/DateUtil"),
+            BootstrapComp:path.resolve(__dirname, "./browser/javascripts/components/bootstrap/Bootstrap")
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
