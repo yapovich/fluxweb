@@ -1553,7 +1553,7 @@
             return $this.data('enabled');
         },
         /*
-         * This one is the public method, called externally.
+         * This one is the browser method, called externally.
          * It sets the position and notifies in fact.
          */
         'set_position' : function(min, max) {
