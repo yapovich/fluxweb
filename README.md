@@ -165,9 +165,3 @@ grunt default
 node ./server/bin/www
 ~~~
 OK，visit local site look our result: http://localhost:3000
-## Document
-For more information on how to write/package/run apps, see:
-
-* [How to Build And Package Project](https://github.com/yapovich/fluxweb/wiki/How-to-Build-And-Package-Project)
-
-And our [Wiki](https://github.com/yapovich/fluxweb/wiki) for much more.
