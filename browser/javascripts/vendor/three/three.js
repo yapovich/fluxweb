@@ -24437,7 +24437,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 	var sprites = [];
 	var lensFlares = [];
 
-	// public properties
+	// browser properties
 
 	this.domElement = _canvas;
 	this.context = null;
