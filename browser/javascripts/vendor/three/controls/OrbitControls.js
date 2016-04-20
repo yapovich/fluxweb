@@ -81,7 +81,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	this.zoom0 = this.object.zoom;
 
 	//
-	// public methods
+	// browser methods
 	//
 
 	this.getPolarAngle = function () {
