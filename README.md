@@ -10,7 +10,7 @@ a lightweight web development framework based by react+flux+webpack,Shielding th
 ## Build/Run Dependencies
 1. node.js - server-side JS engine
 
-## node,npm install introduction
+## node install introduction
 node.js - [https://github.com/nodejs/node](https://github.com/nodejs/node)
 
 ## fluxweb install introduction
