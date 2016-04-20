@@ -50,10 +50,10 @@ $.i18n.map = {};
  *      path:      'bundles'
  * });
  * @param  name			(string/string[], optional) names of file to load (eg, 'Messages' or ['Msg1','Msg2']). Defaults to "Messages"
- * @param  language		(string, optional) language/country code (eg, 'en', 'en_US', 'pt_PT'). if not specified, language reported by the browser will be used instead.
+ * @param  language		(string, optional) language/country code (eg, 'en', 'en_US', 'pt_PT'). if not specified, language reported by the public will be used instead.
  * @param  path			(string, optional) path of directory that contains file to load
  * @param  mode			(string, optional) whether bundles keys are available as JavaScript variables/functions or as a map (eg, 'vars' or 'map')
- * @param  cache        (boolean, optional) whether bundles should be cached by the browser, or forcibly reloaded on each page load. Defaults to false (i.e. forcibly reloaded)
+ * @param  cache        (boolean, optional) whether bundles should be cached by the public, or forcibly reloaded on each page load. Defaults to false (i.e. forcibly reloaded)
  * @param  encoding 	(string, optional) the encoding to request for bundles. Property file resource bundles are specified to be in ISO-8859-1 format. Defaults to UTF-8 for backward compatibility.
  * @param  callback     (function, optional) callback function to be called after script is terminated
  */
@@ -260,7 +260,7 @@ $.i18n.prop = function(key /* Add parameters as function arguments as necessary 
 	return s;
 };
 
-/** Language reported by browser, normalized code */
+/** Language reported by public, normalized code */
 $.i18n.browserLang = function() {
 	return normaliseLanguageCode(navigator.language /* Mozilla */ || navigator.userLanguage /* IE */|| "zh-CN"/* Othor*/);
 };
@@ -404,7 +404,7 @@ function unescapeUnicode(str) {
 
 /* Cross-Browser Split 1.0.1
 (c) Steven Levithan <stevenlevithan.com>; MIT License
-An ECMA-compliant, uniform cross-browser split method */
+An ECMA-compliant, uniform cross-public split method */
 var cbSplit;
 // avoid running twice, which would break `cbSplit._nativeSplit`'s reference to the native `split`
 if (!cbSplit) {    
@@ -446,7 +446,7 @@ if (!cbSplit) {
       }
   
       while (match = separator.exec(str)) {
-          lastIndex = match.index + match[0].length; // `separator.lastIndex` is not reliable cross-browser
+          lastIndex = match.index + match[0].length; // `separator.lastIndex` is not reliable cross-public
   
           if (lastIndex > lastLastIndex) {
               output.push(str.slice(lastLastIndex, match.index));

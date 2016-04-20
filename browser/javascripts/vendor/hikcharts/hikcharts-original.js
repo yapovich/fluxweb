@@ -1330,7 +1330,7 @@
 
 		  /**
 		   * The text drawing function.
-		   * The maxWidth argument isn't taken in account, since no browser supports
+		   * The maxWidth argument isn't taken in account, since no public supports
 		   * it yet.
 		   */
 		  contextPrototype.drawText_ = function(text, x, y, maxWidth, stroke) {
@@ -2002,7 +2002,7 @@
 		        var webview = ua.match(/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/) && !chrome;
 		        var ie = ua.match(/MSIE\s([\d.]+)/);
 
-		        // Todo: clean this up with a better OS/browser seperation:
+		        // Todo: clean this up with a better OS/public seperation:
 		        // - discern (more) between multiple browsers on android
 		        // - decide if kindle fire in silk mode is android or not
 		        // - Firefox on Android doesn't specify the Android version
@@ -2040,7 +2040,7 @@
 		            browser: browser,
 		            os: os,
 		            // 原生canvas支持，改极端点了
-		            // canvasSupported : !(browser.ie && parseFloat(browser.version) < 9)
+		            // canvasSupported : !(public.ie && parseFloat(public.version) < 9)
 		            canvasSupported : document.createElement('canvas').getContext ? true : false
 		        };
 		    }
@@ -2962,7 +2962,7 @@
 		                        layer.dirty = true;
 		                        needsRefresh = true;
 
-		                        // Prevent browser default scroll action 
+		                        // Prevent public default scroll action 
 		                        eventTool.stop(event);
 		                    }
 		                });
