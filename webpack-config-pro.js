@@ -25,7 +25,7 @@ module.exports = {
     },
     output: {
         publicPath: "resources/",
-        path: 'dist/target/browser/resources/',
+        path: 'dist/target/public/resources/',
         filename: 'app.[hash].js'
     },
     resolve: {

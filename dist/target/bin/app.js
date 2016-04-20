@@ -26,8 +26,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-app.use(require('less-middleware')(path.join(__dirname, '../browser')));
-app.use(express.static(path.join(__dirname, '../browser')));
+app.use(require('less-middleware')(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 routes.createRoutes(app);
 //app.use('/', routes);

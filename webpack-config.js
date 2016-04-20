@@ -24,7 +24,7 @@ module.exports = {
     },
     output: {
         publicPath: "resources/",
-        path: 'server/browser/resources/',
+        path: 'server/public/resources/',
         filename: 'app.js'
     },
     resolve: {
