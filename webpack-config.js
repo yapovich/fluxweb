@@ -69,7 +69,7 @@ module.exports = {
     },
     plugins:[
         new CleanWebpackPlugin([
-            "browser"
+            "server/browser"
         ]),
         new HtmlWebpackPlugin({
             title:"fluxweb!wonderful web development framework",
@@ -92,12 +92,12 @@ module.exports = {
             FluxConstant:path.resolve(__dirname, "./public/javascripts/util/FluxConstant"),
             DateUtil:path.resolve(__dirname, "./public/javascripts/util/DateUtil"),
             BootstrapComp:path.resolve(__dirname, "./public/javascripts/components/bootstrap/Bootstrap")
-        })/*,
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
-        })*/
+        })
         //,new ExtractTextPlugin("[name].css")
     ]
 };
