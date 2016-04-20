@@ -10,7 +10,7 @@ var routes= require('./routes')
 //var users = require('./routes/users');
 var app = express();
 // view engine setup
-app.set('views', path.join(__dirname, '../server/tpl'));//原来是在../views，为了保证前后台统一，模板统一放在public/tpl目录下
+app.set('views', path.join(__dirname, '../tpl'));//原来是在../views，为了保证前后台统一，模板统一放在public/tpl目录下
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /src

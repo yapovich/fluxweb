@@ -25,7 +25,7 @@ module.exports = {
     },
     output: {
         publicPath: "resources/",
-        path: 'dist/browser/resources/',
+        path: 'dist/target/browser/resources/',
         filename: 'app.[hash].js'
     },
     resolve: {
@@ -98,9 +98,10 @@ module.exports = {
             }
         }),
         new CopyWebpackPlugin([
-            {from: 'bin',to: '../../bin'},
-            {from: 'server',to: '../../server'},
-            {from: 'package.json',to: '../../package.json'}
+            {from: 'server/bin',to: '../../bin'},
+            {from: 'server/lib',to: '../../lib'},
+            {from: 'server/tpl',to: '../../tpl'},
+            {from: 'server/package.json',to: '../../package.json'}
         ])
         //,new ExtractTextPlugin("[name].css")
     ]
