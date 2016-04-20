@@ -159,11 +159,11 @@ require(['./app/Index'], function (Index) {
         );
 });
 ```
-### 7.Build And Watch
+### 6.Build And Watch
 ~~~
 grunt default
 ~~~
-### 8.Start a Local HTTP Server
+### 7.Start a Local HTTP Server
 ~~~
 node ./server/bin/www
 ~~~
