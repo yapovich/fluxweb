@@ -22,15 +22,21 @@ npm install
 ```
 ## Quick Start
 ### 1.Create a Store
-`/public/javascripts/stores/IndexStore.js`
+`/broswer/javascripts/stores/IndexStore.js`
 ```
 var resultText="";
 var IndexStore = Flux.createStore({
-    //更新存储结果，update为约定函数名，必须实现
+
+    /*
+      Update storage results, update as the name of the contract must be implemented
+    */
     update:function(action) {
         var text = action.text.trim();
         switch(action.actionType) {
-            case "updateText"://注册updateText动作处理逻辑
+            /*
+              Register updateText action processing logic
+            */
+            case "updateText":
                 if (text !== '') {
                     resultText=text;
                 }
@@ -39,8 +45,13 @@ var IndexStore = Flux.createStore({
             // no op
         }
     },
-    //获取存储结果，getResultText为自定义函数名，可选实现
-    //一般来说,至少有一个getSomething函数,以便获取存储数据
+    /*
+      Get the storage results,
+      getResultText for the custom function name,
+      optional implementation, in general,
+      there is at least one getSomething function,
+      in order to obtain the storage data
+    */
     getResultText: function() {
         return resultText;
     }
@@ -48,14 +59,20 @@ var IndexStore = Flux.createStore({
 module.exports = IndexStore;
 ```
 ### 2.Create a Action
-`/public/javascripts/actions/IndexAction.js`
+`/broswer/javascripts/actions/IndexAction.js`
 ```
 var Flux = require('../../vendor/util/FluxUtil');
 var IndexAction = Flux.createAction({
-    //发起更新动作，updateText为自定义函数名，可选实现
-    //一般来说,至少有一个updateSomething函数,以便发起动作
+    /*
+      Initiate the update action, updateText for the custom function name,
+      optional implementation, in general,
+      there is at least one updateSomething function
+      in order to initiate action
+    */
     updateText: function(text) {
-        //广播更新动作，所有的Store都将接收到
+        /*
+          Broadcast update action, all Store will receive
+        */
         this.dispatch("updateText",text);
     }
 });
@@ -67,19 +84,29 @@ module.exports = IndexAction;
    var IndexStore = require('../stores/IndexStore');
    var IndexAction = require('../actions/IndexAction');
    var Index = Flux.createView({
-       //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
+       /*
+       Gets the current view of the Store,
+       if you use the Store, you must implement the method,
+       otherwise it will not be able to respond to the status update
+       */
        getStore: function(){
            return [IndexStore];
        },
-       //获取当前视图状态，通常都是从Store中获取
+       /*
+         Gets the current view state, usually from Store
+       */
        getState: function(){
            return {text: LoginStore.getResultText()};
        },
-       //发起一个动作，此例为点击事件发起
+       /*
+         Initiate a action, this is the click event initiated
+       */
        handleClick:function(){
            IndexAction.updateText("this is my first update");
        },
-       //视图渲染，发生状态变化时自动调用
+       /*
+         View rendering, automatic call when the state changes
+       */
        render: function() {
            return (
                <div>
@@ -87,9 +114,13 @@ module.exports = IndexAction;
                   <button onClick={this.handleClick}></button>
                </div>
         },
-        //尺寸重绘，发生窗体大小变化时自动调用
+        /*
+          Size of the re painting, the size of the change occurs when the automatic call
+        */
         resize: function() {
-            //获取当前页面的尺寸
+            /*
+              Gets the size of the current page
+            */
             var width=FluxConstant.view.PAGE_WIDTH;
             var height=FluxConstant.view.PAGE_HEIGHT;
         }
@@ -118,20 +149,20 @@ html,body{
 ```
 var Index=require('./app/Index');
 require(['./app/Index'], function (Index) {
-        //渲染初始页面
+        //Initial page rendering
         ReactDOM.render(
             <Index/>,
             document.getElementById('container')
         );
 });
 ```
-### 7.Start a Local HTTP Server
-~~~
-node ./server/bin/www
-~~~
-### 8.Build And Watch
+### 7.Build And Watch
 ~~~
 grunt default
+~~~
+### 8.Start a Local HTTP Server
+~~~
+node ./server/bin/www
 ~~~
 OK，visit local site look our result: http://localhost:3000
 ## Document
