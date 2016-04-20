@@ -11,7 +11,7 @@ a lightweight web development framework based by react+flux+webpack,Shielding th
 1. node.js - server-side JS engine
 
 ## node install introduction
-node.js - [https://github.com/nodejs/node](https://github.com/nodejs/node)
+[https://github.com/nodejs/node](https://github.com/nodejs/node)
 
 ## fluxweb install introduction
 Run the following command:
