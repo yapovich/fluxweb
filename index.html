@@ -1,70 +1,68 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Fluxweb by yapovich</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Fluxweb</h1>
-      <h2 class="project-tagline">react+flux前端组件式开发框架</h2>
-      <a href="https://github.com/yapovich/fluxweb" class="btn">View on GitHub</a>
-      <a href="https://github.com/yapovich/fluxweb/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/yapovich/fluxweb/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <section class="main-content">
-      <h1>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Fluxweb by yapovich</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Fluxweb</h1>
+        <h2>a lightweight web development framework</h2>
+        <a href="https://github.com/yapovich/fluxweb" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a id="fluxweb" class="anchor" href="#fluxweb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>fluxweb</h1>
 
-<p>react+flux前端组件式开发框架，基于上述框架做了工程化和约定俗成的封装，屏蔽了显式的调用过程，使开发人员专注于组件及其业务逻辑的开发。</p>
+<p>a lightweight web development framework based by react+flux+webpack,Shielding the explicit call process, so that developers focus on the development of components and business logic
+.</p>
 
 <h2>
-<a id="写在前面" class="anchor" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>写在前面</h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>INTRODUCTION</h2>
 
 <h3>
 <a id="react" class="anchor" href="#react" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>React</h3>
 
-<p>React是一个JavaScript框架，用于构建“可预期的”和“声明式的”Web用户界面，它已经使Facebook更快地开发Web应用。
-可通过Facebook的github网址了解详情：
-<a href="http://facebook.github.io/react/">http://facebook.github.io/react/</a></p>
+<p><a href="http://facebook.github.io/react/">http://facebook.github.io/react/</a></p>
 
 <h3>
 <a id="flux" class="anchor" href="#flux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Flux</h3>
 
-<p>Flux 是一个Facebook开发的、利用单向数据流实现的应用架构，用于 React。
-Flux应用有四个主要的部分组成：调度(Dispatcher)、存储(Store)、动作(Action)和视图(React)。
-Facebook工程经理Tom Occhino说，由于他们“非常巨大”的代码库和庞大的组织，因而需要“以某种方式使代码结构化，使其更加可预测”。
-这已经通过 Flux 和 React 完成。
-Flux是一个系统架构，用于推进应用中的数据单向流动。
-可通过Facebook的github网址了解详情：
-<a href="http://facebook.github.io/flux/">http://facebook.github.io/flux/</a></p>
+<p><a href="http://facebook.github.io/flux/">http://facebook.github.io/flux/</a></p>
 
 <h2>
-<a id="构建运行依赖" class="anchor" href="#%E6%9E%84%E5%BB%BA%E8%BF%90%E8%A1%8C%E4%BE%9D%E8%B5%96" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>构建/运行依赖</h2>
+<a id="buildrun-dependencies" class="anchor" href="#buildrun-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build/Run Dependencies</h2>
 
 <ol>
 <li>node.js - server-side JS engine</li>
-<li>npm - node package manager</li>
 </ol>
 
 <h2>
-<a id="nodenpm安装说明" class="anchor" href="#nodenpm%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>node,npm安装说明</h2>
+<a id="node-install-introduction" class="anchor" href="#node-install-introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>node install introduction</h2>
 
-<p>node.js - <a href="https://github.com/nodejs/node">https://github.com/nodejs/node</a></p>
-
-<p>npm - <a href="https://github.com/npm/npm">https://github.com/npm/npm</a>
-(npm在最近的node.js发布系列版中已加入，不需要单独安装)</p>
+<p><a href="https://github.com/nodejs/node">https://github.com/nodejs/node</a></p>
 
 <h2>
-<a id="fluxweb安装说明" class="anchor" href="#fluxweb%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>fluxweb安装说明</h2>
+<a id="fluxweb-install-introduction" class="anchor" href="#fluxweb-install-introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>fluxweb install introduction</h2>
 
-<p>运行以下命令：</p>
+<p>Run the following command:</p>
 
 <pre><code>git clone https://github.com/yb030832/fluxweb.git
 cd fluxweb
@@ -72,57 +70,127 @@ npm install
 </code></pre>
 
 <h2>
-<a id="一个例子" class="anchor" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>一个例子</h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick Start</h2>
 
 <h3>
-<a id="1-创建页面" class="anchor" href="#1-%E5%88%9B%E5%BB%BA%E9%A1%B5%E9%9D%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. 创建页面</h3>
+<a id="1create-a-store" class="anchor" href="#1create-a-store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.Create a Store</h3>
 
-<p><code>/public/index.html</code></p>
+<p><code>/broswer/javascripts/stores/IndexStore.js</code></p>
 
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head lang="en"&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;&lt;/title&gt;
-    &lt;!--sourcecss begin--&gt;
-    &lt;link rel="stylesheet/less" type="text/css" href="stylesheets/index.less"/&gt;
-    &lt;script type="text/javascript" src="javascripts/vendor/less/less.min.js"&gt;&lt;/script&gt;
-    &lt;!--sourcecss end--&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id="container"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-&lt;!--sourcejs begin--&gt;
-&lt;script type="text/javascript" src="javascripts/app/bundle.js"&gt;&lt;/script&gt;
-&lt;!--sourcejs end--&gt;
-</code></pre>
+<pre><code>var resultText="";
+var IndexStore = Flux.createStore({
 
-<p>以上是初始页面的基本结构，其中&lt;!--sourcecss ...--&gt;，&lt;!--sourcejs ...--&gt;标签是页面预编译参数，不能省略，
-在正式编译后，此类标签内的脚本或样式将被编译后版本替换。
-显然，框架样式是基于less开发的，因此引入了less样式文件以及less编译脚本，bundle.js是未压缩版本的broswerify合并文件，将在编译时被压缩。
-编译后的页面结构如下：</p>
-
-<p><code>/dist/public/index.html</code></p>
-
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head lang="en"&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;&lt;/title&gt;
-    &lt;link rel="stylesheet/css" type="text/css" href="stylesheets/all.css"/&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id="container"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-&lt;script type="text/javascript" src="javascripts/app/bundle.js"&gt;&lt;/script&gt;
+    /*
+      Update storage results, update as the name of the contract must be implemented
+    */
+    update:function(action) {
+        var text = action.text.trim();
+        switch(action.actionType) {
+            /*
+              Register updateText action processing logic
+            */
+            case "updateText":
+                if (text !== '') {
+                    resultText=text;
+                }
+                break;
+            default:
+            // no op
+        }
+    },
+    /*
+      Get the storage results,
+      getResultText for the custom function name,
+      optional implementation, in general,
+      there is at least one getSomething function,
+      in order to obtain the storage data
+    */
+    getResultText: function() {
+        return resultText;
+    }
+});
+module.exports = IndexStore;
 </code></pre>
 
 <h3>
-<a id="2创建样式" class="anchor" href="#2%E5%88%9B%E5%BB%BA%E6%A0%B7%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.创建样式</h3>
+<a id="2create-a-action" class="anchor" href="#2create-a-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.Create a Action</h3>
 
-<p><code>/public/stylesheets/index.less</code></p>
+<p><code>/broswer/javascripts/actions/IndexAction.js</code></p>
+
+<pre><code>var Flux = require('../../vendor/util/FluxUtil');
+var IndexAction = Flux.createAction({
+    /*
+      Initiate the update action, updateText for the custom function name,
+      optional implementation, in general,
+      there is at least one updateSomething function
+      in order to initiate action
+    */
+    updateText: function(text) {
+        /*
+          Broadcast update action, all Store will receive
+        */
+        this.dispatch("updateText",text);
+    }
+});
+module.exports = IndexAction;
+</code></pre>
+
+<h3>
+<a id="3-create-a-view" class="anchor" href="#3-create-a-view" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Create a View</h3>
+
+<p><code>/broswer/javascripts/app/index.jsx</code></p>
+
+<pre><code>   var IndexStore = require('../stores/IndexStore');
+   var IndexAction = require('../actions/IndexAction');
+   var Index = Flux.createView({
+       /*
+       Gets the current view of the Store,
+       if you use the Store, you must implement the method,
+       otherwise it will not be able to respond to the status update
+       */
+       getStore: function(){
+           return [IndexStore];
+       },
+       /*
+         Gets the current view state, usually from Store
+       */
+       getState: function(){
+           return {text: LoginStore.getResultText()};
+       },
+       /*
+         Initiate a action, this is the click event initiated
+       */
+       handleClick:function(){
+           IndexAction.updateText("this is my first update");
+       },
+       /*
+         View rendering, automatic call when the state changes
+       */
+       render: function() {
+           return (
+               &lt;div&gt;
+                  &lt;label&gt;{this.state.text}&lt;/label&gt;
+                  &lt;button onClick={this.handleClick}&gt;&lt;/button&gt;
+               &lt;/div&gt;
+        },
+        /*
+          Size of the re painting, the size of the change occurs when the automatic call
+        */
+        resize: function() {
+            /*
+              Gets the size of the current page
+            */
+            var width=FluxConstant.view.PAGE_WIDTH;
+            var height=FluxConstant.view.PAGE_HEIGHT;
+        }
+   });
+   module.exports = Index;
+</code></pre>
+
+<h3>
+<a id="4create-a-less" class="anchor" href="#4create-a-less" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.Create a Less</h3>
+
+<p><code>/broswer/stylesheets/index.less</code></p>
 
 <pre><code>@baseBackgroundColor:#ffffff;
 @width:100%;
@@ -140,154 +208,51 @@ html,body{
 </code></pre>
 
 <h3>
-<a id="3创建存储store" class="anchor" href="#3%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.创建存储(Store)</h3>
+<a id="5call-view" class="anchor" href="#5call-view" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.Call view</h3>
 
-<p><code>/public/javascripts/app/stores/IndexStore.js</code></p>
+<p><code>/broswer/javascripts/app.jsx</code></p>
 
-<pre><code>var Flux = require('../../vendor/util/FluxUtil');
-var resultText="";
-var IndexStore = Flux.createStore({
-    //更新存储结果，update为约定函数名，必须实现
-    update:function(action) {
-        var text = action.text.trim();
-        switch(action.actionType) {
-            case "updateText"://注册updateText动作处理逻辑
-                if (text !== '') {
-                    resultText=text;
-                }
-                break;
-            default:
-            // no op
-        }
-    },
-    //获取存储结果，getResultText为自定义函数名，可选实现
-    //一般来说,至少有一个getSomething函数,以便获取存储数据
-    getResultText: function() {
-        return resultText;
-    }
+<pre><code>var Index=require('./app/Index');
+require(['./app/Index'], function (Index) {
+        //Initial page rendering
+        ReactDOM.render(
+            &lt;Index/&gt;,
+            document.getElementById('container')
+        );
 });
-module.exports = IndexStore;
 </code></pre>
 
 <h3>
-<a id="4创建动作action" class="anchor" href="#4%E5%88%9B%E5%BB%BA%E5%8A%A8%E4%BD%9Caction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.创建动作(Action)</h3>
+<a id="7build-and-watch" class="anchor" href="#7build-and-watch" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7.Build And Watch</h3>
 
-<p><code>/public/javascripts/app/actions/IndexAction.js</code></p>
-
-<pre><code>var Flux = require('../../vendor/util/FluxUtil');
-var IndexAction = Flux.createAction({
-    //发起更新动作，updateText为自定义函数名，可选实现
-    //一般来说,至少有一个updateSomething函数,以便发起动作
-    updateText: function(text) {
-        //广播更新动作，所有的Store都将接收到
-        this.dispatch("updateText",text);
-    }
-});
-module.exports = IndexAction;
-</code></pre>
-
-<p>注意：通常，我们在发起一个动作的时候，会跟服务端进行数据传输，
-比如发送一个ajax请求，我们也是在Action的updateSomething方法中去实现，
-并在请求返回时dispatch出去，
-Store只负责存放最后的结果和结果运算,不负责前后端通讯。</p>
-
-<h3>
-<a id="5创建视图react" class="anchor" href="#5%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BEreact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.创建视图(React)</h3>
-
-<p><code>/public/javascripts/app/components/Index.jsx</code></p>
-
-<pre><code>var Flux = require('../../vendor/util/FluxUtil');
-var FluxConstant=require("../../vendor/util/FluxConstant");
-var React = require('react');
-var IndexStore = require('../stores/IndexStore');
-var IndexAction = require('../actions/IndexAction');
-var Index = Flux.createView({
-    //获取当前视图所需Store,如果用到了Store,必须实现该方法，否则将无法响应状态更新
-    getStore: function(){
-        return [IndexStore];
-    },
-    //获取当前视图状态，通常都是从Store中获取
-    getState: function(){
-        return {text: LoginStore.getResultText()};
-    },
-    //发起一个动作，此例为点击事件发起
-    handleClick:function(){
-        IndexAction.updateText("this is my first update");
-    },
-    //视图渲染，发生状态变化时自动调用
-    render: function() {
-        return (
-            &lt;div&gt;
-               &lt;label&gt;{this.state.text}&lt;/label&gt;
-               &lt;button onClick={this.handleClick}&gt;&lt;/button&gt;
-            &lt;/div&gt;
-     },
-     //尺寸重绘，发生窗体大小变化时自动调用
-     resize: function() {
-         //获取当前页面的尺寸
-         var width=FluxConstant.view.PAGE_WIDTH;
-         var height=FluxConstant.view.PAGE_HEIGHT;
-     }
-});
-module.exports = Index;
+<pre><code>grunt default
 </code></pre>
 
 <h3>
-<a id="6调用视图" class="anchor" href="#6%E8%B0%83%E7%94%A8%E8%A7%86%E5%9B%BE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6.调用视图</h3>
+<a id="8start-a-local-http-server" class="anchor" href="#8start-a-local-http-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8.Start a Local HTTP Server</h3>
 
-<p><code>/public/app.jsx</code></p>
-
-<pre><code>var Jquery=require('./vendor/jquery/jquery-1.9.1');
-//应用node模块
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ContainerMain=require('./components/container/main');
-var Index=require('./components/Index');
-//渲染初始页面
-ReactDOM.render(
-    &lt;Index/&gt;,
-    document.getElementById('container')
-);
+<pre><code>node ./server/bin/www
 </code></pre>
 
-<h3>
-<a id="7启动本地http服务" class="anchor" href="#7%E5%90%AF%E5%8A%A8%E6%9C%AC%E5%9C%B0http%E6%9C%8D%E5%8A%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7.启动本地HTTP服务</h3>
+<p>OK，visit local site look our result: http://localhost:3000</p>
+        </section>
 
-<p>通过框架安装的node express开启一个http服务来测试例子：</p>
+        <aside id="sidebar">
+          <a href="https://github.com/yapovich/fluxweb/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/yapovich/fluxweb/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-<pre><code>node ./bin/www
-</code></pre>
+          <p class="repo-owner"><a href="https://github.com/yapovich/fluxweb"></a> is maintained by <a href="https://github.com/yapovich">yapovich</a>.</p>
 
-<h3>
-<a id="8编译并启动文件监控" class="anchor" href="#8%E7%BC%96%E8%AF%91%E5%B9%B6%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E7%9B%91%E6%8E%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8.编译并启动文件监控</h3>
-
-<p>启动框架已配置的grunt任务编译代码，并开始文件监控，下次我们再修改代码，就能自动编译啦！</p>
-
-<pre><code>grunt monitor
-</code></pre>
-
-<p>注意在Window开发环境下，不要关闭Shell，Linux开发环境下可通过nohup命令在后台运行:)</p>
-
-<p>OK，访问http://localhost:3000来看看结果吧！</p>
-
-<h2>
-<a id="文档" class="anchor" href="#%E6%96%87%E6%A1%A3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文档</h2>
-
-<p>想要了解更多关于如何编译打包web应用的信息,如下所示:</p>
-
-<ul>
-<li><a href="https://github.com/yb030832/fluxweb/wiki/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E5%B7%A5%E7%A8%8B">如何编译打包工程</a></li>
-</ul>
-
-<p>进入我们的<a href="https://github.com/yb030832/fluxweb/wiki">Wiki</a>可了解更多</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/yapovich/fluxweb">Fluxweb</a> is maintained by <a href="https://github.com/yapovich">yapovich</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
 
   
   </body>
