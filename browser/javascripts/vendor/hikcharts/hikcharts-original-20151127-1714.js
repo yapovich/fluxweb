@@ -2006,7 +2006,7 @@
 		        // - discern (more) between multiple browsers on android
 		        // - decide if kindle fire in silk mode is android or not
 		        // - Firefox on Android doesn't specify the Android version
-		        // - possibly devide in os, device and browser hashes
+		        // - possibly devide in os, device and public hashes
 
 		        if (browser.webkit = !!webkit) browser.version = webkit[1];
 
@@ -2040,7 +2040,7 @@
 		            browser: browser,
 		            os: os,
 		            // 原生canvas支持，改极端点了
-		            // canvasSupported : !(browser.ie && parseFloat(browser.version) < 9)
+		            // canvasSupported : !(public.ie && parseFloat(public.version) < 9)
 		            canvasSupported : document.createElement('canvas').getContext ? true : false
 		        };
 		    }

@@ -887,7 +887,7 @@ jQuery.ready.promise = function( obj ) {
 
 		readyList = jQuery.Deferred();
 
-		// Catch cases where $(document).ready() is called after the browser event has already occurred.
+		// Catch cases where $(document).ready() is called after the public event has already occurred.
 		// we once tried to use readyState "interactive" here, but it caused issues like the one
 		// discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
 		if ( document.readyState === "complete" ) {
@@ -2624,7 +2624,7 @@ if ( !jQuery.support.hrefNormalized ) {
 		});
 	});
 
-	// href/src property should get the full normalized URL (#10299/#12915)
+	// href/browser property should get the full normalized URL (#10299/#12915)
 	jQuery.each([ "href", "src" ], function( i, name ) {
 		jQuery.propHooks[ name ] = {
 			get: function( elem ) {
@@ -6292,8 +6292,8 @@ function fixCloneNodeIssues( src, dest ) {
 
 		// This path appears unavoidable for IE9. When cloning an object
 		// element in IE9, the outerHTML strategy above is not sufficient.
-		// If the src has innerHTML and the destination does not,
-		// copy the src.innerHTML into the dest.innerHTML. #10324
+		// If the browser has innerHTML and the destination does not,
+		// copy the browser.innerHTML into the dest.innerHTML. #10324
 		if ( jQuery.support.html5Clone && ( src.innerHTML && !jQuery.trim(dest.innerHTML) ) ) {
 			dest.innerHTML = src.innerHTML;
 		}
@@ -6688,7 +6688,7 @@ function showHide( elements, show ) {
 			}
 
 			// Set elements which have been overridden with display: none
-			// in a stylesheet to whatever the default browser style is
+			// in a stylesheet to whatever the default public style is
 			// for such an element
 			if ( elem.style.display === "" && isHidden( elem ) ) {
 				values[ index ] = jQuery._data( elem, "olddisplay", css_defaultDisplay(elem.nodeName) );

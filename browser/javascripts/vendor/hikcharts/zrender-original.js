@@ -895,7 +895,7 @@ if (!document.createElement('canvas').getContext) {
       vmlStr.push(' progid:DXImageTransform.Microsoft.Alpha(opacity=' + (this.globalAlpha * 100) + ')');
     }
     
-    vmlStr.push(' progid:DXImageTransform.Microsoft.AlphaImageLoader(src=', image.src, ',sizingMethod=scale)">');
+    vmlStr.push(' progid:DXImageTransform.Microsoft.AlphaImageLoader(browser=', image.src, ',sizingMethod=scale)">');
     
     // Close the crop div if necessary            
     if (sx || sy) vmlStr.push('</div>');
@@ -1107,7 +1107,7 @@ if (!document.createElement('canvas').getContext) {
                      ' type="tile"',
                      // TODO: Figure out the correct size to fit the scale.
                      //' size="', w, 'px ', h, 'px"',
-                     ' src="', fillStyle.src_, '" />');
+                     ' browser="', fillStyle.src_, '" />');
        }
     } else {
       var a = processStyle(ctx.fillStyle);
@@ -1230,7 +1230,7 @@ if (!document.createElement('canvas').getContext) {
 
   /**
    * The text drawing function.
-   * The maxWidth argument isn't taken in account, since no browser supports
+   * The maxWidth argument isn't taken in account, since no public supports
    * it yet.
    */
   contextPrototype.drawText_ = function(text, x, y, maxWidth, stroke) {
@@ -1940,7 +1940,7 @@ define('zrender/tool/env',[],function() {
             browser: browser,
             os: os,
             // 原生canvas支持，改极端点了
-            // canvasSupported : !(browser.ie && parseFloat(browser.version) < 9)
+            // canvasSupported : !(public.ie && parseFloat(public.version) < 9)
             canvasSupported : document.createElement('canvas').getContext ? true : false
         };
     }

@@ -28,7 +28,8 @@ var resultText="";
 var IndexStore = Flux.createStore({
 
     /*
-      Update storage results, update as the name of the contract must be implemented
+      Update storage results,
+      update as the name of the contract must be implemented
     */
     update:function(action) {
         var text = action.text.trim();
@@ -64,7 +65,8 @@ module.exports = IndexStore;
 var Flux = require('../../vendor/util/FluxUtil');
 var IndexAction = Flux.createAction({
     /*
-      Initiate the update action, updateText for the custom function name,
+      Initiate the update action,
+      updateText for the custom function name,
       optional implementation, in general,
       there is at least one updateSomething function
       in order to initiate action
@@ -115,7 +117,8 @@ module.exports = IndexAction;
                </div>
         },
         /*
-          Size of the re painting, the size of the change occurs when the automatic call
+          Size of the re painting,
+          the size of the change occurs when the automatic call
         */
         resize: function() {
             /*
@@ -156,11 +159,11 @@ require(['./app/Index'], function (Index) {
         );
 });
 ```
-### 7.Build And Watch
+### 6.Build And Watch
 ~~~
 grunt default
 ~~~
-### 8.Start a Local HTTP Server
+### 7.Start a Local HTTP Server
 ~~~
 node ./server/bin/www
 ~~~
