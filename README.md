@@ -24,27 +24,16 @@ npm install
 ### 1.Create a Store
 `/broswer/javascripts/stores/IndexStore.js`
 ```
-var resultText="";
 var IndexStore = Flux.createStore({
-
+    state:{
+       showText:"boboweiqi"
+    },
     /*
       Update storage results,
       update as the name of the contract must be implemented
     */
-    update:function(action) {
-        var text = action.text.trim();
-        switch(action.actionType) {
-            /*
-              Register updateText action processing logic
-            */
-            case "updateText":
-                if (text !== '') {
-                    resultText=text;
-                }
-                break;
-            default:
-            // no op
-        }
+    updateText:function(data) {
+        this.setState({showText:data.text});
     },
     /*
       Get the storage results,
@@ -53,9 +42,6 @@ var IndexStore = Flux.createStore({
       there is at least one getSomething function,
       in order to obtain the storage data
     */
-    getResultText: function() {
-        return resultText;
-    }
 });
 module.exports = IndexStore;
 ```
@@ -75,13 +61,13 @@ var IndexAction = Flux.createAction({
         /*
           Broadcast update action, all Store will receive
         */
-        this.dispatch("updateText",text);
+        this.dispatch("updateText",{text:text});
     }
 });
 module.exports = IndexAction;
 ```
 ### 3. Create a View
-`/broswer/javascripts/app/index.jsx`
+`/broswer/javascripts/views/index.jsx`
 ```
    var IndexStore = require('../stores/IndexStore');
    var IndexAction = require('../actions/IndexAction');
@@ -91,20 +77,12 @@ module.exports = IndexAction;
        if you use the Store, you must implement the method,
        otherwise it will not be able to respond to the status update
        */
-       getStore: function(){
-           return [IndexStore];
-       },
-       /*
-         Gets the current view state, usually from Store
-       */
-       getState: function(){
-           return {text: LoginStore.getResultText()};
-       },
+       store: IndexStore,
        /*
          Initiate a action, this is the click event initiated
        */
        handleClick:function(){
-           IndexAction.updateText("this is my first update");
+           IndexAction.updateText("i will change showText");
        },
        /*
          View rendering, automatic call when the state changes
@@ -112,7 +90,7 @@ module.exports = IndexAction;
        render: function() {
            return (
                <div>
-                  <label>{this.state.text}</label>
+                  <label>{this.state.showText}</label>
                   <button onClick={this.handleClick}></button>
                </div>
         },
@@ -147,10 +125,11 @@ html,body{
   background-color:@baseBackgroundColor;
 }
 ```
-### 5.Call view
+NOTE: Don't worry,just do it,we know how to compile less file
+### 5.Call View
 `/broswer/javascripts/app.jsx`
 ```
-var Index=require('./app/Index');
+var Index=require('./views/Index');
 require(['./app/Index'], function (Index) {
         //Initial page rendering
         ReactDOM.render(
@@ -159,6 +138,7 @@ require(['./app/Index'], function (Index) {
         );
 });
 ```
+NOTE: app.jsx as entry file configed by webpack,so don't worry,just modify it,we know how to call
 ### 6.Build And Watch
 ~~~
 grunt default
