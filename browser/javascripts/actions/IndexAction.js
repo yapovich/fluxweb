@@ -7,6 +7,9 @@ var IndexAction = Flux.createAction({
     },
     updateText: function(text) {
         this.dispatch("updateText",{text:text});
+    },
+    updateCurrent:function(current){
+        this.dispatch("updateCurrent",{current:current});
     }
 });
 module.exports = IndexAction;

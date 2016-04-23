@@ -1,11 +1,9 @@
 /**
  * Created by yebo on 2016/4/8.
  */
-var React = require('react');
 var AppDispatcher=new (require('flux').Dispatcher)();
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
-var FluxConstant=require("./FluxConstant");
 var BaseAction = {
     dispatch: function(type,text) {
         AppDispatcher.dispatch({

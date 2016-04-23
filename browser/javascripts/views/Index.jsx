@@ -4,7 +4,7 @@
 var IndexStore = require('../stores/IndexStore');
 var IndexAction = require('../actions/IndexAction');
 var Modal=require('./Modal');
-console.log($("#container").width()+"########"+$("#container").height());
+//console.log($("#container").width()+"########"+$("#container").height());
 var Index = Flux.createView({
     //指定视图关联存储对象
     store:IndexStore,
@@ -15,19 +15,36 @@ var Index = Flux.createView({
     handleClick2: function () {
         IndexAction.updateText("cctv");
     },
+    handleGroupClick:function(v){
+        //var v=e.target.attributes["value"].value;
+        IndexAction.updateCurrent(v);
+    },
     //视图渲染，发生状态变化时自动调用
     render: function () {
+        var group=[
+            {name:"left",value:"left"},
+            {name:"center",value:"center"},
+            {name:"right",value:"right"}];
         return (
-            <div className="indexContainer" style={{width:400,height:100}}>
-                <label>{this.state.text}</label>
+            <div className="indexContainer" style={{padding:10}}>
+                <label>{this.state.current}</label>
                 <input type="text" id="beginDateTxt"/>
-                <BootstrapComp.Button type="danger" onClick={this.handleClick}>
-                    打开模块
-                </BootstrapComp.Button>
-                <BootstrapComp.Button type="danger" onClick={this.handleClick2}>
-                    修改文本
-                </BootstrapComp.Button>
-                <BootstrapComp.Progress value="99"/>
+                <h2>图标---</h2>
+                <Bootstrap.Icon type="heart" size="32"/>&nbsp;
+                <Bootstrap.Icon type="star" size="32"/>
+                <h2>按钮---</h2>
+                <Bootstrap.Button>NoType</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="default">Default</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="primary">Primary</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="success">Success</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="info">Info</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="warning">Warning</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="danger">Danger</Bootstrap.Button>
+                <h2>按钮组---</h2>
+                <Bootstrap.ButtonGroup type="success" size="lg" group={group} current={this.state.current} onButtonClick={this.handleGroupClick}>
+                </Bootstrap.ButtonGroup>
+                <h2>进度条---</h2>
+                <Bootstrap.Progress value="80" style={{width:"200px"}}/>
                 <span className="glyphicon glyphicon-hand-left"></span>
                 <Modal ref="modal"/>
             </div>

@@ -92,7 +92,7 @@ module.exports = {
             Flux:path.resolve(__dirname, "./browser/javascripts/util/FluxUtil"),
             FluxConstant:path.resolve(__dirname, "./browser/javascripts/util/FluxConstant"),
             DateUtil:path.resolve(__dirname, "./browser/javascripts/util/DateUtil"),
-            BootstrapComp:path.resolve(__dirname, "./browser/javascripts/components/bootstrap/Bootstrap")
+            Bootstrap:path.resolve(__dirname, "./browser/javascripts/components/bootstrap/Bootstrap")
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
