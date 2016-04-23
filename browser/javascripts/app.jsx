@@ -10,7 +10,7 @@ require('../stylesheets/index.less');
 var lang = $.i18n.browserLang().replace("-", "_");
 require("./vendor/jquery/jquery-easyui-1.3.6/locale/easyui-lang-" + lang)
 var loadModule=function(name) {
-    require(['./app/' + name], function (Index) {
+    require(['./views/' + name], function (Index) {
         //var array = [1, 2, 3];
         //ES6
         //array.forEach(v => console.log(v));

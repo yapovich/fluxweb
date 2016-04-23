@@ -26,15 +26,15 @@ var getFilePath=function(path,app){
 var routes={
         createRoutes:function(app){
             //过滤器，必须在app.use前面
-            //app.all("/api",require("../server/lib/filters/loginFilter").isLogined);
-            //app.all("/",require("../server/lib/filters/loginFilter").isLogined);
-            //app.all("/test/*",require("../server/lib/filters/authFilter").authorize);
+            //views.all("/api",require("../server/lib/filters/loginFilter").isLogined);
+            //views.all("/",require("../server/lib/filters/loginFilter").isLogined);
+            //views.all("/test/*",require("../server/lib/filters/authFilter").authorize);
             //路由设计
-            //app.use('/login', require('../routes/login'));
-            //app.use('/', require('../routes/index'));
-            //app.use('/m', require('../routes/module'));
-            //app.use('/user', require('../routes/user'));
-            //app.use('/service/webService', require('../routes/service/webService'));
+            //views.use('/login', require('../routes/login'));
+            //views.use('/', require('../routes/index'));
+            //views.use('/m', require('../routes/module'));
+            //views.use('/user', require('../routes/user'));
+            //views.use('/service/webService', require('../routes/service/webService'));
         }/*,
         getStaticRootDir:function(){
            if(!staticRootDir)

@@ -14,6 +14,7 @@ module.exports = {
             './browser/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',/*
             './browser/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
             './browser/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'*/
+            './browser/javascripts/vendor/bootstrap/js/bootstrap.js',
             './node_modules/react',
             './node_modules/react-dom',
             './browser/javascripts/util/FluxConstant',
@@ -69,7 +70,7 @@ module.exports = {
     },
     plugins:[
         new CleanWebpackPlugin([
-            "server/browser"
+            "server/public"
         ]),
         new HtmlWebpackPlugin({
             title:"fluxweb!wonderful web development framework",

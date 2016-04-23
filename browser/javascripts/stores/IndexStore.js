@@ -3,22 +3,17 @@
  */
 var resultText="init value";
 var IndexStore = Flux.createStore({
-    update:function(action) {
-        var text = action.text.trim();
-        switch(action.actionType) {
-            case "updateText":
-                if (text !== '') {
-                    resultText=text;
-                }
-                break;
-            default:
-            // no op
-        }
+    state:{
+        open:false,
+        text:"我是大灰狼"
     },
-    getResultText: function() {
-        return resultText;
+    openModal:function(data) {
+        this.setState(data);
+    },
+    updateText:function(data){
+        this.setState(data);
     }
 });
 //for(var i=0;i<1000;i++)
-    //resultText+="波波维奇";
+//resultText+="波波维奇";
 module.exports = IndexStore;

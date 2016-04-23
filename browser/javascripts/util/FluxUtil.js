@@ -15,6 +15,12 @@ var BaseAction = {
     }
 }
 var BaseStore = assign({}, EventEmitter.prototype, {
+    state:{},
+    setState:function(data){
+        if (data !== undefined) {
+            this.state=data;
+        }
+    },
     emitChange: function() {
         this.emit(FluxConstant.event.CHANGE_EVENT);
     },
@@ -27,20 +33,12 @@ var BaseStore = assign({}, EventEmitter.prototype, {
 });
 var BaseView={
     _onChange: function() {
-        if(this.getState){
-            var state=this.getState();
-            if(state){
-                this.setState(state);
-            }
-        }
+        if(this.store)
+          this.setState(this.store.state);
     },
     getInitialState: function() {
-        if(this.getState){
-            var state=this.getState();
-            if(state){
-                return state;
-            }
-        }
+        if(this.store)
+           return this.store.state;
         return {};
     },
     componentWillMount: function() {
@@ -52,12 +50,8 @@ var BaseView={
         if(this.didMount){
             this.didMount.call(this);
         }
-        if(this.getStore){
-            var store=this.getStore();
-            if(store) {
-                for (var i = 0; i < store.length; i++)
-                    store[i].addChangeListener(this._onChange);
-            }
+        if(this.store) {
+            this.store.addChangeListener(this._onChange);
         }
         if(this.resize) {
             window.addEventListener("resize", this.resize);
@@ -67,15 +61,20 @@ var BaseView={
         if(this.willUnMount){
             this.willUnMount.call(this);
         }
-        if(this.getStore){
-            var store=this.getStore();
-            if(store) {
-                for (var i = 0; i < store.length; i++)
-                    store[i].removeChangeListener(this._onChange);
-            }
-        }
+        if(this.store)
+            this.store.removeChangeListener(this._onChange);
         if(this.resize) {
             window.removeEventListener("resize", this.resize);
+        }
+    },
+    componentWillUpdate  : function() {
+        if(this.willUpdate){
+            this.willUpdate.call(this);
+        }
+    },
+    componentDidUpdate: function() {
+        if(this.didUpdate){
+            this.didUpdate.call(this);
         }
     }
 };
@@ -84,8 +83,8 @@ var FluxUtil={
     createStore: function(obj) {
         var newObj = assign({}, BaseStore, obj)
         AppDispatcher.register(function (action) {
-            if(newObj.update) {
-                newObj.update(action);
+            if(newObj[action.actionType]) {
+                newObj[action.actionType].call(newObj,action.text);
                 newObj.emitChange();
             }
         });

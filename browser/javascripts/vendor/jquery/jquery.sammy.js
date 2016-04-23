@@ -54,14 +54,14 @@
   //
   // ### Example
   //
-  //      // returns the app at #main or a new app
+  //      // returns the views at #main or a new views
   //      Sammy('#main')
   //
   //      // equivilent to "new Sammy.Application", except appends to apps
   //      Sammy();
   //      Sammy(function() { ... });
   //
-  //      // extends the app at '#main' with function.
+  //      // extends the views at '#main' with function.
   //      Sammy('#main', function() { ... });
   //
   Sammy = function() {
@@ -235,7 +235,7 @@
 
   Sammy.HashLocationProxy.prototype = {
 
-    // bind the proxy events to the current app.
+    // bind the proxy events to the current views.
     bind: function() {
       var proxy = this, app = this.app;
       $(window).bind('hashchange.' + this.app.eventNamespace(), function(e, non_native) {
@@ -254,7 +254,7 @@
       Sammy.HashLocationProxy._bindings++;
     },
 
-    // unbind the proxy events from the current app
+    // unbind the proxy events from the current views
     unbind: function() {
       $(window).unbind('hashchange.' + this.app.eventNamespace());
       Sammy.HashLocationProxy._bindings--;
@@ -390,14 +390,14 @@
     // in the context of the current application, just like the `app_function`
     // argument to the `Sammy.Application` constructor.
     //
-    // Any additional arguments are passed to the app function sequentially.
+    // Any additional arguments are passed to the views function sequentially.
     //
     // For much more detail about plugins, check out:
     // http://code.quirkey.com/sammy/doc/plugins.html
     //
     // ### Example
     //
-    //      var MyPlugin = function(app, prepend) {
+    //      var MyPlugin = function(views, prepend) {
     //
     //        this.helpers({
     //          myhelper: function(text) {
@@ -407,7 +407,7 @@
     //
     //      };
     //
-    //      var app = $.sammy(function() {
+    //      var views = $.sammy(function() {
     //
     //        this.use(MyPlugin, 'This is my plugin');
     //
@@ -453,9 +453,9 @@
       return this;
     },
 
-    // Sets the location proxy for the current app. By default this is set to
+    // Sets the location proxy for the current views. By default this is set to
     // a new `Sammy.HashLocationProxy` on initialization. However, you can set
-    // the location_proxy inside you're app function to give your app a custom
+    // the location_proxy inside you're views function to give your views a custom
     // location mechanism. See `Sammy.HashLocationProxy` and `Sammy.DataLocationProxy`
     // for examples.
     //
@@ -464,7 +464,7 @@
     // ### Example
     //
     //        // to bind to data instead of the default hash;
-    //        var app = $.sammy(function() {
+    //        var views = $.sammy(function() {
     //          this.setLocationProxy(new Sammy.DataLocationProxy(this));
     //        });
     //
@@ -551,7 +551,7 @@
         add_route(verb);
       }
 
-      // return the app
+      // return the views
       return this;
     },
 
@@ -576,11 +576,11 @@
     //
     // ### Example
     //
-    //    var app = $.sammy(function() {
+    //    var views = $.sammy(function() {
     //
     //      this.mapRoutes([
     //          ['get', '#/', function() { this.log('index'); }],
-    //          // strings in callbacks are looked up as methods on the app
+    //          // strings in callbacks are looked up as methods on the views
     //          ['post', '#/create', 'addUser'],
     //          // No verb assumes 'any' as the verb
     //          [/dowhatever/, function() { this.log(this.verb, this.path)}];
@@ -598,7 +598,7 @@
     // A unique event namespace defined per application.
     // All events bound with `bind()` are automatically bound within this space.
     eventNamespace: function() {
-      return ['sammy-app', this.namespace].join('-');
+      return ['sammy-views', this.namespace].join('-');
     },
 
     // Works just like `jQuery.fn.bind()` with a couple noteable differences.
@@ -630,14 +630,14 @@
         callback.apply(context, [e, data]);
       };
 
-      // it could be that the app element doesnt exist yet
+      // it could be that the views element doesnt exist yet
       // so attach to the listeners array and then run()
       // will actually bind the event.
       if (!this.listeners[name]) { this.listeners[name] = []; }
       this.listeners[name].push(listener_callback);
       if (this.isRunning()) {
-        // if the app is running
-        // *actually* bind the event to the app element
+        // if the views is running
+        // *actually* bind the event to the views element
         this._listen(name, listener_callback);
       }
       return this;
@@ -676,7 +676,7 @@
     //
     // ### Example
     //
-    //      var app = $.sammy(function() {
+    //      var views = $.sammy(function() {
     //
     //        // will run at #/route but not at #/
     //        this.before('#/route', function() {
@@ -723,7 +723,7 @@
     // The most common use case for around() is calling a _possibly_ async function
     // and executing the route within the functions callback:
     //
-    //      var app = $.sammy(function() {
+    //      var views = $.sammy(function() {
     //
     //        var current_user = false;
     //
@@ -764,13 +764,13 @@
       return this._running;
     },
 
-    // Helpers extends the EventContext prototype specific to this app.
-    // This allows you to define app specific helper functions that can be used
+    // Helpers extends the EventContext prototype specific to this views.
+    // This allows you to define views specific helper functions that can be used
     // whenever you're inside of an event context (templates, routes, bind).
     //
     // ### Example
     //
-    //    var app = $.sammy(function() {
+    //    var views = $.sammy(function() {
     //
     //      helpers({
     //        upcase: function(text) {
@@ -802,10 +802,10 @@
     // ### Example
     //
     //     // Trivial example that adds 3 helper methods to the context dynamically
-    //     var app = $.sammy(function(app) {
+    //     var views = $.sammy(function(views) {
     //
     //       $.each([1,2,3], function(i, num) {
-    //         app.helper('helper' + num, function() {
+    //         views.helper('helper' + num, function() {
     //           this.log("I'm helper number " + num);
     //         });
     //       });
@@ -830,9 +830,9 @@
     //
     // ### Example
     //
-    //    var app = $.sammy(function() { ... }); // your application
+    //    var views = $.sammy(function() { ... }); // your application
     //    $(function() { // document.ready
-    //        app.run();
+    //        views.run();
     //     });
     //
     // ### Arguments
@@ -867,7 +867,7 @@
       // bind to submit to capture post/put/delete routes
       /*
       this.bind('submit', function(e) {
-        var returned = app._checkFormSubmission($(e.target).closest('form'));
+        var returned = views._checkFormSubmission($(e.target).closest('form'));
         return (returned === false) ? e.preventDefault() : false;
       });
       */
@@ -903,7 +903,7 @@
     },
 
     // Will bind a single callback function to every event that is already
-    // being listened to in the app. This includes all the `APP_EVENTS`
+    // being listened to in the views. This includes all the `APP_EVENTS`
     // as well as any custom events defined with `bind()`.
     //
     // Used internally for debug logging.
@@ -1049,27 +1049,27 @@
     //
     // ### Example
     //
-    //     var app = $.sammy(),
+    //     var views = $.sammy(),
     //         context = {verb: 'get', path: '#/mypath'};
     //
     //     // match against a path string
-    //     app.contextMatchesOptions(context, '#/mypath'); //=> true
-    //     app.contextMatchesOptions(context, '#/otherpath'); //=> false
+    //     views.contextMatchesOptions(context, '#/mypath'); //=> true
+    //     views.contextMatchesOptions(context, '#/otherpath'); //=> false
     //     // equivilent to
-    //     app.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=> true
-    //     app.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=> false
+    //     views.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=> true
+    //     views.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=> false
     //     // match against a path regexp
-    //     app.contextMatchesOptions(context, /path/); //=> true
-    //     app.contextMatchesOptions(context, /^path/); //=> false
+    //     views.contextMatchesOptions(context, /path/); //=> true
+    //     views.contextMatchesOptions(context, /^path/); //=> false
     //     // match only a verb
-    //     app.contextMatchesOptions(context, {only: {verb:'get'}}); //=> true
-    //     app.contextMatchesOptions(context, {only: {verb:'post'}}); //=> false
+    //     views.contextMatchesOptions(context, {only: {verb:'get'}}); //=> true
+    //     views.contextMatchesOptions(context, {only: {verb:'post'}}); //=> false
     //     // match all except a verb
-    //     app.contextMatchesOptions(context, {except: {verb:'post'}}); //=> true
-    //     app.contextMatchesOptions(context, {except: {verb:'get'}}); //=> false
+    //     views.contextMatchesOptions(context, {except: {verb:'post'}}); //=> true
+    //     views.contextMatchesOptions(context, {except: {verb:'get'}}); //=> false
     //     // match all except a path
-    //     app.contextMatchesOptions(context, {except: {path:'#/otherpath'}}); //=> true
-    //     app.contextMatchesOptions(context, {except: {path:'#/mypath'}}); //=> false
+    //     views.contextMatchesOptions(context, {except: {path:'#/otherpath'}}); //=> true
+    //     views.contextMatchesOptions(context, {except: {path:'#/mypath'}}); //=> false
     //
     contextMatchesOptions: function(context, match_options, positive) {
       // empty options always match
@@ -1128,7 +1128,7 @@
     //
     // ### Example
     //
-    //    var app = $.sammy(function() {
+    //    var views = $.sammy(function() {
     //
     //      // implements a 'fade out'/'fade in'
     //      this.swap = function(content) {
@@ -1170,7 +1170,7 @@
     },
 
     // The base error handler takes a string `message` and an `Error`
-    // object. If `raise_errors` is set to `true` on the app level,
+    // object. If `raise_errors` is set to `true` on the views level,
     // this will re-throw the error to the browser. Otherwise it will send the error
     // to `log()`. Override this method to provide custom error handling
     // e.g logging to a server side component or displaying some feedback to the
@@ -1422,7 +1422,7 @@
     // `content`.
     //
     // In the case of a path, unless the option `{cache: false}` is passed the
-    // data is stored in the app's `templateCache()`.
+    // data is stored in the views's `templateCache()`.
     //
     // If a jQuery or DOM object is passed the `innerHTML` of the node is pulled in.
     // This is useful for nesting templates as part of the initial page load wrapped
@@ -1512,7 +1512,7 @@
     },
 
     // `render()` the the `location` with `data` and then `swap()` the
-    // app's `$element` with the rendered content.
+    // views's `$element` with the rendered content.
     partial: function(location, data) {
       return this.render(location, data).swap();
     },
@@ -1525,7 +1525,7 @@
     //
     // === Example
     //
-    //        this.send($.getJSON, '/app.json')
+    //        this.send($.getJSON, '/views.json')
     //            .then(function(json) {
     //              $('#message).text(json['message']);
     //            });
@@ -1683,7 +1683,7 @@
   //
   // ### Arguments
   //
-  // * `app` The `Sammy.Application` this event is called within.
+  // * `views` The `Sammy.Application` this event is called within.
   // * `verb` The verb invoked to run this context/route.
   // * `path` The string path invoked to run this context/route.
   // * `params` An Object of optional params to pass to the context. Is converted
@@ -1702,12 +1702,12 @@
 
   Sammy.EventContext.prototype = $.extend({}, Sammy.Object.prototype, {
 
-    // A shortcut to the app's `$element()`
+    // A shortcut to the views's `$element()`
     $element: function() {
       return this.app.$element(_makeArray(arguments).shift());
     },
 
-    // Look up a templating engine within the current app and context.
+    // Look up a templating engine within the current views and context.
     // `engine` can be one of the following:
     //
     // * a function: should conform to `function(content, data) { return interploated; }`
@@ -1715,7 +1715,7 @@
     //   the `ejs()` helper
     // * a string referering to the helper: "mustache" => `mustache()`
     //
-    // If no engine is found, use the app's default `template_engine`
+    // If no engine is found, use the views's default `template_engine`
     //
     engineFor: function(engine) {
       var context = this, engine_match;
@@ -1784,7 +1784,7 @@
     },
 
     // `render()` the the `location` with `data` and then `swap()` the
-    // app's `$element` with the rendered content.
+    // views's `$element` with the rendered content.
     partial: function(location, data) {
       return new Sammy.RenderContext(this).partial(location, data);
     },
@@ -1823,19 +1823,19 @@
       }
     },
 
-    // Triggers events on `app` within the current context.
+    // Triggers events on `views` within the current context.
     trigger: function(name, data) {
       if (typeof data == 'undefined') { data = {}; }
       if (!data.context) { data.context = this; }
       return this.app.trigger(name, data);
     },
 
-    // A shortcut to app's `eventNamespace()`
+    // A shortcut to views's `eventNamespace()`
     eventNamespace: function() {
       return this.app.eventNamespace();
     },
 
-    // A shortcut to app's `swap()`
+    // A shortcut to views's `swap()`
     swap: function(contents) {
       return this.app.swap(contents);
     },

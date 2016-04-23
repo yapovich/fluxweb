@@ -16189,7 +16189,7 @@ define('hikcharts/util/draw', ['require'],
 					node.startY=startY;
 					node.zlevel=isFirstLevel?4:2
 					node.photo=data[i].photo;
-					//node.photo="theme/default/images/app/head"+randomBy(1,17)+".png";
+					//node.photo="theme/default/images/views/head"+randomBy(1,17)+".png";
 					newNodes.push(node);
 					nodeTable.put(node.id,node);
 				}
@@ -16868,8 +16868,8 @@ define('hikcharts/chart/relation', [ 'require', 'zrender/Group',
 		   			"QuinticIn", "QuinticInOut", "QuinticOut", "SinusoidalIn",
 		   			"SinusoidalInOut", "SinusoidalOut" ];
 	var easingType = easing[14];// 5,13,14,27,28,29
-	var photo="theme/default/images/app/test.png";
-	var edgeBg="theme/default/images/app/q_bg_3_n.png"
+	var photo="theme/default/images/views/test.png";
+	var edgeBg="theme/default/images/views/q_bg_3_n.png"
 	var rainbow =["#05ff00","#0aff00","#0fff00","#14ff00","#19ff00","#1eff00","#23ff00","#28ff00","#2dff00","#33ff00",
 	              "#38ff00","#3dff00","#42ff00","#47ff00","#4cff00","#51ff00","#56ff00","#5bff00","#60ff00","#66ff00",
 	              "#6bff00","#70ff00","#75ff00","#7aff00","#7fff00","#84ff00","#89ff00","#8eff00","#93ff00","#99ff00",
@@ -17010,7 +17010,7 @@ define('hikcharts/chart/relation', [ 'require', 'zrender/Group',
 		  node.x=Math.round(p.x);//startX+initSize * (Math.random() - 0.5);
 		  node.y=Math.round(p.y);//startY+initSize * (Math.random() - 0.5);
 		  node.color=colors[randomBy(0,5)];
-		  node.photo="theme/default/images/app/head"+randomBy(1,17)+".png";//photo;
+		  node.photo="theme/default/images/views/head"+randomBy(1,17)+".png";//photo;
 		  node.level=startNode?startNode.level+1:1;
 		  newNodes.push(node);
 		  nodeTable.put(node.id,node);
@@ -17535,11 +17535,11 @@ define('hikcharts/chart/topology', [ 'require', 'zrender/Group',
 	var opacities=[1,1,0.3];
 	var dgrees=[46,328,204,160,287,12,242,120,354,28]
 	var lengths=[174,380,376,278,294,235,211,165,400,323];
-	var imageUrls=["theme/default/images/app/q_bg_1.png","theme/default/images/app/q_bg_2_n.png","theme/default/images/app/q_bg_3_n.png"]
+	var imageUrls=["theme/default/images/views/q_bg_1.png","theme/default/images/views/q_bg_2_n.png","theme/default/images/views/q_bg_3_n.png"]
 	var imageSizes=[47,28,15]
-	var testImageUrl="theme/default/images/app/test.png"
-	var textBgImageUrl="theme/default/images/app/info_bg_1.png"
-	var textBgImageUrl2="theme/default/images/app/info_bg_2.png"
+	var testImageUrl="theme/default/images/views/test.png"
+	var textBgImageUrl="theme/default/images/views/info_bg_1.png"
+	var textBgImageUrl2="theme/default/images/views/info_bg_2.png"
 	var getXY=function(startX,startY,index,length){
 		var _dgree=dgrees[index];
 		var length=length?length:lengths[index];
