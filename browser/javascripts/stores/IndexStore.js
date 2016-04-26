@@ -4,7 +4,7 @@
 var resultText="init value";
 var IndexStore = Flux.createStore({
     state:{
-        open:false,
+        open:true,
         text:"我是大灰狼",
         current:"left"
     },

@@ -52,6 +52,7 @@ var MyView = Flux.createView({
     didMount: function () {
         if(this.props.open==true||this.props.open=="true")
             this.open();
+        console.log("Modal didMount");
     },
     //卸载渲染时
     didUnMount: function () {
@@ -66,6 +67,7 @@ var MyView = Flux.createView({
         //console.log(ReactDOM.findDOMNode(this.refs.modal));
         if(this.props.open==true||this.props.open=="true")
             this.open();
+        console.log("Modal didUpdate");
     }
 });
 module.exports = MyView;
