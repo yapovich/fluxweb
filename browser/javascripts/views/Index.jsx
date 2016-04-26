@@ -29,10 +29,10 @@ var Index = Flux.createView({
             <div className="indexContainer" style={{padding:10}}>
                 <label>{this.state.current}</label>
                 <input type="text" id="beginDateTxt"/>
-                <h2>图标---</h2>
+                <h2>Glyphicons 字体图标---</h2>
                 <Bootstrap.Icon type="heart" size="32"/>&nbsp;
                 <Bootstrap.Icon type="star" size="32"/>
-
+                <h2>下拉菜单---</h2>
                 <h2>按钮---</h2>
                 <Bootstrap.Button type="default" badge="4">Default</Bootstrap.Button>&nbsp;
                 <Bootstrap.Button type="primary" badge="4">Primary</Bootstrap.Button>&nbsp;
