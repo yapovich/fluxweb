@@ -3,30 +3,28 @@
  * 按钮
  */
 var ButtonGroup = Flux.createView({
-    getInitialState:function(){
-      return {current:this.props.current};
-    },
     handleClick:function(e){
         var v=e.currentTarget.attributes["value"].value;
-        this.setState({current:v});
-        if(this.props.onButtonClick){
-            this.props.onButtonClick.call(null,v);
+        if(this.props.onSelected){
+            this.props.onSelected.call(null,v);
         }
     },
     //按钮控件
     getComponent:function(_props){
         var size=_props.size?" btn-group-"+_props.size:""
         var type=" btn-"+(_props.type?_props.type:"default");
-        var group=_props.group;
+        var html;
+        var group=_props.children;
+        if(group){
+            html=group.map(function(g){
+                return <button value={g.value} className={"btn"+type+(g.active?" active":"")} onClick={this.handleClick}>
+                    {g.name}
+                    {(g.badge||g.badge==0)?(<span className="badge">{g.badge}</span>):""}
+                </button>
+            }.bind(this))
+        }
         return (
-            <div {..._props} className={"btn-group"+size+" "+(_props.className?_props.className:"")}>{
-                group.map(function(g){
-                 return <button value={g.value} type="button" className={"btn"+type+(this.state.current==g.value?" active":"")} onClick={this.handleClick}>
-                     {g.name}
-                     {(g.badge||g.badge==0)?(<span className="badge">{g.badge}</span>):""}
-                 </button>
-            }.bind(this))}
-        </div>);
+            <div {..._props} className={"btn-group"+size+" "+(_props.className?_props.className:"")}>{html}</div>);
     },
     render: function() {
         var comp=this.getComponent(this.props);

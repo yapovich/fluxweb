@@ -5,7 +5,11 @@
 var Icon = Flux.createView({
     //按钮控件
     getComponent:function(_props){
-        var style=_props.size?{fontSize:(_props.size+"px")}:{};
+        var style={};
+        if(_props.color)
+            style.color=_props.color;
+        if(_props.size)
+            style.fontSize=_props.size+"px";
         var type=" glyphicon-"+(_props.type?_props.type:"home");
         return (<span
             {..._props}

@@ -12,7 +12,7 @@ var Index = Flux.createView({
     handleClick: function () {
         IndexAction.openModal(true);
     },
-    handleClick2: function () {
+    handleMenuClick: function () {
         IndexAction.updateText("cctv");
     },
     handleGroupClick:function(v){
@@ -22,38 +22,56 @@ var Index = Flux.createView({
     //视图渲染，发生状态变化时自动调用
     render: function () {
         var group=[
-            {name:"left",value:"left",badge:4},
-            {name:"center",value:"center",badge:0},
-            {name:"right",value:"right",badge:4}];
+            {name:"left",value:"left",badge:4,active:(this.state.current=="left")},
+            {name:"center",value:"center",badge:0,active:(this.state.current=="center")},
+            {name:"right",value:"right",badge:4,active:(this.state.current=="right")}]
+        var dropGroup=[
+            {name:"常用工具",children:[
+                {name:"设置",value:"Setting"},
+                {name:"主题",value:"Theme",disabled:true}
+            ]},
+            {name:"高级工具",children:[
+                {name:"换肤",value:"Face"}
+            ]},
+            {name:"separator"},
+            {name:"其他",value:"Other"}];
         return (
             <div className="indexContainer" style={{padding:10}}>
-                <label>{this.state.current}</label>
                 <input type="text" id="beginDateTxt"/>
                 <h2>Glyphicons 字体图标---</h2>
-                <Bootstrap.Icon type="heart" size="32"/>&nbsp;
+                <Bootstrap.Icon type="heart" size="32" color="#ff0000"/>&nbsp;
                 <Bootstrap.Icon type="star" size="32"/>
-                <h2>下拉菜单---</h2>
+                <h2>下拉菜单---{this.state.text}</h2>
+                <Bootstrap.DropDownMenu style={{float:"left"}} name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
+                <Bootstrap.DropDownMenu style={{float:"left"}} type="primary" name="我的空间" position="up" align="left" split="true" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
+                <Bootstrap.DropDownMenu style={{float:"left"}} type="success" name="我的空间" position="down" align="left" split="true" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
+                <Bootstrap.DropDownMenu style={{float:"left"}} size="lg" type="info" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
+                <Bootstrap.DropDownMenu style={{float:"left"}} size="sm" type="warning" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
+                <Bootstrap.DropDownMenu style={{float:"left"}} size="xs" type="danger" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
+                <div className="clearfix"></div>
                 <h2>按钮---</h2>
                 <Bootstrap.Button type="default" badge="4">Default</Bootstrap.Button>&nbsp;
                 <Bootstrap.Button type="primary" badge="4">Primary</Bootstrap.Button>&nbsp;
                 <Bootstrap.Button type="success" badge="4">Success</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="info" badge="4">Info</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="warning" badge="4">Warning</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="danger" badge="4">Danger</Bootstrap.Button>
+                <Bootstrap.Button type="info" size="lg" badge="4">Info</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="warning" size="sm" badge="4">Warning</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="danger" size="xs" badge="4">Danger</Bootstrap.Button>
                 <h2>按钮组---</h2>
-                <Bootstrap.ButtonGroup type="success" size="lg" group={group} current={this.state.current} onButtonClick={this.handleGroupClick}></Bootstrap.ButtonGroup>
+                <Bootstrap.ButtonGroup type="success" size="lg" current={this.state.current} onSelected={this.handleGroupClick}>{group}</Bootstrap.ButtonGroup>
                 <h2>标签组---</h2>
-                <Bootstrap.Nav group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
-                <Bootstrap.Nav type="pills" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
-                <Bootstrap.Nav type="pills" subtype="stacked" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
-                <Bootstrap.Nav type="pills" subtype="justified" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
-                <Bootstrap.Nav type="underlines" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
-                <Bootstrap.Nav type="overlines" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
+                <Bootstrap.Nav group={group} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
+                <Bootstrap.Nav type="pills" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
+                <Bootstrap.Nav type="pills" subtype="stacked" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
+                <Bootstrap.Nav type="pills" subtype="justified" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
+                <Bootstrap.Nav type="underlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
+                <Bootstrap.Nav type="overlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
                 <h2>进度条---</h2>
                 <Bootstrap.Progress type="danger" value="30" style={{width:"200px"}}/>
                 <h2>模态框---</h2>
                 <Bootstrap.Button onClick={this.handleClick}>打开模态框</Bootstrap.Button>
                 <Modal ref="modal" open={this.state.open}/>
+                <h2>导航(面包屑)---</h2>
+                <Bootstrap.BreadCrumb>{["首页","主功能","子功能"]}</Bootstrap.BreadCrumb>
             </div>
         )
     },
