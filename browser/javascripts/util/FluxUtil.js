@@ -65,6 +65,9 @@ var BaseView={
             window.removeEventListener("resize", this.resize);
         }
     },
+    shouldComponentUpdate:function(){
+         return this.shouldUpdate?this.shouldUpdate.call(this):true;
+    },
     componentWillUpdate  : function() {
         if(this.willUpdate){
             this.willUpdate.call(this);

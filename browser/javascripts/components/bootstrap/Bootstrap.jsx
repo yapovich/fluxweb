@@ -8,6 +8,8 @@ var Bootstrap={
     Button:require("./Button"),
     //按钮组
     ButtonGroup:require("./ButtonGroup"),
+    //标签页面
+    Nav:require("./Nav"),
     //进度条组件
     Progress:require("./Progress")
 }

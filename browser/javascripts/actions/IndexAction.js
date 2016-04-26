@@ -3,13 +3,13 @@
 */
 var IndexAction = Flux.createAction({
     openModal: function(isOpen) {
-        this.dispatch("openModal",{open:isOpen});
+        this.dispatch("openModal",{resultOpen:isOpen});
     },
     updateText: function(text) {
-        this.dispatch("updateText",{text:text});
+        this.dispatch("updateText",{resultText:text});
     },
     updateCurrent:function(current){
-        this.dispatch("updateCurrent",{current:current});
+        this.dispatch("updateCurrent",{resultCurrent:current});
     }
 });
 module.exports = IndexAction;

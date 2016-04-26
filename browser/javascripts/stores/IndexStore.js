@@ -9,13 +9,13 @@ var IndexStore = Flux.createStore({
         current:"left"
     },
     openModal:function(data) {
-        this.setState(data);
+        this.setState({open:data.resultOpen});
     },
     updateText:function(data){
-        this.setState(data);
+        this.setState({text:data.resultText,open:false});
     },
     updateCurrent:function(data){
-        this.setState(data);
+        this.setState({current:data.resultCurrent,open:false});
     }
 });
 //for(var i=0;i<1000;i++)

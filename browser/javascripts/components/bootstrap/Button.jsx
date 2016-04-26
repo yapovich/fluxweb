@@ -8,9 +8,10 @@ var Button = Flux.createView({
         var size=_props.size?" btn-"+_props.size:""
         var type=" btn-"+(_props.type?_props.type:"default");
         return (<button
-            className={"btn"+type+size}
-            {..._props}>
+            {..._props}
+            className={"btn"+type+size+" "+(_props.className?_props.className:"")}>
             {_props.children}
+            {(_props.badge||_props.badge==0)?(<span className="badge">{_props.badge}</span>):""}
         </button>);
     },
     render: function() {

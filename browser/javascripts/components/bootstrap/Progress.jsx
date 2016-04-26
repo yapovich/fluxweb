@@ -4,10 +4,11 @@
 */
 var Progress = Flux.createView({
     render: function() {
+        var type=(this.props.type?" progress-bar-"+this.props.type:"");
         return (
-            <div className="progress" style={this.props.style}>
-                <div className="progress-bar" role="progressbar" aria-valuenow={this.props.value} aria-valuemin="0" aria-valuemax="100" style={{width:this.props.value+"%"}}>
-                    <span className="sr-only">{this.props.value}% Complete</span>
+            <div {...this.props} className={"progress "+(this.props.className?this.props.className:"")}>
+                <div className={"progress-bar"+type} role="progressbar" aria-valuenow={this.props.value} aria-valuemin="0" aria-valuemax="100" style={{width:this.props.value+"%"}}>
+                    {this.props.value}%
                 </div>
             </div>
         );

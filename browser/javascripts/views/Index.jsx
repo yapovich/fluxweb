@@ -22,9 +22,9 @@ var Index = Flux.createView({
     //视图渲染，发生状态变化时自动调用
     render: function () {
         var group=[
-            {name:"left",value:"left"},
-            {name:"center",value:"center"},
-            {name:"right",value:"right"}];
+            {name:"left",value:"left",badge:4},
+            {name:"center",value:"center",badge:0},
+            {name:"right",value:"right",badge:4}];
         return (
             <div className="indexContainer" style={{padding:10}}>
                 <label>{this.state.current}</label>
@@ -32,21 +32,28 @@ var Index = Flux.createView({
                 <h2>图标---</h2>
                 <Bootstrap.Icon type="heart" size="32"/>&nbsp;
                 <Bootstrap.Icon type="star" size="32"/>
+
                 <h2>按钮---</h2>
-                <Bootstrap.Button>NoType</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="default">Default</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="primary">Primary</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="success">Success</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="info">Info</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="warning">Warning</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="danger">Danger</Bootstrap.Button>
+                <Bootstrap.Button type="default" badge="4">Default</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="primary" badge="4">Primary</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="success" badge="4">Success</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="info" badge="4">Info</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="warning" badge="4">Warning</Bootstrap.Button>&nbsp;
+                <Bootstrap.Button type="danger" badge="4">Danger</Bootstrap.Button>
                 <h2>按钮组---</h2>
-                <Bootstrap.ButtonGroup type="success" size="lg" group={group} current={this.state.current} onButtonClick={this.handleGroupClick}>
-                </Bootstrap.ButtonGroup>
+                <Bootstrap.ButtonGroup type="success" size="lg" group={group} current={this.state.current} onButtonClick={this.handleGroupClick}></Bootstrap.ButtonGroup>
+                <h2>标签组---</h2>
+                <Bootstrap.Nav group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
+                <Bootstrap.Nav type="pills" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
+                <Bootstrap.Nav type="pills" subtype="stacked" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
+                <Bootstrap.Nav type="pills" subtype="justified" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
+                <Bootstrap.Nav type="underlines" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
+                <Bootstrap.Nav type="overlines" style={{marginTop:5}} group={group} current={this.state.current} onNavClick={this.handleGroupClick}></Bootstrap.Nav>
                 <h2>进度条---</h2>
-                <Bootstrap.Progress value="80" style={{width:"200px"}}/>
-                <span className="glyphicon glyphicon-hand-left"></span>
-                <Modal ref="modal"/>
+                <Bootstrap.Progress type="danger" value="30" style={{width:"200px"}}/>
+                <h2>模态框---</h2>
+                <Bootstrap.Button onClick={this.handleClick}>打开模态框</Bootstrap.Button>
+                <Modal ref="modal" open={this.state.open}/>
             </div>
         )
     },
@@ -68,18 +75,12 @@ var Index = Flux.createView({
             value : DateUtil.getToday(-6)
         });
     },
+    //是否应该更新
+    shouldUpdate:function(){
+      return true;
+    },
     //重新渲染完成时
     didUpdate: function(){
-        if(this.state.open){
-            //console.log(ReactDOM.findDOMNode(this.refs.modal));
-            var obj=$(ReactDOM.findDOMNode(this.refs.modal))
-            obj.modal({
-                keyboard: false,
-                backdrop:"static",
-                show:true
-            });
-            this.state.open=false;
-        }
     }
 });
 module.exports = Index;

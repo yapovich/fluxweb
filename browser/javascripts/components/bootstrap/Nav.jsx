@@ -9,24 +9,24 @@ var ButtonGroup = Flux.createView({
     handleClick:function(e){
         var v=e.currentTarget.attributes["value"].value;
         this.setState({current:v});
-        if(this.props.onButtonClick){
-            this.props.onButtonClick.call(null,v);
+        if(this.props.onNavClick){
+            this.props.onNavClick.call(null,v);
         }
     },
     //按钮控件
     getComponent:function(_props){
-        var size=_props.size?" btn-group-"+_props.size:""
-        var type=" btn-"+(_props.type?_props.type:"default");
+        var type=" nav-"+(_props.type?_props.type:"tabs");
+        var subtype=" nav-"+(_props.subtype?_props.subtype:"");
         var group=_props.group;
         return (
-            <div {..._props} className={"btn-group"+size+" "+(_props.className?_props.className:"")}>{
+            <ul {..._props} className={"nav"+type+subtype+" "+(_props.className?_props.className:"")}>{
                 group.map(function(g){
-                 return <button value={g.value} type="button" className={"btn"+type+(this.state.current==g.value?" active":"")} onClick={this.handleClick}>
+                 return <li className={(this.state.current==g.value?"active":"")} value={g.value} onClick={this.handleClick}><a href="javascript:void(0)">
                      {g.name}
                      {(g.badge||g.badge==0)?(<span className="badge">{g.badge}</span>):""}
-                 </button>
+                 </a></li>
             }.bind(this))}
-        </div>);
+        </ul>);
     },
     render: function() {
         var comp=this.getComponent(this.props);

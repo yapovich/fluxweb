@@ -3,6 +3,14 @@
  * TO DO
  */
 var MyView = Flux.createView({
+    open:function(){
+            var obj = $(ReactDOM.findDOMNode(this.refs.modal))
+            obj.modal({
+                keyboard: false,
+                backdrop: "static",
+                show: true
+            });
+    },
     //视图渲染
     render: function () {
         var width = FluxConstant.view.PAGE_WIDTH;
@@ -42,15 +50,22 @@ var MyView = Flux.createView({
     },
     //渲染完成时
     didMount: function () {
-
+        if(this.props.open==true||this.props.open=="true")
+            this.open();
     },
     //卸载渲染时
     didUnMount: function () {
 
     },
+    //是否应该更新
+    shouldUpdate:function(){
+        return true;
+    },
     //重新渲染完成时
     didUpdate: function () {
-
+        //console.log(ReactDOM.findDOMNode(this.refs.modal));
+        if(this.props.open==true||this.props.open=="true")
+            this.open();
     }
 });
 module.exports = MyView;

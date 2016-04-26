@@ -3688,8 +3688,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .nav-pills > li {
-  float: left;
-}
+   float: left;
+ }
 .nav-pills > li > a {
   border-radius: 4px;
 }
@@ -3701,6 +3701,37 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a:focus {
   color: #fff;
   background-color: #428bca;
+}
+/*下划线NAV*/
+.nav-underlines > li {
+  float: left;
+}
+.nav-underlines > li > a {
+  border-radius: 0px;
+}
+.nav-underlines > li + li {
+  margin-left: 2px;
+}
+.nav-underlines > li.active > a,
+.nav-underlines > li.active > a:hover,
+.nav-underlines > li.active > a:focus {
+  border-bottom: #428bca solid 3px;
+}
+/*上划线NAV*/
+.nav-overlines > li {
+  float: left;
+}
+.nav-overlines > li > a {
+  border-radius: 0px;
+}
+.nav-overlines > li + li {
+  margin-left: 2px;
+}
+.nav-overlines > li.active > a,
+.nav-overlines > li.active > a:hover,
+.nav-overlines > li.active > a:focus {
+  border-top: #428bca solid 3px;
+  margin-top:-3px;
 }
 .nav-stacked > li {
   float: none;

@@ -8,9 +8,9 @@ var Icon = Flux.createView({
         var style=_props.size?{fontSize:(_props.size+"px")}:{};
         var type=" glyphicon-"+(_props.type?_props.type:"home");
         return (<span
+            {..._props}
             className={"glyphicon"+type}
-            style={style}
-            {..._props}>
+            style={style}>
         </span>);
     },
     render: function() {
