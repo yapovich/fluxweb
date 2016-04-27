@@ -130,7 +130,7 @@ define('echarts', ['echarts/echarts'], function (main) {return main;});
 define('echarts/echarts', [
     'require',
     './config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/event',
     'zrender/tool/env',
     'zrender',
@@ -141,7 +141,7 @@ define('echarts/echarts', [
     './component/title',
     './component/tooltip',
     './component/legend',
-    './util/ecData',
+    './utils/ecData',
     './chart',
     'zrender/tool/color',
     './component/timeline',
@@ -156,7 +156,7 @@ define('echarts/echarts', [
     './theme/infographic'
 ], function (require) {
     var ecConfig = require('./config');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrEvent = require('zrender/tool/event');
     var self = {};
     var _canvasSupported = require('zrender/tool/env').canvasSupported;
@@ -475,7 +475,7 @@ define('echarts/echarts', [
         },
         _eventPackage: function (target) {
             if (target) {
-                var ecData = require('./util/ecData');
+                var ecData = require('./utils/ecData');
                 var seriesIndex = ecData.get(target, 'seriesIndex');
                 var dataIndex = ecData.get(target, 'dataIndex');
                 dataIndex = seriesIndex != -1 && this.component.dataZoom ? this.component.dataZoom.getRealDataIndex(seriesIndex, dataIndex) : dataIndex;
@@ -1641,7 +1641,7 @@ define('echarts/echarts', [
 define('zrender/zrender', [
     'require',
     './dep/excanvas',
-    './tool/util',
+    './tool/utils',
     './tool/log',
     './tool/guid',
     './Handler',
@@ -1651,7 +1651,7 @@ define('zrender/zrender', [
     './tool/env'
 ], function (require) {
     require('./dep/excanvas');
-    var util = require('./tool/util');
+    var util = require('./tool/utils');
     var log = require('./tool/log');
     var guid = require('./tool/guid');
     var Handler = require('./Handler');
@@ -1946,11 +1946,11 @@ define('zrender/zrender', [
     './base',
     'zrender/shape/Circle',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/tool/event',
     'zrender/tool/color',
-    '../util/accMath',
+    '../utils/accMath',
     '../chart'
 ], function (require) {
     var ChartBase = require('./base');
@@ -1962,8 +1962,8 @@ define('zrender/zrender', [
         r: 15,
         calculateStep: 0.1
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrEvent = require('zrender/tool/event');
     function Island(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -1995,7 +1995,7 @@ define('zrender/zrender', [
         type: ecConfig.CHART_TYPE_ISLAND,
         _combine: function (tarShape, srcShape) {
             var zrColor = require('zrender/tool/color');
-            var accMath = require('../util/accMath');
+            var accMath = require('../utils/accMath');
             var value = accMath.accAdd(ecData.get(tarShape, 'value'), ecData.get(srcShape, 'value'));
             var name = ecData.get(tarShape, 'name') + this._nameConnector + ecData.get(srcShape, 'name');
             tarShape.style.text = name + this._valueConnector + value;
@@ -2115,9 +2115,9 @@ define('zrender/zrender', [
     'zrender/shape/Line',
     'zrender/shape/Image',
     'zrender/shape/Rectangle',
-    '../util/shape/Icon',
+    '../utils/shape/Icon',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/config',
     'zrender/tool/event',
     './dataView',
@@ -2127,7 +2127,7 @@ define('zrender/zrender', [
     var LineShape = require('zrender/shape/Line');
     var ImageShape = require('zrender/shape/Image');
     var RectangleShape = require('zrender/shape/Rectangle');
-    var IconShape = require('../util/shape/Icon');
+    var IconShape = require('../utils/shape/Icon');
     var ecConfig = require('../config');
     ecConfig.toolbox = {
         zlevel: 0,
@@ -2208,7 +2208,7 @@ define('zrender/zrender', [
             }
         }
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrConfig = require('zrender/config');
     var zrEvent = require('zrender/tool/event');
     var _MAGICTYPE_STACK = 'stack';
@@ -3068,7 +3068,7 @@ define('zrender/zrender', [
     'zrender/shape/Text',
     'zrender/shape/Rectangle',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/area',
     'zrender/tool/color',
     '../component'
@@ -3097,7 +3097,7 @@ define('zrender/zrender', [
         },
         subtextStyle: { color: '#aaa' }
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrArea = require('zrender/tool/area');
     var zrColor = require('zrender/tool/color');
     function Title(ecTheme, messageCenter, zr, option, myChart) {
@@ -3294,21 +3294,21 @@ define('zrender/zrender', [
 });define('echarts/component/tooltip', [
     'require',
     './base',
-    '../util/shape/Cross',
+    '../utils/shape/Cross',
     'zrender/shape/Line',
     'zrender/shape/Rectangle',
     '../config',
-    '../util/ecData',
+    '../utils/ecData',
     'zrender/config',
     'zrender/tool/event',
     'zrender/tool/area',
     'zrender/tool/color',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/shape/Base',
     '../component'
 ], function (require) {
     var Base = require('./base');
-    var CrossShape = require('../util/shape/Cross');
+    var CrossShape = require('../utils/shape/Cross');
     var LineShape = require('zrender/shape/Line');
     var RectangleShape = require('zrender/shape/Rectangle');
     var rectangleInstance = new RectangleShape({});
@@ -3349,12 +3349,12 @@ define('zrender/zrender', [
         },
         textStyle: { color: '#fff' }
     };
-    var ecData = require('../util/ecData');
+    var ecData = require('../utils/ecData');
     var zrConfig = require('zrender/config');
     var zrEvent = require('zrender/tool/event');
     var zrArea = require('zrender/tool/area');
     var zrColor = require('zrender/tool/color');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrShapeBase = require('zrender/shape/Base');
     function Tooltip(ecTheme, messageCenter, zr, option, myChart) {
         Base.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -4539,10 +4539,10 @@ define('zrender/zrender', [
     'zrender/shape/Text',
     'zrender/shape/Rectangle',
     'zrender/shape/Sector',
-    '../util/shape/Icon',
-    '../util/shape/Candle',
+    '../utils/shape/Icon',
+    '../utils/shape/Candle',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/area',
     '../component'
 ], function (require) {
@@ -4550,8 +4550,8 @@ define('zrender/zrender', [
     var TextShape = require('zrender/shape/Text');
     var RectangleShape = require('zrender/shape/Rectangle');
     var SectorShape = require('zrender/shape/Sector');
-    var IconShape = require('../util/shape/Icon');
-    var CandleShape = require('../util/shape/Candle');
+    var IconShape = require('../utils/shape/Icon');
+    var CandleShape = require('../utils/shape/Candle');
     var ecConfig = require('../config');
     ecConfig.legend = {
         zlevel: 0,
@@ -4570,7 +4570,7 @@ define('zrender/zrender', [
         textStyle: { color: '#333' },
         selectedMode: true
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrArea = require('zrender/tool/area');
     function Legend(ecTheme, messageCenter, zr, option, myChart) {
         if (!this.query(option, 'legend.data')) {
@@ -5298,9 +5298,9 @@ define('zrender/zrender', [
     return self;
 });define('zrender/tool/color', [
     'require',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var _ctx;
     var palette = [
         '#ff9277',
@@ -6099,18 +6099,18 @@ define('zrender/zrender', [
     'require',
     './base',
     'zrender/shape/Rectangle',
-    '../util/shape/Icon',
-    '../util/shape/Chain',
+    '../utils/shape/Icon',
+    '../utils/shape/Chain',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/area',
     'zrender/tool/event',
     '../component'
 ], function (require) {
     var Base = require('./base');
     var RectangleShape = require('zrender/shape/Rectangle');
-    var IconShape = require('../util/shape/Icon');
-    var ChainShape = require('../util/shape/Chain');
+    var IconShape = require('../utils/shape/Icon');
+    var ChainShape = require('../utils/shape/Chain');
     var ecConfig = require('../config');
     ecConfig.timeline = {
         zlevel: 0,
@@ -6163,7 +6163,7 @@ define('zrender/zrender', [
         symbolSize: 4,
         currentIndex: 0
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrArea = require('zrender/tool/area');
     var zrEvent = require('zrender/tool/event');
     function Timeline(ecTheme, messageCenter, zr, option, myChart) {
@@ -6803,7 +6803,7 @@ define('zrender/zrender', [
 });define('zrender/shape/Image', [
     'require',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
     var ZImage = function (options) {
@@ -6900,17 +6900,17 @@ define('zrender/zrender', [
             this._imageCache = {};
         }
     };
-    require('../tool/util').inherits(ZImage, Base);
+    require('../tool/utils').inherits(ZImage, Base);
     return ZImage;
 });define('zrender/loadingEffect/Bar', [
     'require',
     './Base',
-    '../tool/util',
+    '../tool/utils',
     '../tool/color',
     '../shape/Rectangle'
 ], function (require) {
     var Base = require('./Base');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var zrColor = require('../tool/color');
     var RectangleShape = require('../shape/Rectangle');
     function Bar(options) {
@@ -6977,12 +6977,12 @@ define('zrender/zrender', [
 });define('zrender/loadingEffect/Bubble', [
     'require',
     './Base',
-    '../tool/util',
+    '../tool/utils',
     '../tool/color',
     '../shape/Circle'
 ], function (require) {
     var Base = require('./Base');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var zrColor = require('../tool/color');
     var CircleShape = require('../shape/Circle');
     function Bubble(options) {
@@ -7044,12 +7044,12 @@ define('zrender/zrender', [
 });define('zrender/loadingEffect/DynamicLine', [
     'require',
     './Base',
-    '../tool/util',
+    '../tool/utils',
     '../tool/color',
     '../shape/Line'
 ], function (require) {
     var Base = require('./Base');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var zrColor = require('../tool/color');
     var LineShape = require('../shape/Line');
     function DynamicLine(options) {
@@ -7116,13 +7116,13 @@ define('zrender/zrender', [
 });define('zrender/loadingEffect/Ring', [
     'require',
     './Base',
-    '../tool/util',
+    '../tool/utils',
     '../tool/color',
     '../shape/Ring',
     '../shape/Sector'
 ], function (require) {
     var Base = require('./Base');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var zrColor = require('../tool/color');
     var RingShape = require('../shape/Ring');
     var SectorShape = require('../shape/Sector');
@@ -7256,13 +7256,13 @@ define('zrender/zrender', [
 });define('zrender/loadingEffect/Spin', [
     'require',
     './Base',
-    '../tool/util',
+    '../tool/utils',
     '../tool/color',
     '../tool/area',
     '../shape/Sector'
 ], function (require) {
     var Base = require('./Base');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var zrColor = require('../tool/color');
     var zrArea = require('../tool/area');
     var SectorShape = require('../shape/Sector');
@@ -7336,14 +7336,14 @@ define('zrender/zrender', [
 });define('zrender/loadingEffect/Whirling', [
     'require',
     './Base',
-    '../tool/util',
+    '../tool/utils',
     '../tool/area',
     '../shape/Ring',
     '../shape/Droplet',
     '../shape/Circle'
 ], function (require) {
     var Base = require('./Base');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var zrArea = require('../tool/area');
     var RingShape = require('../shape/Ring');
     var DropletShape = require('../shape/Droplet');
@@ -9128,7 +9128,7 @@ define('zrender/zrender', [
     './config',
     './tool/env',
     './tool/event',
-    './tool/util',
+    './tool/utils',
     './tool/vector',
     './tool/matrix',
     './mixin/Eventful'
@@ -9137,7 +9137,7 @@ define('zrender/zrender', [
     var config = require('./config');
     var env = require('./tool/env');
     var eventTool = require('./tool/event');
-    var util = require('./tool/util');
+    var util = require('./tool/utils');
     var vec2 = require('./tool/vector');
     var mat2d = require('./tool/matrix');
     var EVENT = config.EVENT;
@@ -9655,7 +9655,7 @@ define('zrender/zrender', [
 });define('zrender/Painter', [
     'require',
     './config',
-    './tool/util',
+    './tool/utils',
     './tool/log',
     './loadingEffect/Base',
     './Layer',
@@ -9663,7 +9663,7 @@ define('zrender/zrender', [
 ], function (require) {
     'use strict';
     var config = require('./config');
-    var util = require('./tool/util');
+    var util = require('./tool/utils');
     var log = require('./tool/log');
     var BaseLoadingEffect = require('./loadingEffect/Base');
     var Layer = require('./Layer');
@@ -10153,11 +10153,11 @@ define('zrender/zrender', [
     return Painter;
 });define('zrender/Storage', [
     'require',
-    './tool/util',
+    './tool/utils',
     './Group'
 ], function (require) {
     'use strict';
-    var util = require('./tool/util');
+    var util = require('./tool/utils');
     var Group = require('./Group');
     var defaultIterateOption = {
         hover: false,
@@ -10411,13 +10411,13 @@ define('zrender/zrender', [
     'require',
     './Clip',
     '../tool/color',
-    '../tool/util',
+    '../tool/utils',
     '../tool/event'
 ], function (require) {
     'use strict';
     var Clip = require('./Clip');
     var color = require('../tool/color');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var Dispatcher = require('../tool/event').Dispatcher;
     var requestAnimationFrame = window.requestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function (func) {
         setTimeout(func, 16);
@@ -10999,11 +10999,11 @@ define('zrender/zrender', [
     return matrix;
 });define('zrender/loadingEffect/Base', [
     'require',
-    '../tool/util',
+    '../tool/utils',
     '../shape/Text',
     '../shape/Rectangle'
 ], function (require) {
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var TextShape = require('../shape/Text');
     var RectangleShape = require('../shape/Rectangle');
     var DEFAULT_TEXT = 'Loading...';
@@ -11102,11 +11102,11 @@ define('zrender/zrender', [
 });define('zrender/Layer', [
     'require',
     './mixin/Transformable',
-    './tool/util',
+    './tool/utils',
     './config'
 ], function (require) {
     var Transformable = require('./mixin/Transformable');
-    var util = require('./tool/util');
+    var util = require('./tool/utils');
     var vmlCanvasManager = window['G_vmlCanvasManager'];
     var config = require('./config');
     function returnFalse() {
@@ -11223,7 +11223,7 @@ define('zrender/zrender', [
     'require',
     '../tool/area',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var area = require('../tool/area');
     var Base = require('./Base');
@@ -11327,12 +11327,12 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Text, Base);
+    require('../tool/utils').inherits(Text, Base);
     return Text;
 });define('zrender/shape/Rectangle', [
     'require',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
     var Rectangle = function (options) {
@@ -11434,15 +11434,15 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Rectangle, Base);
+    require('../tool/utils').inherits(Rectangle, Base);
     return Rectangle;
 });define('zrender/tool/area', [
     'require',
-    './util',
+    './utils',
     './curve'
 ], function (require) {
     'use strict';
-    var util = require('./util');
+    var util = require('./utils');
     var curve = require('./curve');
     var _ctx;
     var _textWidthCache = {};
@@ -11973,7 +11973,7 @@ define('zrender/zrender', [
     'require',
     '../tool/matrix',
     '../tool/guid',
-    '../tool/util',
+    '../tool/utils',
     '../tool/log',
     '../mixin/Transformable',
     '../mixin/Eventful',
@@ -11983,7 +11983,7 @@ define('zrender/zrender', [
     var vmlCanvasManager = window['G_vmlCanvasManager'];
     var matrix = require('../tool/matrix');
     var guid = require('../tool/guid');
-    var util = require('../tool/util');
+    var util = require('../tool/utils');
     var log = require('../tool/log');
     var Transformable = require('../mixin/Transformable');
     var Eventful = require('../mixin/Eventful');
@@ -12856,12 +12856,12 @@ define('zrender/zrender', [
 });define('zrender/Group', [
     'require',
     './tool/guid',
-    './tool/util',
+    './tool/utils',
     './mixin/Transformable',
     './mixin/Eventful'
 ], function (require) {
     var guid = require('./tool/guid');
-    var util = require('./tool/util');
+    var util = require('./tool/utils');
     var Transformable = require('./mixin/Transformable');
     var Eventful = require('./mixin/Eventful');
     var Group = function (options) {
@@ -13224,35 +13224,35 @@ define('zrender/zrender', [
 });define('echarts/chart/base', [
     'require',
     'zrender/shape/Image',
-    '../util/shape/Icon',
-    '../util/shape/MarkLine',
-    '../util/shape/Symbol',
+    '../utils/shape/Icon',
+    '../utils/shape/MarkLine',
+    '../utils/shape/Symbol',
     'zrender/shape/Polyline',
     'zrender/shape/ShapeBundle',
     '../config',
-    '../util/ecData',
-    '../util/ecAnimation',
-    '../util/ecEffect',
-    '../util/accMath',
+    '../utils/ecData',
+    '../utils/ecAnimation',
+    '../utils/ecEffect',
+    '../utils/accMath',
     '../component/base',
     '../layout/EdgeBundling',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/area'
 ], function (require) {
     var ImageShape = require('zrender/shape/Image');
-    var IconShape = require('../util/shape/Icon');
-    var MarkLineShape = require('../util/shape/MarkLine');
-    var SymbolShape = require('../util/shape/Symbol');
+    var IconShape = require('../utils/shape/Icon');
+    var MarkLineShape = require('../utils/shape/MarkLine');
+    var SymbolShape = require('../utils/shape/Symbol');
     var PolylineShape = require('zrender/shape/Polyline');
     var ShapeBundle = require('zrender/shape/ShapeBundle');
     var ecConfig = require('../config');
-    var ecData = require('../util/ecData');
-    var ecAnimation = require('../util/ecAnimation');
-    var ecEffect = require('../util/ecEffect');
-    var accMath = require('../util/accMath');
+    var ecData = require('../utils/ecData');
+    var ecAnimation = require('../utils/ecAnimation');
+    var ecEffect = require('../utils/ecEffect');
+    var accMath = require('../utils/accMath');
     var ComponentBase = require('../component/base');
     var EdgeBundling = require('../layout/EdgeBundling');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrArea = require('zrender/tool/area');
     function isCoordAvailable(coord) {
         return coord.x != null && coord.y != null;
@@ -14407,7 +14407,7 @@ define('zrender/zrender', [
 });define('zrender/shape/Circle', [
     'require',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     'use strict';
     var Base = require('./Base');
@@ -14440,7 +14440,7 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Circle, Base);
+    require('../tool/utils').inherits(Circle, Base);
     return Circle;
 });define('echarts/util/accMath', [], function () {
     function accDiv(arg1, arg2) {
@@ -14496,14 +14496,14 @@ define('zrender/zrender', [
     };
 });define('echarts/util/shape/Icon', [
     'require',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/shape/Star',
     'zrender/shape/Heart',
     'zrender/shape/Droplet',
     'zrender/shape/Image',
     'zrender/shape/Base'
 ], function (require) {
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function _iconMark(ctx, style) {
         var x = style.x;
         var y = style.y;
@@ -14990,8 +14990,8 @@ define('zrender/zrender', [
     'zrender/shape/Line',
     'zrender/shape/BezierCurve',
     'zrender/tool/area',
-    'zrender/shape/util/dashedLineTo',
-    'zrender/tool/util',
+    'zrender/shape/utils/dashedLineTo',
+    'zrender/tool/utils',
     'zrender/tool/curve'
 ], function (require) {
     var Base = require('zrender/shape/Base');
@@ -15001,8 +15001,8 @@ define('zrender/zrender', [
     var CurveShape = require('zrender/shape/BezierCurve');
     var curveInstance = new CurveShape({});
     var area = require('zrender/tool/area');
-    var dashedLineTo = require('zrender/shape/util/dashedLineTo');
-    var zrUtil = require('zrender/tool/util');
+    var dashedLineTo = require('zrender/shape/utils/dashedLineTo');
+    var zrUtil = require('zrender/tool/utils');
     var curveTool = require('zrender/tool/curve');
     function MarkLine(options) {
         Base.call(this, options);
@@ -15148,13 +15148,13 @@ define('zrender/zrender', [
     'require',
     'zrender/shape/Base',
     'zrender/shape/Polygon',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     './normalIsCover'
 ], function (require) {
     var Base = require('zrender/shape/Base');
     var PolygonShape = require('zrender/shape/Polygon');
     var polygonInstance = new PolygonShape({});
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function Symbol(options) {
         Base.call(this, options);
     }
@@ -15246,16 +15246,16 @@ define('zrender/zrender', [
 });define('zrender/shape/Polyline', [
     'require',
     './Base',
-    './util/smoothSpline',
-    './util/smoothBezier',
-    './util/dashedLineTo',
+    './utils/smoothSpline',
+    './utils/smoothBezier',
+    './utils/dashedLineTo',
     './Polygon',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
-    var smoothSpline = require('./util/smoothSpline');
-    var smoothBezier = require('./util/smoothBezier');
-    var dashedLineTo = require('./util/dashedLineTo');
+    var smoothSpline = require('./utils/smoothSpline');
+    var smoothBezier = require('./utils/smoothBezier');
+    var dashedLineTo = require('./utils/dashedLineTo');
     var Polyline = function (options) {
         this.brushTypeOnly = 'stroke';
         this.textPosition = 'end';
@@ -15311,12 +15311,12 @@ define('zrender/zrender', [
             return require('./Polygon').prototype.getRect(style);
         }
     };
-    require('../tool/util').inherits(Polyline, Base);
+    require('../tool/utils').inherits(Polyline, Base);
     return Polyline;
 });define('zrender/shape/ShapeBundle', [
     'require',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
     var ShapeBundle = function (options) {
@@ -15387,15 +15387,15 @@ define('zrender/zrender', [
             return false;
         }
     };
-    require('../tool/util').inherits(ShapeBundle, Base);
+    require('../tool/utils').inherits(ShapeBundle, Base);
     return ShapeBundle;
 });define('echarts/util/ecAnimation', [
     'require',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/curve',
     'zrender/shape/Polygon'
 ], function (require) {
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var curveTool = require('zrender/tool/curve');
     function pointList(zr, oldShape, newShape, duration, easing) {
         var newPointList = newShape.style.pointList;
@@ -15769,23 +15769,23 @@ define('zrender/zrender', [
     };
 });define('echarts/util/ecEffect', [
     'require',
-    '../util/ecData',
+    '../utils/ecData',
     'zrender/shape/Circle',
     'zrender/shape/Image',
     'zrender/tool/curve',
-    '../util/shape/Icon',
-    '../util/shape/Symbol',
+    '../utils/shape/Icon',
+    '../utils/shape/Symbol',
     'zrender/shape/ShapeBundle',
     'zrender/shape/Polyline',
     'zrender/tool/vector',
     'zrender/tool/env'
 ], function (require) {
-    var ecData = require('../util/ecData');
+    var ecData = require('../utils/ecData');
     var CircleShape = require('zrender/shape/Circle');
     var ImageShape = require('zrender/shape/Image');
     var curveTool = require('zrender/tool/curve');
-    var IconShape = require('../util/shape/Icon');
-    var SymbolShape = require('../util/shape/Symbol');
+    var IconShape = require('../utils/shape/Icon');
+    var SymbolShape = require('../utils/shape/Symbol');
     var ShapeBundle = require('zrender/shape/ShapeBundle');
     var Polyline = require('zrender/shape/Polyline');
     var vec2 = require('zrender/tool/vector');
@@ -16099,17 +16099,17 @@ define('zrender/zrender', [
 });define('echarts/component/base', [
     'require',
     '../config',
-    '../util/ecData',
-    '../util/ecQuery',
-    '../util/number',
-    'zrender/tool/util',
+    '../utils/ecData',
+    '../utils/ecQuery',
+    '../utils/number',
+    'zrender/tool/utils',
     'zrender/tool/env'
 ], function (require) {
     var ecConfig = require('../config');
-    var ecData = require('../util/ecData');
-    var ecQuery = require('../util/ecQuery');
-    var number = require('../util/number');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var ecQuery = require('../utils/ecQuery');
+    var number = require('../utils/number');
+    var zrUtil = require('zrender/tool/utils');
     function Base(ecTheme, messageCenter, zr, option, myChart) {
         this.ecTheme = ecTheme;
         this.messageCenter = messageCenter;
@@ -16578,7 +16578,7 @@ define('zrender/zrender', [
     'require',
     '../tool/math',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var math = require('../tool/math');
     var sin = math.sin;
@@ -16650,18 +16650,18 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Star, Base);
+    require('../tool/utils').inherits(Star, Base);
     return Star;
 });define('zrender/shape/Heart', [
     'require',
     './Base',
-    './util/PathProxy',
+    './utils/PathProxy',
     '../tool/area',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     'use strict';
     var Base = require('./Base');
-    var PathProxy = require('./util/PathProxy');
+    var PathProxy = require('./utils/PathProxy');
     var area = require('../tool/area');
     var Heart = function (options) {
         Base.call(this, options);
@@ -16696,18 +16696,18 @@ define('zrender/zrender', [
             }
         }
     };
-    require('../tool/util').inherits(Heart, Base);
+    require('../tool/utils').inherits(Heart, Base);
     return Heart;
 });define('zrender/shape/Droplet', [
     'require',
     './Base',
-    './util/PathProxy',
+    './utils/PathProxy',
     '../tool/area',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     'use strict';
     var Base = require('./Base');
-    var PathProxy = require('./util/PathProxy');
+    var PathProxy = require('./utils/PathProxy');
     var area = require('../tool/area');
     var Droplet = function (options) {
         Base.call(this, options);
@@ -16741,7 +16741,7 @@ define('zrender/zrender', [
             }
         }
     };
-    require('../tool/util').inherits(Droplet, Base);
+    require('../tool/utils').inherits(Droplet, Base);
     return Droplet;
 });define('zrender/tool/math', [], function () {
     var _radians = Math.PI / 180;
@@ -16924,11 +16924,11 @@ define('zrender/zrender', [
 });define('zrender/shape/Line', [
     'require',
     './Base',
-    './util/dashedLineTo',
-    '../tool/util'
+    './utils/dashedLineTo',
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
-    var dashedLineTo = require('./util/dashedLineTo');
+    var dashedLineTo = require('./utils/dashedLineTo');
     var Line = function (options) {
         this.brushTypeOnly = 'stroke';
         this.textPosition = 'end';
@@ -16959,12 +16959,12 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Line, Base);
+    require('../tool/utils').inherits(Line, Base);
     return Line;
 });define('zrender/shape/BezierCurve', [
     'require',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     'use strict';
     var Base = require('./Base');
@@ -17009,7 +17009,7 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(BezierCurve, Base);
+    require('../tool/utils').inherits(BezierCurve, Base);
     return BezierCurve;
 });define('zrender/shape/util/dashedLineTo', [], function () {
     var dashPattern = [
@@ -17046,15 +17046,15 @@ define('zrender/zrender', [
 });define('zrender/shape/Polygon', [
     'require',
     './Base',
-    './util/smoothSpline',
-    './util/smoothBezier',
-    './util/dashedLineTo',
-    '../tool/util'
+    './utils/smoothSpline',
+    './utils/smoothBezier',
+    './utils/dashedLineTo',
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
-    var smoothSpline = require('./util/smoothSpline');
-    var smoothBezier = require('./util/smoothBezier');
-    var dashedLineTo = require('./util/dashedLineTo');
+    var smoothSpline = require('./utils/smoothSpline');
+    var smoothBezier = require('./utils/smoothBezier');
+    var dashedLineTo = require('./utils/dashedLineTo');
     var Polygon = function (options) {
         Base.call(this, options);
     };
@@ -17139,7 +17139,7 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Polygon, Base);
+    require('../tool/utils').inherits(Polygon, Base);
     return Polygon;
 });define('echarts/util/shape/normalIsCover', [], function () {
     return function (x, y) {
@@ -17268,9 +17268,9 @@ define('zrender/zrender', [
     };
 });define('echarts/util/ecQuery', [
     'require',
-    'zrender/tool/util'
+    'zrender/tool/utils'
 ], function (require) {
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function query(optionTarget, optionLocation) {
         if (typeof optionTarget == 'undefined') {
             return;
@@ -17577,12 +17577,12 @@ define('zrender/zrender', [
     'require',
     './base',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     '../component'
 ], function (require) {
     var Base = require('./base');
     var ecConfig = require('../config');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function DataView(ecTheme, messageCenter, zr, option, myChart) {
         Base.call(this, ecTheme, messageCenter, zr, option, myChart);
         this.dom = myChart.dom;
@@ -17890,12 +17890,12 @@ define('zrender/zrender', [
     'require',
     'zrender/shape/Base',
     'zrender/shape/Line',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     './normalIsCover'
 ], function (require) {
     var Base = require('zrender/shape/Base');
     var LineShape = require('zrender/shape/Line');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function Cross(options) {
         Base.call(this, options);
     }
@@ -17925,7 +17925,7 @@ define('zrender/zrender', [
     '../tool/computeBoundingBox',
     '../tool/vector',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var math = require('../tool/math');
     var computeBoundingBox = require('../tool/computeBoundingBox');
@@ -17999,16 +17999,16 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Sector, Base);
+    require('../tool/utils').inherits(Sector, Base);
     return Sector;
 });define('echarts/util/shape/Candle', [
     'require',
     'zrender/shape/Base',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     './normalIsCover'
 ], function (require) {
     var Base = require('zrender/shape/Base');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function Candle(options) {
         Base.call(this, options);
     }
@@ -18171,14 +18171,14 @@ define('zrender/zrender', [
     'require',
     'zrender/shape/Base',
     './Icon',
-    'zrender/shape/util/dashedLineTo',
-    'zrender/tool/util',
+    'zrender/shape/utils/dashedLineTo',
+    'zrender/tool/utils',
     'zrender/tool/matrix'
 ], function (require) {
     var Base = require('zrender/shape/Base');
     var IconShape = require('./Icon');
-    var dashedLineTo = require('zrender/shape/util/dashedLineTo');
-    var zrUtil = require('zrender/tool/util');
+    var dashedLineTo = require('zrender/shape/utils/dashedLineTo');
+    var zrUtil = require('zrender/tool/utils');
     var matrix = require('zrender/tool/matrix');
     function Chain(options) {
         Base.call(this, options);
@@ -18295,7 +18295,7 @@ define('zrender/zrender', [
 });define('zrender/shape/Ring', [
     'require',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
     var Ring = function (options) {
@@ -18328,15 +18328,15 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Ring, Base);
+    require('../tool/utils').inherits(Ring, Base);
     return Ring;
 });define('echarts/component/axis', [
     'require',
     './base',
     'zrender/shape/Line',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/tool/color',
     './categoryAxis',
     './valueAxis',
@@ -18345,8 +18345,8 @@ define('zrender/zrender', [
     var Base = require('./base');
     var LineShape = require('zrender/shape/Line');
     var ecConfig = require('../config');
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     function Axis(ecTheme, messageCenter, zr, option, myChart, axisType) {
         Base.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -18569,7 +18569,7 @@ define('zrender/zrender', [
     './base',
     'zrender/shape/Rectangle',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     '../component'
 ], function (require) {
     var Base = require('./base');
@@ -18586,7 +18586,7 @@ define('zrender/zrender', [
         borderWidth: 1,
         borderColor: '#ccc'
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function Grid(ecTheme, messageCenter, zr, option, myChart) {
         Base.call(this, ecTheme, messageCenter, zr, option, myChart);
         this.refresh(option);
@@ -18703,16 +18703,16 @@ define('zrender/zrender', [
     './base',
     'zrender/shape/Rectangle',
     'zrender/shape/Polygon',
-    '../util/shape/Icon',
+    '../utils/shape/Icon',
     '../config',
-    '../util/date',
-    'zrender/tool/util',
+    '../utils/date',
+    'zrender/tool/utils',
     '../component'
 ], function (require) {
     var Base = require('./base');
     var RectangleShape = require('zrender/shape/Rectangle');
     var PolygonShape = require('zrender/shape/Polygon');
-    var IconShape = require('../util/shape/Icon');
+    var IconShape = require('../utils/shape/Icon');
     var ecConfig = require('../config');
     ecConfig.dataZoom = {
         zlevel: 0,
@@ -18727,8 +18727,8 @@ define('zrender/zrender', [
         showDetail: true,
         realtime: true
     };
-    var ecDate = require('../util/date');
-    var zrUtil = require('zrender/tool/util');
+    var ecDate = require('../utils/date');
+    var zrUtil = require('zrender/tool/utils');
     function DataZoom(ecTheme, messageCenter, zr, option, myChart) {
         Base.call(this, ecTheme, messageCenter, zr, option, myChart);
         var self = this;
@@ -19564,7 +19564,7 @@ define('zrender/zrender', [
     'zrender/shape/Line',
     'zrender/shape/Rectangle',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/area',
     '../component'
 ], function (require) {
@@ -19626,7 +19626,7 @@ define('zrender/zrender', [
             }
         }
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrArea = require('zrender/tool/area');
     function CategoryAxis(ecTheme, messageCenter, zr, option, myChart, axisBase) {
         if (option.data.length < 1) {
@@ -20109,10 +20109,10 @@ define('zrender/zrender', [
     'zrender/shape/Line',
     'zrender/shape/Rectangle',
     '../config',
-    '../util/date',
-    'zrender/tool/util',
-    '../util/smartSteps',
-    '../util/accMath',
+    '../utils/date',
+    'zrender/tool/utils',
+    '../utils/smartSteps',
+    '../utils/accMath',
     '../component'
 ], function (require) {
     var Base = require('./base');
@@ -20174,8 +20174,8 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecDate = require('../util/date');
-    var zrUtil = require('zrender/tool/util');
+    var ecDate = require('../utils/date');
+    var zrUtil = require('zrender/tool/utils');
     function ValueAxis(ecTheme, messageCenter, zr, option, myChart, axisBase, series) {
         if (!series || series.length === 0) {
             console.err('option.series.length == 0.');
@@ -20593,7 +20593,7 @@ define('zrender/zrender', [
             }
         },
         _reformValue: function (scale) {
-            var smartSteps = require('../util/smartSteps');
+            var smartSteps = require('../utils/smartSteps');
             var splitNumber = this.option.splitNumber;
             if (!scale && this._min >= 0 && this._max >= 0) {
                 this._min = 0;
@@ -20661,7 +20661,7 @@ define('zrender/zrender', [
             this._reformLabelData(formatter);
         },
         _customerValue: function () {
-            var accMath = require('../util/accMath');
+            var accMath = require('../utils/accMath');
             var splitNumber = this.option.splitNumber != null ? this.option.splitNumber : 5;
             var splitGap = (this._max - this._min) / splitNumber;
             this._valueList = [];
@@ -21367,21 +21367,21 @@ define('zrender/zrender', [
     'require',
     './base',
     'zrender/shape/Polyline',
-    '../util/shape/Icon',
-    '../util/shape/HalfSmoothPolygon',
+    '../utils/shape/Icon',
+    '../utils/shape/HalfSmoothPolygon',
     '../component/axis',
     '../component/grid',
     '../component/dataZoom',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/tool/color',
     '../chart'
 ], function (require) {
     var ChartBase = require('./base');
     var PolylineShape = require('zrender/shape/Polyline');
-    var IconShape = require('../util/shape/Icon');
-    var HalfSmoothPolygonShape = require('../util/shape/HalfSmoothPolygon');
+    var IconShape = require('../utils/shape/Icon');
+    var HalfSmoothPolygonShape = require('../utils/shape/HalfSmoothPolygon');
     require('../component/axis');
     require('../component/grid');
     require('../component/dataZoom');
@@ -21410,8 +21410,8 @@ define('zrender/zrender', [
         symbolSize: 2,
         showAllSymbol: false
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     function Line(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -22083,13 +22083,13 @@ define('zrender/zrender', [
 });define('echarts/util/shape/HalfSmoothPolygon', [
     'require',
     'zrender/shape/Base',
-    'zrender/shape/util/smoothBezier',
-    'zrender/tool/util',
+    'zrender/shape/utils/smoothBezier',
+    'zrender/tool/utils',
     'zrender/shape/Polygon'
 ], function (require) {
     var Base = require('zrender/shape/Base');
-    var smoothBezier = require('zrender/shape/util/smoothBezier');
-    var zrUtil = require('zrender/tool/util');
+    var smoothBezier = require('zrender/shape/utils/smoothBezier');
+    var zrUtil = require('zrender/tool/utils');
     function HalfSmoothPolygon(options) {
         Base.call(this, options);
     }
@@ -22132,8 +22132,8 @@ define('zrender/zrender', [
     '../component/grid',
     '../component/dataZoom',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/tool/color',
     '../chart'
 ], function (require) {
@@ -22168,8 +22168,8 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     function Bar(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -22774,18 +22774,18 @@ define('zrender/zrender', [
 });define('echarts/chart/scatter', [
     'require',
     './base',
-    '../util/shape/Symbol',
+    '../utils/shape/Symbol',
     '../component/axis',
     '../component/grid',
     '../component/dataZoom',
     '../component/dataRange',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/color',
     '../chart'
 ], function (require) {
     var ChartBase = require('./base');
-    var SymbolShape = require('../util/shape/Symbol');
+    var SymbolShape = require('../utils/shape/Symbol');
     require('../component/axis');
     require('../component/grid');
     require('../component/dataZoom');
@@ -22806,7 +22806,7 @@ define('zrender/zrender', [
             emphasis: { label: { show: false } }
         }
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     function Scatter(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -23125,9 +23125,9 @@ define('zrender/zrender', [
     './base',
     'zrender/shape/Text',
     'zrender/shape/Rectangle',
-    '../util/shape/HandlePolygon',
+    '../utils/shape/HandlePolygon',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/event',
     'zrender/tool/area',
     'zrender/tool/color',
@@ -23136,7 +23136,7 @@ define('zrender/zrender', [
     var Base = require('./base');
     var TextShape = require('zrender/shape/Text');
     var RectangleShape = require('zrender/shape/Rectangle');
-    var HandlePolygonShape = require('../util/shape/HandlePolygon');
+    var HandlePolygonShape = require('../utils/shape/HandlePolygon');
     var ecConfig = require('../config');
     ecConfig.dataRange = {
         zlevel: 0,
@@ -23164,7 +23164,7 @@ define('zrender/zrender', [
         ],
         textStyle: { color: '#333' }
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrEvent = require('zrender/tool/event');
     var zrArea = require('zrender/tool/area');
     var zrColor = require('zrender/tool/color');
@@ -24331,11 +24331,11 @@ define('zrender/zrender', [
     'require',
     'zrender/shape/Base',
     'zrender/shape/Polygon',
-    'zrender/tool/util'
+    'zrender/tool/utils'
 ], function (require) {
     var Base = require('zrender/shape/Base');
     var PolygonShape = require('zrender/shape/Polygon');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function HandlePolygon(options) {
         Base.call(this, options);
     }
@@ -24361,17 +24361,17 @@ define('zrender/zrender', [
 });define('echarts/chart/k', [
     'require',
     './base',
-    '../util/shape/Candle',
+    '../utils/shape/Candle',
     '../component/axis',
     '../component/grid',
     '../component/dataZoom',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     '../chart'
 ], function (require) {
     var ChartBase = require('./base');
-    var CandleShape = require('../util/shape/Candle');
+    var CandleShape = require('../utils/shape/Candle');
     require('../component/axis');
     require('../component/grid');
     require('../component/dataZoom');
@@ -24398,8 +24398,8 @@ define('zrender/zrender', [
             emphasis: { label: { show: false } }
         }
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     function K(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
         this.refresh(option);
@@ -24691,8 +24691,8 @@ define('zrender/zrender', [
     'zrender/shape/Sector',
     'zrender/shape/Polyline',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/tool/math',
     'zrender/tool/color',
     '../chart'
@@ -24753,8 +24753,8 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrMath = require('zrender/tool/math');
     var zrColor = require('zrender/tool/color');
     function Pie(ecTheme, messageCenter, zr, option, myChart) {
@@ -25431,10 +25431,10 @@ define('zrender/zrender', [
     'zrender/shape/Polygon',
     '../component/polar',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/tool/color',
-    '../util/accMath',
+    '../utils/accMath',
     '../chart'
 ], function (require) {
     var ChartBase = require('./base');
@@ -25459,8 +25459,8 @@ define('zrender/zrender', [
         },
         symbolSize: 2
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     function Radar(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -25649,7 +25649,7 @@ define('zrender/zrender', [
                 series[seriesIndex].data.push(data);
                 legend && legend.add(data.name, dragged.style.color || dragged.style.strokeColor);
             } else {
-                var accMath = require('../util/accMath');
+                var accMath = require('../utils/accMath');
                 data = series[seriesIndex].data[dataIndex];
                 legend && legend.del(data.name);
                 data.name += this.option.nameConnector + ecData.get(dragged, 'name');
@@ -25684,10 +25684,10 @@ define('zrender/zrender', [
     'zrender/shape/Circle',
     'zrender/shape/Ring',
     '../config',
-    'zrender/tool/util',
-    '../util/coordinates',
-    '../util/accMath',
-    '../util/smartSteps',
+    'zrender/tool/utils',
+    '../utils/coordinates',
+    '../utils/accMath',
+    '../utils/smartSteps',
     '../component'
 ], function (require) {
     var Base = require('./base');
@@ -25745,8 +25745,8 @@ define('zrender/zrender', [
         },
         type: 'polygon'
     };
-    var zrUtil = require('zrender/tool/util');
-    var ecCoordinates = require('../util/coordinates');
+    var zrUtil = require('zrender/tool/utils');
+    var ecCoordinates = require('../utils/coordinates');
     function Polar(ecTheme, messageCenter, zr, option, myChart) {
         Base.call(this, ecTheme, messageCenter, zr, option, myChart);
         this.refresh(option);
@@ -25809,7 +25809,7 @@ define('zrender/zrender', [
             axisLine.show && this._addLine(__ecIndicator, center, axisLine);
         },
         _addAxisLabel: function (index) {
-            var accMath = require('../util/accMath');
+            var accMath = require('../utils/accMath');
             var item = this.polar[index];
             var indicator = this.deepQuery(this._queryTarget, 'indicator');
             var __ecIndicator = item.__ecIndicator;
@@ -26153,7 +26153,7 @@ define('zrender/zrender', [
             var splitNumber = item.splitNumber;
             var scale = item.scale;
             var opts;
-            var smartSteps = require('../util/smartSteps');
+            var smartSteps = require('../utils/smartSteps');
             for (var i = 0; i < len; i++) {
                 if (typeof indicator[i].max == 'number') {
                     max = indicator[i].max;
@@ -26372,12 +26372,12 @@ define('zrender/zrender', [
     'zrender/shape/Text',
     'zrender/shape/Line',
     'zrender/shape/Sector',
-    '../util/shape/Ribbon',
-    '../util/shape/Icon',
+    '../utils/shape/Ribbon',
+    '../utils/shape/Icon',
     'zrender/shape/BezierCurve',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/tool/vector',
     '../data/Graph',
     '../layout/Chord',
@@ -26388,8 +26388,8 @@ define('zrender/zrender', [
     var TextShape = require('zrender/shape/Text');
     var LineShape = require('zrender/shape/Line');
     var SectorShape = require('zrender/shape/Sector');
-    var RibbonShape = require('../util/shape/Ribbon');
-    var IconShape = require('../util/shape/Icon');
+    var RibbonShape = require('../utils/shape/Ribbon');
+    var IconShape = require('../utils/shape/Icon');
     var BezierCurveShape = require('zrender/shape/BezierCurve');
     var ecConfig = require('../config');
     ecConfig.chord = {
@@ -26444,8 +26444,8 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var vec2 = require('zrender/tool/vector');
     var Graph = require('../data/Graph');
     var ChordLayout = require('../layout/Chord');
@@ -27203,13 +27203,13 @@ define('zrender/zrender', [
 });define('echarts/util/shape/Ribbon', [
     'require',
     'zrender/shape/Base',
-    'zrender/shape/util/PathProxy',
-    'zrender/tool/util',
+    'zrender/shape/utils/PathProxy',
+    'zrender/tool/utils',
     'zrender/tool/area'
 ], function (require) {
     var Base = require('zrender/shape/Base');
-    var PathProxy = require('zrender/shape/util/PathProxy');
-    var zrUtil = require('zrender/tool/util');
+    var PathProxy = require('zrender/shape/utils/PathProxy');
+    var zrUtil = require('zrender/tool/utils');
     var area = require('zrender/tool/area');
     function RibbonShape(options) {
         Base.call(this, options);
@@ -27265,9 +27265,9 @@ define('zrender/zrender', [
     return RibbonShape;
 });define('echarts/data/Graph', [
     'require',
-    'zrender/tool/util'
+    'zrender/tool/utils'
 ], function (require) {
-    var util = require('zrender/tool/util');
+    var util = require('zrender/tool/utils');
     'use strict';
     var Graph = function (directed) {
         this._directed = directed || false;
@@ -27627,10 +27627,10 @@ define('zrender/zrender', [
     'zrender/shape/Line',
     'zrender/shape/BezierCurve',
     'zrender/shape/Image',
-    '../util/shape/Icon',
+    '../utils/shape/Icon',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/config',
     'zrender/tool/vector',
     '../chart'
@@ -27642,7 +27642,7 @@ define('zrender/zrender', [
     var LineShape = require('zrender/shape/Line');
     var BezierCurveShape = require('zrender/shape/BezierCurve');
     var ImageShape = require('zrender/shape/Image');
-    var IconShape = require('../util/shape/Icon');
+    var IconShape = require('../utils/shape/Icon');
     var ecConfig = require('../config');
     ecConfig.force = {
         zlevel: 1,
@@ -27696,8 +27696,8 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrConfig = require('zrender/config');
     var vec2 = require('zrender/tool/vector');
     function Force(ecTheme, messageCenter, zr, option, myChart) {
@@ -29056,15 +29056,15 @@ define('zrender/zrender', [
     '../component/dataRange',
     '../component/roamController',
     '../config',
-    '../util/ecData',
-    'zrender/tool/util',
+    '../utils/ecData',
+    'zrender/tool/utils',
     'zrender/config',
     'zrender/tool/event',
-    '../util/mapData/params',
-    '../util/mapData/textFixed',
-    '../util/mapData/geoCoord',
-    '../util/projection/svg',
-    '../util/projection/normal',
+    '../utils/mapData/params',
+    '../utils/mapData/textFixed',
+    '../utils/mapData/geoCoord',
+    '../utils/projection/svg',
+    '../utils/projection/normal',
     '../chart'
 ], function (require) {
     var ChartBase = require('./base');
@@ -29108,13 +29108,13 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var zrUtil = require('zrender/tool/utils');
     var zrConfig = require('zrender/config');
     var zrEvent = require('zrender/tool/event');
-    var _mapParams = require('../util/mapData/params').params;
-    var _textFixed = require('../util/mapData/textFixed');
-    var _geoCoord = require('../util/mapData/geoCoord');
+    var _mapParams = require('../utils/mapData/params').params;
+    var _textFixed = require('../utils/mapData/textFixed');
+    var _geoCoord = require('../utils/mapData/geoCoord');
     function Map(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
         var self = this;
@@ -29268,10 +29268,10 @@ define('zrender/zrender', [
                 self._mapDataMap[mt].mapData = md;
                 if (md.firstChild) {
                     self._mapDataMap[mt].rate = 1;
-                    self._mapDataMap[mt].projection = require('../util/projection/svg');
+                    self._mapDataMap[mt].projection = require('../utils/projection/svg');
                 } else {
                     self._mapDataMap[mt].rate = 0.75;
-                    self._mapDataMap[mt].projection = require('../util/projection/normal');
+                    self._mapDataMap[mt].projection = require('../utils/projection/normal');
                 }
                 self._buildMap(mt, self._getProjectionData(mt, md, ms), vd, ms);
                 self._buildMark(mt, ms);
@@ -29372,7 +29372,7 @@ define('zrender/zrender', [
         },
         _getSpecialProjectionData: function (mapType, mapData, areaName, mapSize, position) {
             mapData = this._getSubMapData('x|' + areaName, mapData);
-            var normalProjection = require('../util/projection/normal');
+            var normalProjection = require('../utils/projection/normal');
             var bbox = normalProjection.getBbox(mapData);
             var leftTop = this.geo2pos(mapType, [
                 mapSize.left,
@@ -30162,11 +30162,11 @@ define('zrender/zrender', [
 });define('zrender/shape/Path', [
     'require',
     './Base',
-    './util/PathProxy',
-    '../tool/util'
+    './utils/PathProxy',
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
-    var PathProxy = require('./util/PathProxy');
+    var PathProxy = require('./utils/PathProxy');
     var PathSegment = PathProxy.PathSegment;
     var vMag = function (v) {
         return Math.sqrt(v[0] * v[0] + v[1] * v[1]);
@@ -30591,12 +30591,12 @@ define('zrender/zrender', [
             return rect;
         }
     };
-    require('../tool/util').inherits(Path, Base);
+    require('../tool/utils').inherits(Path, Base);
     return Path;
 });define('zrender/shape/Ellipse', [
     'require',
     './Base',
-    '../tool/util'
+    '../tool/utils'
 ], function (require) {
     var Base = require('./Base');
     var Ellipse = function (options) {
@@ -30638,7 +30638,7 @@ define('zrender/zrender', [
             return style.__rect;
         }
     };
-    require('../tool/util').inherits(Ellipse, Base);
+    require('../tool/utils').inherits(Ellipse, Base);
     return Ellipse;
 });define('echarts/component/roamController', [
     'require',
@@ -30647,7 +30647,7 @@ define('zrender/zrender', [
     'zrender/shape/Sector',
     'zrender/shape/Circle',
     '../config',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     'zrender/tool/color',
     'zrender/tool/event',
     '../component'
@@ -30674,7 +30674,7 @@ define('zrender/zrender', [
         step: 15,
         mapTypeControl: null
     };
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     var zrEvent = require('zrender/tool/event');
     function RoamController(ecTheme, messageCenter, zr, option, myChart) {
@@ -45360,20 +45360,20 @@ define('zrender/zrender', [
 });define('echarts/chart/gauge', [
     'require',
     './base',
-    '../util/shape/GaugePointer',
+    '../utils/shape/GaugePointer',
     'zrender/shape/Text',
     'zrender/shape/Line',
     'zrender/shape/Rectangle',
     'zrender/shape/Circle',
     'zrender/shape/Sector',
     '../config',
-    '../util/ecData',
-    '../util/accMath',
-    'zrender/tool/util',
+    '../utils/ecData',
+    '../utils/accMath',
+    'zrender/tool/utils',
     '../chart'
 ], function (require) {
     var ChartBase = require('./base');
-    var GaugePointerShape = require('../util/shape/GaugePointer');
+    var GaugePointerShape = require('../utils/shape/GaugePointer');
     var TextShape = require('zrender/shape/Text');
     var LineShape = require('zrender/shape/Line');
     var RectangleShape = require('zrender/shape/Rectangle');
@@ -45472,9 +45472,9 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var accMath = require('../util/accMath');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var accMath = require('../utils/accMath');
+    var zrUtil = require('zrender/tool/utils');
     function Gauge(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
         this.refresh(option);
@@ -45886,11 +45886,11 @@ define('zrender/zrender', [
 });define('echarts/util/shape/GaugePointer', [
     'require',
     'zrender/shape/Base',
-    'zrender/tool/util',
+    'zrender/tool/utils',
     './normalIsCover'
 ], function (require) {
     var Base = require('zrender/shape/Base');
-    var zrUtil = require('zrender/tool/util');
+    var zrUtil = require('zrender/tool/utils');
     function GaugePointer(options) {
         Base.call(this, options);
     }
@@ -45938,9 +45938,9 @@ define('zrender/zrender', [
     'zrender/shape/Line',
     'zrender/shape/Polygon',
     '../config',
-    '../util/ecData',
-    '../util/number',
-    'zrender/tool/util',
+    '../utils/ecData',
+    '../utils/number',
+    'zrender/tool/utils',
     'zrender/tool/color',
     'zrender/tool/area',
     '../chart'
@@ -45991,9 +45991,9 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var number = require('../util/number');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var number = require('../utils/number');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     var zrArea = require('zrender/tool/area');
     function Funnel(ecTheme, messageCenter, zr, option, myChart) {
@@ -46492,9 +46492,9 @@ define('zrender/zrender', [
     '../component/grid',
     '../component/dataZoom',
     '../config',
-    '../util/ecData',
-    '../util/date',
-    'zrender/tool/util',
+    '../utils/ecData',
+    '../utils/date',
+    'zrender/tool/utils',
     'zrender/tool/color',
     '../chart'
 ], function (require) {
@@ -46527,9 +46527,9 @@ define('zrender/zrender', [
             }
         }
     };
-    var ecData = require('../util/ecData');
-    var ecDate = require('../util/date');
-    var zrUtil = require('zrender/tool/util');
+    var ecData = require('../utils/ecData');
+    var ecDate = require('../utils/date');
+    var zrUtil = require('zrender/tool/utils');
     var zrColor = require('zrender/tool/color');
     function EventRiver(ecTheme, messageCenter, zr, option, myChart) {
         ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
@@ -46870,7 +46870,7 @@ var zrender = require('zrender');
 zrender.tool = {
     color : require('zrender/tool/color'),
     math : require('zrender/tool/math'),
-    util : require('zrender/tool/util'),
+    util : require('zrender/tool/utils'),
     vector : require('zrender/tool/vector'),
     area : require('zrender/tool/area'),
     event : require('zrender/tool/event')
@@ -46886,7 +46886,7 @@ echarts.config = require('echarts/config');
 
 echarts.util = {
     mapData : {
-        params : require('echarts/util/mapData/params')
+        params : require('echarts/utils/mapData/params')
     }
 }
 

@@ -16,12 +16,13 @@ module.exports = {
              './browser/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
              './browser/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'*/
             './browser/javascripts/vendor/bootstrap/js/bootstrap.js',
+            //'./browser/javascripts/vendor/flatui/js/flat-ui.min.js',
             './node_modules/react',
             './node_modules/react-dom',
-            './browser/javascripts/util/FluxConstant',
-            './browser/javascripts/util/FluxUtil',
-            './browser/javascripts/util/DateUtil',
-            './browser/javascripts/components/bootstrap/Bootstrap'
+            './browser/javascripts/utils/FluxConstant',
+            './browser/javascripts/utils/FluxUtil',
+            './browser/javascripts/utils/DateUtil',
+            './browser/javascripts/components/Components'
         ]
     },
     output: {
@@ -88,10 +89,10 @@ module.exports = {
             "window.$": "jquery",
             React:"react",
             ReactDOM:"react-dom",
-            Flux:path.resolve(__dirname, "./browser/javascripts/util/FluxUtil"),
-            FluxConstant:path.resolve(__dirname, "./browser/javascripts/util/FluxConstant"),
-            DateUtil:path.resolve(__dirname, "./browser/javascripts/util/DateUtil"),
-            BootstrapComp:path.resolve(__dirname, "./browser/javascripts/components/bootstrap/Bootstrap")
+            Flux:path.resolve(__dirname, "./browser/javascripts/utils/FluxUtil"),
+            FluxConstant:path.resolve(__dirname, "./browser/javascripts/utils/FluxConstant"),
+            DateUtil:path.resolve(__dirname, "./browser/javascripts/utils/DateUtil"),
+            BootstrapComp:path.resolve(__dirname, "./browser/javascripts/components/Components")
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {

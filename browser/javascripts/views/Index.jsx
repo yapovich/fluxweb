@@ -19,6 +19,15 @@ var Index = Flux.createView({
         //var v=e.target.attributes["value"].value;
         IndexAction.updateCurrent(v);
     },
+    handleCB:function(v){
+        IndexAction.updateInterest(v);
+    },
+    handleRD:function(v){
+        IndexAction.updateMale(v);
+    },
+    handleChooseAll:function(){
+        IndexAction.chooseAll();
+    },
     //视图渲染，发生状态变化时自动调用
     render: function () {
         var group=[
@@ -38,42 +47,59 @@ var Index = Flux.createView({
         return (
             <div className="indexContainer" style={{padding:10}}>
                 <input type="text" id="beginDateTxt"/>
+                <h1>表单===================</h1>
+                <h2>多选框(CheckBox)</h2>
+                <Comp.CheckBox onSelected={this.handleCB}>
+                    {[
+                        {name:"读书",value:1,checked:(this.state.interests.containsKey(1)?true:false)},
+                        {name:"音乐",value:2,checked:(this.state.interests.containsKey(2)?true:false),disabled:true},
+                        {name:"军事",value:3,checked:(this.state.interests.containsKey(3)?true:false)}
+                    ]}
+                </Comp.CheckBox>
+                <Comp.Button type="primary" onClick={this.handleChooseAll}>全选</Comp.Button>
+                <h2>单选框(RadioButton)</h2>
+                <Comp.RadioButton onSelected={this.handleRD}>
+                    {[
+                        {name:"男",value:"male",checked:(this.state.male=="male"?true:false)},
+                        {name:"女",value:"female",checked:(this.state.male=="female"?true:false)},
+                    ]}
+                </Comp.RadioButton>
+                <h1>常用===================</h1>
                 <h2>Glyphicons 字体图标---</h2>
-                <Bootstrap.Icon type="heart" size="32" color="#ff0000"/>&nbsp;
-                <Bootstrap.Icon type="star" size="32"/>
+                <Comp.Icon type="heart" size="32" color="#ff0000"/>&nbsp;
+                <Comp.Icon type="star" size="32"/>
                 <h2>下拉菜单---{this.state.text}</h2>
-                <Bootstrap.DropDownMenu style={{float:"left"}} name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
-                <Bootstrap.DropDownMenu style={{float:"left"}} type="primary" name="我的空间" position="up" align="left" split="true" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
-                <Bootstrap.DropDownMenu style={{float:"left"}} type="success" name="我的空间" position="down" align="left" split="true" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
-                <Bootstrap.DropDownMenu style={{float:"left"}} size="lg" type="info" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
-                <Bootstrap.DropDownMenu style={{float:"left"}} size="sm" type="warning" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
-                <Bootstrap.DropDownMenu style={{float:"left"}} size="xs" type="danger" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Bootstrap.DropDownMenu>
+                <Comp.DropDownMenu style={{float:"left"}} name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Comp.DropDownMenu>
+                <Comp.DropDownMenu style={{float:"left"}} type="primary" name="我的空间" position="up" align="left" split="true" onSelected={this.handleMenuClick}>{dropGroup}</Comp.DropDownMenu>
+                <Comp.DropDownMenu style={{float:"left"}} type="success" name="我的空间" position="down" align="left" split="true" onSelected={this.handleMenuClick}>{dropGroup}</Comp.DropDownMenu>
+                <Comp.DropDownMenu style={{float:"left"}} size="lg" type="info" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Comp.DropDownMenu>
+                <Comp.DropDownMenu style={{float:"left"}} size="sm" type="warning" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Comp.DropDownMenu>
+                <Comp.DropDownMenu style={{float:"left"}} size="xs" type="danger" name="我的空间" position="down" align="left" onSelected={this.handleMenuClick}>{dropGroup}</Comp.DropDownMenu>
                 <div className="clearfix"></div>
                 <h2>按钮---</h2>
-                <Bootstrap.Button type="default" badge="4">Default</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="primary" badge="4">Primary</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="success" badge="4">Success</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="info" size="lg" badge="4">Info</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="warning" size="sm" badge="4">Warning</Bootstrap.Button>&nbsp;
-                <Bootstrap.Button type="danger" size="xs" badge="4">Danger</Bootstrap.Button>
+                <Comp.Button type="default" badge="4">Default</Comp.Button>&nbsp;
+                <Comp.Button type="primary" badge="4">Primary</Comp.Button>&nbsp;
+                <Comp.Button type="success" badge="4">Success</Comp.Button>&nbsp;
+                <Comp.Button type="info" size="lg" badge="4">Info</Comp.Button>&nbsp;
+                <Comp.Button type="warning" size="sm" badge="4">Warning</Comp.Button>&nbsp;
+                <Comp.Button type="danger" size="xs" badge="4">Danger</Comp.Button>
                 <h2>按钮组---</h2>
-                <Bootstrap.ButtonGroup type="success" size="lg" current={this.state.current} onSelected={this.handleGroupClick}>{group}</Bootstrap.ButtonGroup>
+                <Comp.ButtonGroup type="success" size="lg" current={this.state.current} onSelected={this.handleGroupClick}>{group}</Comp.ButtonGroup>
                 <h2>标签组---</h2>
-                <Bootstrap.Nav group={group} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
-                <Bootstrap.Nav type="pills" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
-                <Bootstrap.Nav type="pills" subtype="stacked" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
-                <Bootstrap.Nav type="pills" subtype="justified" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
-                <Bootstrap.Nav type="underlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
-                <Bootstrap.Nav type="overlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Bootstrap.Nav>
+                <Comp.Nav group={group} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
+                <Comp.Nav type="pills" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
+                <Comp.Nav type="pills" subtype="stacked" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
+                <Comp.Nav type="pills" subtype="justified" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
+                <Comp.Nav type="underlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
+                <Comp.Nav type="overlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
                 <h2>进度条---</h2>
-                <Bootstrap.Progress type="danger" value="30" style={{width:"200px"}}/>
-                <h2>模态框---</h2>
-                <Bootstrap.Button onClick={this.handleClick}>打开模态框</Bootstrap.Button>
-                <Modal ref="modal" open={this.state.open}/>
+                <Comp.Progress type="danger" value="30" style={{width:"200px"}}/>
                 <h2>导航(面包屑)---</h2>
-                <Bootstrap.BreadCrumb>{["首页","主功能","子功能"]}</Bootstrap.BreadCrumb>
+                <Comp.BreadCrumb>{["首页","主功能","子功能"]}</Comp.BreadCrumb>
             </div>
-        )
+        )/*<h2>模态框---</h2>
+         <Comp.Button onClick={this.handleClick}>打开模态框</Comp.Button>
+         <Modal ref="modal" open={this.state.open}/>*/
     },
    //尺寸重绘，发生窗体大小变化时自动调用
     resize: function () {

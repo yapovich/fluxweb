@@ -223,7 +223,7 @@ $.i18n.prop = function(key /* Add parameters as function arguments as necessary 
 			arr.push(value);
 		value = arr;
 		
-		// Make the array the value for the entry.
+		// Make the array the value for the entrys.
 		$.i18n.map[key] = arr;
 	}
 	

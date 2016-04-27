@@ -2,7 +2,7 @@
 // HikCharts核心代码（基于ZRender）
 // -----------------------------------------------------------------------------
 /**
- * hikcharts/util/effect 基本特效
+ * hikcharts/utils/effect 基本特效
  */
 (function(_global){
 	var require, define;
@@ -2841,14 +2841,14 @@
 		 */
 		// TODO mouseover 只触发一次
 		define(
-		    'zrender/Handler',['require','./config','./tool/env','./tool/event','./tool/util','./tool/vector','./tool/matrix','./mixin/Eventful'],function (require) {
+		    'zrender/Handler',['require','./config','./tool/env','./tool/event','./tool/utils','./tool/vector','./tool/matrix','./mixin/Eventful'],function (require) {
 
 		        
 
 		        var config = require('./config');
 		        var env = require('./tool/env');
 		        var eventTool = require('./tool/event');
-		        var util = require('./tool/util');
+		        var util = require('./tool/utils');
 		        var vec2 = require('./tool/vector');
 		        var mat2d = require('./tool/matrix');
 		        var EVENT = config.EVENT;
@@ -4313,11 +4313,11 @@
 		 * getTextWidth：测算单行文本宽度
 		 */
 		define(
-		    'zrender/tool/area',['require','./util','./curve'],function (require) {
+		    'zrender/tool/area',['require','./utils','./curve'],function (require) {
 
 		        
 
-		        var util = require('./util');
+		        var util = require('./utils');
 		        var curve = require('./curve');
 
 		        var _ctx;
@@ -5413,8 +5413,8 @@
 		 * 颜色辅助模块
 		 * @module zrender/tool/color
 		 */
-		define('zrender/tool/color',['require','../tool/util'],function(require) {
-		    var util = require('../tool/util');
+		define('zrender/tool/color',['require','../tool/utils'],function(require) {
+		    var util = require('../tool/utils');
 
 		    var _ctx;
 
@@ -6522,12 +6522,12 @@
 		 */
 
 		define(
-		    'zrender/shape/Base',['require','../tool/matrix','../tool/guid','../tool/util','../tool/log','../mixin/Transformable','../mixin/Eventful','../tool/area','../tool/area','../tool/color','../tool/area'],function(require) {
+		    'zrender/shape/Base',['require','../tool/matrix','../tool/guid','../tool/utils','../tool/log','../mixin/Transformable','../mixin/Eventful','../tool/area','../tool/area','../tool/color','../tool/area'],function(require) {
 		        var vmlCanvasManager = window['G_vmlCanvasManager'];
 
 		        var matrix = require('../tool/matrix');
 		        var guid = require('../tool/guid');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var log = require('../tool/log');
 
 		        var Transformable = require('../mixin/Transformable');
@@ -7222,7 +7222,7 @@
 		 */
 
 		define(
-		    'zrender/shape/Text',['require','../tool/area','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Text',['require','../tool/area','./Base','../tool/utils'],function (require) {
 		        var area = require('../tool/area');
 		        var Base = require('./Base');
 		        
@@ -7390,7 +7390,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Text, Base);
+		        require('../tool/utils').inherits(Text, Base);
 		        return Text;
 		    }
 		);
@@ -7442,7 +7442,7 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Rectangle',['require','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Rectangle',['require','./Base','../tool/utils'],function (require) {
 		        var Base = require('./Base');
 		        
 		        /**
@@ -7598,7 +7598,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Rectangle, Base);
+		        require('../tool/utils').inherits(Rectangle, Base);
 		        return Rectangle;
 		    }
 		);
@@ -7611,8 +7611,8 @@
 		 */
 
 		define(
-		    'zrender/loadingEffect/Base',['require','../tool/util','../shape/Text','../shape/Rectangle'],function(require) {
-		        var util = require('../tool/util');
+		    'zrender/loadingEffect/Base',['require','../tool/utils','../shape/Text','../shape/Rectangle'],function(require) {
+		        var util = require('../tool/utils');
 		        var TextShape = require('../shape/Text');
 		        var RectangleShape = require('../shape/Rectangle');
 
@@ -7767,10 +7767,10 @@
 		 * @module zrender/Layer
 		 * @author pissang(https://www.github.com/pissang)
 		 */
-		define('zrender/Layer',['require','./mixin/Transformable','./tool/util','./config'],function (require) {
+		define('zrender/Layer',['require','./mixin/Transformable','./tool/utils','./config'],function (require) {
 
 		    var Transformable = require('./mixin/Transformable');
-		    var util = require('./tool/util');
+		    var util = require('./tool/utils');
 		    var vmlCanvasManager = window['G_vmlCanvasManager'];
 		    var config = require('./config');
 
@@ -8017,7 +8017,7 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Image',['require','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Image',['require','./Base','../tool/utils'],function (require) {
 
 		        var Base = require('./Base');
 
@@ -8174,7 +8174,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(ZImage, Base);
+		        require('../tool/utils').inherits(ZImage, Base);
 		        return ZImage;
 		    }
 		);
@@ -8187,11 +8187,11 @@
 		 *         pissang (https://www.github.com/pissang)
 		 */
 		 define(
-		    'zrender/Painter',['require','./config','./tool/util','./tool/log','./loadingEffect/Base','./Layer','./shape/Image'],function (require) {
+		    'zrender/Painter',['require','./config','./tool/utils','./tool/log','./loadingEffect/Base','./Layer','./shape/Image'],function (require) {
 		        
 
 		        var config = require('./config');
-		        var util = require('./tool/util');
+		        var util = require('./tool/utils');
 		        // var vec2 = require('./tool/vector');
 		        var log = require('./tool/log');
 		        // var matrix = require('./tool/matrix');
@@ -9006,10 +9006,10 @@
 		 *     }));
 		 *     zr.addGroup(g);
 		 */
-		define('zrender/Group',['require','./tool/guid','./tool/util','./mixin/Transformable','./mixin/Eventful'],function(require) {
+		define('zrender/Group',['require','./tool/guid','./tool/utils','./mixin/Transformable','./mixin/Eventful'],function(require) {
 
 		    var guid = require('./tool/guid');
-		    var util = require('./tool/util');
+		    var util = require('./tool/utils');
 
 		    var Transformable = require('./mixin/Transformable');
 		    var Eventful = require('./mixin/Eventful');
@@ -9224,11 +9224,11 @@
 		 * @author pissang (https://github.com/pissang/)
 		 */
 		define(
-		    'zrender/Storage',['require','./tool/util','./Group'],function (require) {
+		    'zrender/Storage',['require','./tool/utils','./Group'],function (require) {
 
 		        
 
-		        var util = require('./tool/util');
+		        var util = require('./tool/utils');
 
 		        var Group = require('./Group');
 
@@ -10090,13 +10090,13 @@
 		 * @author pissang(https://github.com/pissang)
 		 */
 		define(
-		    'zrender/animation/Animation',['require','./Clip','../tool/color','../tool/util','../tool/event'],function(require) {
+		    'zrender/animation/Animation',['require','./Clip','../tool/color','../tool/utils','../tool/event'],function(require) {
 		        
 		        
 
 		        var Clip = require('./Clip');
 		        var color = require('../tool/color');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var Dispatcher = require('../tool/event').Dispatcher;
 
 		        var requestAnimationFrame = window.requestAnimationFrame
@@ -10700,7 +10700,7 @@
 		 * https://github.com/ecomfe/zrender/blob/master/LICENSE.txt
 		 */
 		define(
-		    'zrender/zrender',['require','./dep/excanvas','./tool/util','./tool/log','./tool/guid','./Handler','./Painter','./Storage','./animation/Animation','./tool/env'],function(require) {
+		    'zrender/zrender',['require','./dep/excanvas','./tool/utils','./tool/log','./tool/guid','./Handler','./Painter','./Storage','./animation/Animation','./tool/env'],function(require) {
 		        /*
 		         * HTML5 Canvas for Internet Explorer!
 		         * Modern browsers like Firefox, Safari, Chrome and Opera support
@@ -10715,7 +10715,7 @@
 		        // 核心代码会生成一个全局变量 G_vmlCanvasManager，模块改造后借用于快速判断canvas支持
 		        require('./dep/excanvas');
 
-		        var util = require('./tool/util');
+		        var util = require('./tool/utils');
 		        var log = require('./tool/log');
 		        var guid = require('./tool/guid');
 
@@ -11312,7 +11312,7 @@
 		 */
 
 		define(
-		    'zrender/shape/Rose',['require','./Base','../tool/math','../tool/util'],function (require) {
+		    'zrender/shape/Rose',['require','./Base','../tool/math','../tool/utils'],function (require) {
 		        var Base = require('./Base');
 		        
 		        /**
@@ -11414,7 +11414,7 @@
 		            }
 		        };
 		        
-		        require('../tool/util').inherits(Rose, Base);
+		        require('../tool/utils').inherits(Rose, Base);
 		        return Rose;
 		    }
 		);
@@ -11465,7 +11465,7 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Trochoid',['require','./Base','../tool/math','../tool/util'],function (require) {
+		    'zrender/shape/Trochoid',['require','./Base','../tool/math','../tool/utils'],function (require) {
 		        var Base = require('./Base');
 		        
 		        /**
@@ -11584,7 +11584,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Trochoid, Base);
+		        require('../tool/utils').inherits(Trochoid, Base);
 		        return Trochoid;
 		    }
 		);
@@ -11635,7 +11635,7 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Circle',['require','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Circle',['require','./Base','../tool/utils'],function (require) {
 		        
 
 		        var Base = require('./Base');
@@ -11700,7 +11700,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Circle, Base);
+		        require('../tool/utils').inherits(Circle, Base);
 		        return Circle;
 		    }
 		);
@@ -11955,7 +11955,7 @@
 		 */
 
 		define(
-		    'zrender/shape/Sector',['require','../tool/math','../tool/computeBoundingBox','../tool/vector','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Sector',['require','../tool/math','../tool/computeBoundingBox','../tool/vector','./Base','../tool/utils'],function (require) {
 
 		        var math = require('../tool/math');
 		        var computeBoundingBox = require('../tool/computeBoundingBox');
@@ -12089,7 +12089,7 @@
 		        };
 
 
-		        require('../tool/util').inherits(Sector, Base);
+		        require('../tool/utils').inherits(Sector, Base);
 		        return Sector;
 		    }
 		);
@@ -12137,7 +12137,7 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Ring',['require','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Ring',['require','./Base','../tool/utils'],function (require) {
 		        var Base = require('./Base');
 		        
 		        /**
@@ -12204,7 +12204,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Ring, Base);
+		        require('../tool/utils').inherits(Ring, Base);
 		        return Ring;
 		    }
 		);
@@ -12256,7 +12256,7 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Ellipse',['require','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Ellipse',['require','./Base','../tool/utils'],function (require) {
 		        var Base = require('./Base');
 
 		        /**
@@ -12333,7 +12333,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Ellipse, Base);
+		        require('../tool/utils').inherits(Ellipse, Base);
 		        return Ellipse;
 		    }
 		);
@@ -12638,11 +12638,11 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Heart',['require','./Base','./util/PathProxy','../tool/area','../tool/util'],function (require) {
+		    'zrender/shape/Heart',['require','./Base','./utils/PathProxy','../tool/area','../tool/utils'],function (require) {
 		        
 		        
 		        var Base = require('./Base');
-		        var PathProxy = require('./util/PathProxy');
+		        var PathProxy = require('./utils/PathProxy');
 		        var area = require('../tool/area');
 		        
 		        /**
@@ -12733,7 +12733,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Heart, Base);
+		        require('../tool/utils').inherits(Heart, Base);
 		        return Heart;
 		    }
 		);
@@ -12786,11 +12786,11 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Droplet',['require','./Base','./util/PathProxy','../tool/area','../tool/util'],function (require) {
+		    'zrender/shape/Droplet',['require','./Base','./utils/PathProxy','../tool/area','../tool/utils'],function (require) {
 		        
 
 		        var Base = require('./Base');
-		        var PathProxy = require('./util/PathProxy');
+		        var PathProxy = require('./utils/PathProxy');
 		        var area = require('../tool/area');
 
 		        /**
@@ -12879,7 +12879,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Droplet, Base);
+		        require('../tool/utils').inherits(Droplet, Base);
 		        return Droplet;
 		    }
 		);
@@ -12977,9 +12977,9 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Line',['require','./Base','./util/dashedLineTo','../tool/util'],function (require) {
+		    'zrender/shape/Line',['require','./Base','./utils/dashedLineTo','../tool/utils'],function (require) {
 		        var Base = require('./Base');
-		        var dashedLineTo = require('./util/dashedLineTo');
+		        var dashedLineTo = require('./utils/dashedLineTo');
 		        
 		        /**
 		         * @alias module:zrender/shape/Line
@@ -13056,7 +13056,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Line, Base);
+		        require('../tool/utils').inherits(Line, Base);
 		        return Line;
 		    }
 		);
@@ -13108,7 +13108,7 @@
 		 */
 
 		define(
-		    'zrender/shape/Star',['require','../tool/math','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Star',['require','../tool/math','./Base','../tool/utils'],function (require) {
 
 		        var math = require('../tool/math');
 		        var sin = math.sin;
@@ -13221,7 +13221,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Star, Base);
+		        require('../tool/utils').inherits(Star, Base);
 		        return Star;
 		    }
 		);
@@ -13258,7 +13258,7 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Isogon',['require','../tool/math','./Base','../tool/util'],function (require) {
+		    'zrender/shape/Isogon',['require','../tool/math','./Base','../tool/utils'],function (require) {
 		        var math = require('../tool/math');
 		        var sin = math.sin;
 		        var cos = math.cos;
@@ -13356,7 +13356,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Isogon, Base);
+		        require('../tool/utils').inherits(Isogon, Base);
 		        return Isogon;
 		    }
 		);
@@ -13412,7 +13412,7 @@
 		 */
 
 		define(
-		    'zrender/shape/BezierCurve',['require','./Base','../tool/util'],function (require) {
+		    'zrender/shape/BezierCurve',['require','./Base','../tool/utils'],function (require) {
 		        
 
 		        var Base = require('./Base');
@@ -13505,7 +13505,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(BezierCurve, Base);
+		        require('../tool/utils').inherits(BezierCurve, Base);
 		        return BezierCurve;
 		    }
 		);
@@ -13726,11 +13726,11 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Polygon',['require','./Base','./util/smoothSpline','./util/smoothBezier','./util/dashedLineTo','../tool/util'],function (require) {
+		    'zrender/shape/Polygon',['require','./Base','./utils/smoothSpline','./utils/smoothBezier','./utils/dashedLineTo','../tool/utils'],function (require) {
 		        var Base = require('./Base');
-		        var smoothSpline = require('./util/smoothSpline');
-		        var smoothBezier = require('./util/smoothBezier');
-		        var dashedLineTo = require('./util/dashedLineTo');
+		        var smoothSpline = require('./utils/smoothSpline');
+		        var smoothBezier = require('./utils/smoothBezier');
+		        var dashedLineTo = require('./utils/dashedLineTo');
 
 		        /**
 		         * @alias module:zrender/shape/Polygon
@@ -13895,7 +13895,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Polygon, Base);
+		        require('../tool/utils').inherits(Polygon, Base);
 		        return Polygon;
 		    }
 		);
@@ -13941,11 +13941,11 @@
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
 		define(
-		    'zrender/shape/Polyline',['require','./Base','./util/smoothSpline','./util/smoothBezier','./util/dashedLineTo','./Polygon','../tool/util'],function (require) {
+		    'zrender/shape/Polyline',['require','./Base','./utils/smoothSpline','./utils/smoothBezier','./utils/dashedLineTo','./Polygon','../tool/utils'],function (require) {
 		        var Base = require('./Base');
-		        var smoothSpline = require('./util/smoothSpline');
-		        var smoothBezier = require('./util/smoothBezier');
-		        var dashedLineTo = require('./util/dashedLineTo');
+		        var smoothSpline = require('./utils/smoothSpline');
+		        var smoothBezier = require('./utils/smoothBezier');
+		        var dashedLineTo = require('./utils/dashedLineTo');
 
 		        /**
 		         * @alias module:zrender/shape/Polyline
@@ -14048,7 +14048,7 @@
 		            }
 		        };
 
-		        require('../tool/util').inherits(Polyline, Base);
+		        require('../tool/utils').inherits(Polyline, Base);
 		        return Polyline;
 		    }
 		);
@@ -14084,10 +14084,10 @@
 		 * @property {string} [textBaseline] 默认根据textPosition自动设置，附加文本垂直对齐。
 		 *                                可以是top, bottom, middle, alphabetic, hanging, ideographic
 		 */
-		define('zrender/shape/Path',['require','./Base','./util/PathProxy','../tool/util'],function (require) {
+		define('zrender/shape/Path',['require','./Base','./utils/PathProxy','../tool/utils'],function (require) {
 
 		    var Base = require('./Base');
-		    var PathProxy = require('./util/PathProxy');
+		    var PathProxy = require('./utils/PathProxy');
 		    var PathSegment = PathProxy.PathSegment;
 
 		    var vMag = function(v) {
@@ -14583,15 +14583,15 @@
 		        }
 		    };
 
-		    require('../tool/util').inherits(Path, Base);
+		    require('../tool/utils').inherits(Path, Base);
 		    return Path;
 		});
 
 
 		define(
-		    'zrender/loadingEffect/Bar',['require','./Base','../tool/util','../tool/color','../shape/Rectangle'],function (require) {
+		    'zrender/loadingEffect/Bar',['require','./Base','../tool/utils','../tool/color','../shape/Rectangle'],function (require) {
 		        var Base = require('./Base');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var zrColor = require('../tool/color');
 		        var RectangleShape = require('../shape/Rectangle');
 
@@ -14689,9 +14689,9 @@
 
 
 		define(
-		    'zrender/loadingEffect/Bubble',['require','./Base','../tool/util','../tool/color','../shape/Circle'],function (require) {
+		    'zrender/loadingEffect/Bubble',['require','./Base','../tool/utils','../tool/color','../shape/Circle'],function (require) {
 		        var Base = require('./Base');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var zrColor = require('../tool/color');
 		        var CircleShape = require('../shape/Circle');
 
@@ -14790,9 +14790,9 @@
 
 
 		define(
-		    'zrender/loadingEffect/DynamicLine',['require','./Base','../tool/util','../tool/color','../shape/Line'],function (require) {
+		    'zrender/loadingEffect/DynamicLine',['require','./Base','../tool/utils','../tool/color','../shape/Line'],function (require) {
 		        var Base = require('./Base');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var zrColor = require('../tool/color');
 		        var LineShape = require('../shape/Line');
 
@@ -14896,9 +14896,9 @@
 
 
 		define(
-		    'zrender/loadingEffect/Ring',['require','./Base','../tool/util','../tool/color','../shape/Ring','../shape/Sector'],function (require) {
+		    'zrender/loadingEffect/Ring',['require','./Base','../tool/utils','../tool/color','../shape/Ring','../shape/Sector'],function (require) {
 		        var Base = require('./Base');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var zrColor = require('../tool/color');
 		        var RingShape = require('../shape/Ring');
 		        var SectorShape = require('../shape/Sector');
@@ -15073,9 +15073,9 @@
 
 
 		define(
-		    'zrender/loadingEffect/Spin',['require','./Base','../tool/util','../tool/color','../tool/area','../shape/Sector'],function (require) {
+		    'zrender/loadingEffect/Spin',['require','./Base','../tool/utils','../tool/color','../tool/area','../shape/Sector'],function (require) {
 		        var Base = require('./Base');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var zrColor = require('../tool/color');
 		        var zrArea = require('../tool/area');
 		        var SectorShape = require('../shape/Sector');
@@ -15183,9 +15183,9 @@
 
 
 		define(
-		    'zrender/loadingEffect/Whirling',['require','./Base','../tool/util','../tool/area','../shape/Ring','../shape/Droplet','../shape/Circle'],function (require) {
+		    'zrender/loadingEffect/Whirling',['require','./Base','../tool/utils','../tool/area','../shape/Ring','../shape/Droplet','../shape/Circle'],function (require) {
 		        var Base = require('./Base');
-		        var util = require('../tool/util');
+		        var util = require('../tool/utils');
 		        var zrArea = require('../tool/area');
 		        var RingShape = require('../shape/Ring');
 		        var DropletShape = require('../shape/Droplet');
@@ -15303,10 +15303,10 @@ define(
 		'hikcharts/util/effect',
 		[ 'require', 'zrender/Group', 'zrender/shape/Polygon',
 				'zrender/shape/Circle', 'zrender/shape/Line',
-				'zrender/tool/color', 'zrender/tool/util',
+				'zrender/tool/color', 'zrender/tool/utils',
 				'zrender/shape/BezierCurve' 
-				//,'echarts/util/shape/MarkLine'
-				//,'echarts/util/ecEffect'
+				//,'echarts/utils/shape/MarkLine'
+				//,'echarts/utils/ecEffect'
 				],
 		function(require) {
 			var Group = require('zrender/Group');
@@ -15315,7 +15315,7 @@ define(
 			var PolygonShape = require('zrender/shape/Polygon');
 			var BezierCurveShape = require('zrender/shape/BezierCurve');
 			var zrColor = require('zrender/tool/color');
-			var util = require('zrender/tool/util');
+			var util = require('zrender/tool/utils');
 			var ctx = util.getContext();
 			var effect = {
 				copyShape : function(shape) {
@@ -15334,8 +15334,8 @@ define(
 				// ----------------------------------------------------
 				line : function(zr, ps, width,color,opacity,zlevel, type) {
 					var hasEffect = true;
-					var MarkLineShape = require('echarts/util/shape/MarkLine')
-					var ecEffect = require('echarts/util/ecEffect')
+					var MarkLineShape = require('echarts/utils/shape/MarkLine')
+					var ecEffect = require('echarts/utils/ecEffect')
 					var effectList = [];
 					var _ps = ps;
 					var _lineW = 2
@@ -15476,7 +15476,7 @@ define(
 			return effect
 		});
 /**
- * hikcharts/util/draw 基本特效
+ * hikcharts/utils/draw 基本特效
  */
 define('hikcharts/util/draw', ['require'], 
   function(require) {
@@ -15701,10 +15701,10 @@ define('hikcharts/util/draw', ['require'],
 });
 //球体关系图
 	define('hikcharts/chart/earth', [ 'require', 'zrender/Group',
-		'hikcharts/util/draw' ,'zrender/shape/Rectangle','zrender/shape/Text','zrender/tool/color'], function(require) {
+		'hikcharts/utils/draw' ,'zrender/shape/Rectangle','zrender/shape/Text','zrender/tool/color'], function(require) {
 		var isAutoChange;
 		var isClick;
-		var draw = require('hikcharts/util/draw');
+		var draw = require('hikcharts/utils/draw');
 		var Group = require('zrender/Group');
 		var zrcolor=require("zrender/tool/color");
 		var cx,cy,cr,minR,maxR;
@@ -16831,11 +16831,11 @@ define('hikcharts/util/draw', ['require'],
 	});
 //网络关系图
 define('hikcharts/chart/relation', [ 'require', 'zrender/Group',
-        'hikcharts/util/effect', 'hikcharts/util/draw' ,'zrender/shape/Rectangle','zrender/shape/Text','zrender/tool/color'], function(require) {
-	var draw = require('hikcharts/util/draw');
+        'hikcharts/utils/effect', 'hikcharts/utils/draw' ,'zrender/shape/Rectangle','zrender/shape/Text','zrender/tool/color'], function(require) {
+	var draw = require('hikcharts/utils/draw');
 	var Group = require('zrender/Group');
 	var zrcolor=require("zrender/tool/color");
-	var effect=require("hikcharts/util/effect");
+	var effect=require("hikcharts/utils/effect");
 	var relationGroup;
 	var legendGroup;
 	var nodeTable=new HashMap();
@@ -17401,9 +17401,9 @@ define('hikcharts/chart/relation', [ 'require', 'zrender/Group',
 /*
 //网络关系图
 define('hikcharts/chart/relation', [ 'require', 'zrender/Group',
-        'hikcharts/util/effect', 'hikcharts/util/draw' ,'zrender/shape/Rectangle','zrender/shape/Text'], function(require) {
-	var effect = require('hikcharts/util/effect');
-	var draw = require('hikcharts/util/draw');
+        'hikcharts/utils/effect', 'hikcharts/utils/draw' ,'zrender/shape/Rectangle','zrender/shape/Text'], function(require) {
+	var effect = require('hikcharts/utils/effect');
+	var draw = require('hikcharts/utils/draw');
 	var RectangleShape = require('zrender/shape/Rectangle');
 	var TextShape = require('zrender/shape/Text');
 	var Group = require('zrender/Group');
@@ -17503,9 +17503,9 @@ define('hikcharts/chart/relation', [ 'require', 'zrender/Group',
 });*/
 //拓扑
 define('hikcharts/chart/topology', [ 'require', 'zrender/Group',
-		'hikcharts/util/effect', 'hikcharts/util/draw' ,'zrender/shape/Rectangle','zrender/shape/Text'], function(require) {
-	var effect = require('hikcharts/util/effect');
-	var draw = require('hikcharts/util/draw');
+		'hikcharts/utils/effect', 'hikcharts/utils/draw' ,'zrender/shape/Rectangle','zrender/shape/Text'], function(require) {
+	var effect = require('hikcharts/utils/effect');
+	var draw = require('hikcharts/utils/draw');
 	var RectangleShape = require('zrender/shape/Rectangle');
 	var TextShape = require('zrender/shape/Text');
 	var Group = require('zrender/Group');
@@ -18259,10 +18259,10 @@ define('hikcharts', [ 'require', 'zrender','hikcharts/chart/echartsFactory'],
 				getComponent : function(name) {
 					// 加载组件 
 				if (name == "effect") {
-				  var hcEffect = require('hikcharts/util/effect'); 
+				  var hcEffect = require('hikcharts/utils/effect'); 
 				  return hcEffect; 
 				 }else if(name == "draw") { 
-					  var hcDraw=require('hikcharts/util/draw');
+					  var hcDraw=require('hikcharts/utils/draw');
                       return hcDraw; 
                       } 
 				 },

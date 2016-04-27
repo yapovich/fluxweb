@@ -8,17 +8,18 @@ var BaseAction = {
     dispatch: function(type,text) {
         AppDispatcher.dispatch({
             actionType: type,
-            text: text
+            text: text?text:""
         });
     }
 }
 var BaseStore = assign({}, EventEmitter.prototype, {
     state:{},
+    /*
     setState:function(data){
         if (data !== undefined) {
             this.state=data;
         }
-    },
+    },*/
     emitChange: function() {
         this.emit(FluxConstant.event.CHANGE_EVENT);
     },

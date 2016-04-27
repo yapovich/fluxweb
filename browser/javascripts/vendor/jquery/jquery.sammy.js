@@ -385,7 +385,7 @@
       return selector ? $(this.element_selector).find(selector) : $(this.element_selector);
     },
 
-    // `use()` is the entry point for including Sammy plugins.
+    // `use()` is the entrys point for including Sammy plugins.
     // The first argument to use should be a function() that is evaluated
     // in the context of the current application, just like the `app_function`
     // argument to the `Sammy.Application` constructor.

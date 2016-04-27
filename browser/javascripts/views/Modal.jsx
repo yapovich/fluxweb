@@ -26,9 +26,9 @@ var MyView = Flux.createView({
                             this is modal
                         </div>
                         <div className="modal-footer">
-                            <Bootstrap.Button data-dismiss="modal">
+                            <Comp.Button data-dismiss="modal">
                                 关闭
-                            </Bootstrap.Button>
+                            </Comp.Button>
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,15 @@ var IndexAction = Flux.createAction({
     },
     updateCurrent:function(current){
         this.dispatch("updateCurrent",{resultCurrent:current});
+    },
+    updateInterest:function(interest){
+        this.dispatch("updateInterest",{interest:interest});
+    },
+    updateMale:function(male){
+        this.dispatch("updateMale",{male:male});
+    },
+    chooseAll:function(){
+        this.dispatch("chooseAll");
     }
 });
 module.exports = IndexAction;
