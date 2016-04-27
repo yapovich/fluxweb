@@ -22,10 +22,16 @@ var Components={
     //------------------------------------------
     //表单控件
     //------------------------------------------
+    //输入框
+    Input:require("./form/Input"),
     //多选框
     CheckBox:require("./form/CheckBox"),
     //单选框
-    RadioButton:require("./form/RadioButton")
+    RadioButton:require("./form/RadioButton"),
+    //下拉选框
+    Select:require("./form/Select"),
+    //开关
+    Switch:require("./form/Switch")
 
 }
 module.exports = Components;

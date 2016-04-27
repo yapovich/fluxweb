@@ -48,6 +48,13 @@ var Index = Flux.createView({
             <div className="indexContainer" style={{padding:10}}>
                 <input type="text" id="beginDateTxt"/>
                 <h1>表单===================</h1>
+                <h2>输入框(Input)</h2>
+                <div className="row">
+                    <div className="col-sm-3"><Comp.Input size="hg" placeholder="this is a Input"></Comp.Input></div>
+                    <div className="col-sm-3"><Comp.Input type="success" size="lg" placeholder="this is a Input"></Comp.Input></div>
+                    <div className="col-sm-3"><Comp.Input type="error" placeholder="this is a Input"></Comp.Input></div>
+                    <div className="col-sm-3"><Comp.Input disabled="true" size="sm" placeholder="this is a Input"></Comp.Input></div>
+                </div>
                 <h2>多选框(CheckBox)</h2>
                 <Comp.CheckBox onSelected={this.handleCB}>
                     {[
@@ -64,6 +71,15 @@ var Index = Flux.createView({
                         {name:"女",value:"female",checked:(this.state.male=="female"?true:false)},
                     ]}
                 </Comp.RadioButton>
+                <h2>下拉选框(Select)</h2>
+                <Comp.Select></Comp.Select>
+                <h2>开关</h2>
+                <Comp.Switch type="default" checked="true" value="1"></Comp.Switch>
+                <Comp.Switch type="primary" checked="true" shape="square" value="2"></Comp.Switch>
+                <Comp.Switch type="success" checked="true" value="3"></Comp.Switch>
+                <Comp.Switch type="warning" checked="true" value="4"></Comp.Switch>
+                <Comp.Switch type="danger" checked="true" value="5"></Comp.Switch>
+                <Comp.Switch type="danger" checked="true" disabled="true" value="6"></Comp.Switch>
                 <h1>常用===================</h1>
                 <h2>Glyphicons 字体图标---</h2>
                 <Comp.Icon type="heart" size="32" color="#ff0000"/>&nbsp;

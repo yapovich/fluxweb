@@ -15,8 +15,8 @@ module.exports = {
             './browser/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',/*
              './browser/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
              './browser/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'*/
-            './browser/javascripts/vendor/bootstrap/js/bootstrap.js',
-            //'./browser/javascripts/vendor/flatui/js/flat-ui.min.js',
+            //'./browser/javascripts/vendor/bootstrap/js/bootstrap.js',
+            './browser/javascripts/vendor/flatui/js/flat-ui.js',
             './node_modules/react',
             './node_modules/react-dom',
             './browser/javascripts/entrys/HashMap',
