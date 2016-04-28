@@ -1654,7 +1654,7 @@ function internalRemoveData( elem, name, pvt ) {
 		cache = isNode ? jQuery.cache : elem,
 		id = isNode ? elem[ jQuery.expando ] : jQuery.expando;
 
-	// If there is already no cache entrys for this object, there is no
+	// If there is already no cache entitys for this object, there is no
 	// purpose in continuing
 	if ( !cache[ id ] ) {
 		return;
@@ -3846,7 +3846,7 @@ function isNative( fn ) {
  * Create key-value caches of limited size
  * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
  *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
- *	deleting the oldest entrys
+ *	deleting the oldest entitys
  */
 function createCache() {
 	var cache,

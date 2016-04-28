@@ -127,7 +127,7 @@ html,body{
 ```
 NOTE: Don't worry,just do it,we know how to compile less file
 ### 5.Call View
-`/broswer/javascripts/app.jsx`
+`/broswer/javascripts/index.jsx`
 ```
 var Index=require('./views/Index');
 require(['./app/Index'], function (Index) {
@@ -138,7 +138,7 @@ require(['./app/Index'], function (Index) {
         );
 });
 ```
-NOTE: app.jsx as entry file configed by webpack,so don't worry,just modify it,we know how to call
+NOTE: index.jsx as entry file configed by webpack,so don't worry,just modify it,we know how to call
 ### 6.Build And Watch
 ~~~
 grunt default

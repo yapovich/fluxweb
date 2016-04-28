@@ -20,7 +20,7 @@ var Index = Flux.createView({
         IndexAction.updateCurrent(v);
     },
     handleCB:function(interests){
-        IndexAction.updateInterests(v);
+        IndexAction.updateInterests(interests);
     },
     handleRD:function(v){
         IndexAction.updateMale(v);
@@ -50,9 +50,9 @@ var Index = Flux.createView({
                 <h1>表单===================</h1>
                 <h2>输入框(Input)</h2>
                 <div className="row">
-                    <div className="col-sm-3"><Comp.Input size="hg" placeholder="this is a Input"></Comp.Input></div>
-                    <div className="col-sm-3"><Comp.Input type="success" size="lg" placeholder="this is a Input"></Comp.Input></div>
-                    <div className="col-sm-3"><Comp.Input type="error" placeholder="this is a Input"></Comp.Input></div>
+                    <div className="col-sm-3"><Comp.Input prepend="@" size="hg" placeholder="this is a Input"></Comp.Input></div>
+                    <div className="col-sm-3"><Comp.Input append="@" type="success" size="lg" placeholder="this is a Input"></Comp.Input></div>
+                    <div className="col-sm-3"><Comp.Input feedback="fui-check" type="error" placeholder="this is a Input"></Comp.Input></div>
                     <div className="col-sm-3"><Comp.Input disabled="true" size="sm" placeholder="this is a Input"></Comp.Input></div>
                 </div>
                 <h2>多选框(CheckBox)</h2>
@@ -60,22 +60,29 @@ var Index = Flux.createView({
                     {[
                         {name:"读书",value:1},
                         {name:"音乐",value:2},
-                        {name:"军事",value:3}
+                        {name:"音乐",value:3},
+                        {name:"音乐",value:4},
+                        {name:"音乐",value:5},
+                        {name:"音乐",value:6},
+                        {name:"音乐",value:7},
+                        {name:"音乐",value:8},
+                        {name:"音乐",value:9},
+                        {name:"军事",value:10}
                     ]}
                 </Comp.CheckBox>
                 <Comp.Button type="primary" onClick={this.handleChooseAll}>全选</Comp.Button>
                 <h2>单选框(RadioButton)</h2>
-                <Comp.RadioButton onSelected={this.handleRD}>
+                <Comp.RadioButton onSelected={this.handleRD} value={this.state.male} disabled={false}>
                     {[
-                        {name:"男",value:"male",checked:(this.state.male=="male"?true:false)},
-                        {name:"女",value:"female",checked:(this.state.male=="female"?true:false)},
+                        {name:"男",value:"male"},
+                        {name:"女",value:"female"}
                     ]}
                 </Comp.RadioButton>
                 <h2>下拉选框(Select)</h2>
                 <Comp.Select></Comp.Select>
                 <h2>开关</h2>
                 <Comp.Switch type="default" checked="true" value="1"></Comp.Switch>
-                <Comp.Switch type="primary" checked="true" shape="square" value="2"></Comp.Switch>
+                <Comp.Switch type="primary" checked="true" value="2"></Comp.Switch>
                 <Comp.Switch type="success" checked="true" value="3"></Comp.Switch>
                 <Comp.Switch type="warning" checked="true" value="4"></Comp.Switch>
                 <Comp.Switch type="danger" checked="true" value="5"></Comp.Switch>
@@ -109,7 +116,7 @@ var Index = Flux.createView({
                 <Comp.Nav type="underlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
                 <Comp.Nav type="overlines" style={{marginTop:5}} onSelected={this.handleGroupClick}>{group}</Comp.Nav>
                 <h2>进度条---</h2>
-                <Comp.Progress type="danger" value="30" style={{width:"200px"}}/>
+                <Comp.Progress type="primary" value="30" style={{width:"200px"}}/>
                 <h2>导航(面包屑)---</h2>
                 <Comp.BreadCrumb>{["首页","主功能","子功能"]}</Comp.BreadCrumb>
             </div>

@@ -3,9 +3,8 @@ var path=require('path');
 var HtmlWebpackPlugin=require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 //var ExtractTextPlugin = require("extract-text-webpack-plugin");
-module.exports = {
+var webpackconfig = {
     entry: {
-        app: './browser/javascripts/app.jsx',
         vendor:[
             //'./browser/javascripts/vendor/jquery/jquery-1.9.1.js',
             './browser/javascripts/vendor/jquery/jquery.form.js',
@@ -18,7 +17,7 @@ module.exports = {
             './browser/javascripts/vendor/flatui/js/flat-ui.js',
             './node_modules/react',
             './node_modules/react-dom',
-            './browser/javascripts/entrys/HashMap',
+            './browser/javascripts/entitys/HashMap',
             './browser/javascripts/utils/FluxConstant',
             './browser/javascripts/utils/FluxUtil',
             './browser/javascripts/utils/DateUtil',
@@ -28,7 +27,7 @@ module.exports = {
     output: {
         publicPath: "resources/",
         path: 'server/public/resources/',
-        filename: 'app.js'
+        filename: '[name].js'
     },
     resolve: {
         extensions: ['','.js','.jsx','.less','.css']/*,
@@ -74,12 +73,12 @@ module.exports = {
         new CleanWebpackPlugin([
             "server/public"
         ]),
-        new HtmlWebpackPlugin({
+        /*new HtmlWebpackPlugin({
             title:"fluxweb!wonderful web development framework",
             filename:'../index.html',
             template:'browser/tpl/index.ejs',
             inject:'body'
-        }),
+        }),*/
         new webpack.optimize.CommonsChunkPlugin({
             name:"vendor",
             filename:"verdor.js"
@@ -91,7 +90,7 @@ module.exports = {
             "window.$": "jquery",
             React:"react",
             ReactDOM:"react-dom",
-            HashMap:path.resolve(__dirname, "./browser/javascripts/entrys/HashMap"),
+            HashMap:path.resolve(__dirname, "./browser/javascripts/entitys/HashMap"),
             Flux:path.resolve(__dirname, "./browser/javascripts/utils/FluxUtil"),
             FluxConstant:path.resolve(__dirname, "./browser/javascripts/utils/FluxConstant"),
             DateUtil:path.resolve(__dirname, "./browser/javascripts/utils/DateUtil"),
@@ -105,3 +104,17 @@ module.exports = {
         //,new ExtractTextPlugin("[name].css")
     ]
 };
+var createApplication=function(filename,chunkName,entryPath){
+    webpackconfig.entry[chunkName]=entryPath;
+    var plugin=new HtmlWebpackPlugin({
+        title:"fluxweb!wonderful web development framework",
+        filename:'../'+filename,
+        template:'browser/tpl/index.ejs',
+        inject:'body',
+        chunks: ['vendor', chunkName]
+    });
+    webpackconfig.plugins.push(plugin);
+}
+createApplication("index.html","index","./browser/javascripts/pages/index.jsx");
+createApplication("components.html","components","./browser/javascripts/pages/components.jsx");
+module.exports=webpackconfig;

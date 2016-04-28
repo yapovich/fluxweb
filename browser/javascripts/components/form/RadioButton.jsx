@@ -16,8 +16,8 @@ var RadioButton = Flux.createView({
         var name="radio_"+Math.random();
         if(group){
             html=group.map(function(g){
-              var checked=g.checked?"checked":"";
-              var disabled=g.disabled?"disabled":"";
+              var checked=(g.value==_props.value)?"checked":"";
+              var disabled=(_props.disabled=="true"||_props.disabled==true)?"disabled":"";
                 return <label className="radio" style={{display:"inline-block"}}>
                     <input type="radio" name={name} checked={checked} disabled={disabled} onChange={this.onChange} value={g.value} className="custom-radio"/>
                   <span className="icons">

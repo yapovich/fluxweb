@@ -2,7 +2,7 @@
  * Created by yebo on 2016/4/8.
  */
 var resultText="init value";
-//var HashMap=require("../entrys/HashMap");
+//var HashMap=require("../entitys/HashMap");
 var IndexStore = Flux.createStore({
     state:{
         //模态框是否打开
@@ -14,7 +14,8 @@ var IndexStore = Flux.createStore({
         //性别
         male:"male",
         //感兴趣的话题
-        interests:"1,3"
+        interests:"1,3,6,8,10",
+        chooseAll:false,
     },
     openModal:function(data) {
         this.state.open=data.resultOpen;
@@ -29,25 +30,26 @@ var IndexStore = Flux.createStore({
         //console.log(this.state);
     },
     updateInterests:function(data){
-         if(this.state.interests.containsKey(data.interests)){
+        this.state.interests=data.interests;
+         /*if(this.state.interests.containsKey(data.interests)){
              this.state.interests.remove(data.interests);
          }else{
              this.state.interests.put(data.interest,data.interests);
          }
-        console.log(this.state.interests.values());
+        console.log(this.state.interests.values());*/
     },
     updateMale:function(data){
         this.state.male=data.male;
     },
     chooseAll:function(){
-        //console.log(this.state.interests.keys().length);
-        if(this.state.interests.keys().length==6){
-            this.state.interests.clear();
-        }else{
-            this.state.interests.clear();
-            for(var i=1;i<7;i++){
-                //console.log(i);
-                this.state.interests.put(i,i);
+        if(this.state.interests==""){
+            this.state.interests="1,2,3,4,5,6,7,8,9,10"
+        }else {
+            var len = this.state.interests.match(/,/ig).length;
+            if (len >= 0 && len < 9)
+                this.state.interests = "1,2,3,4,5,6,7,8,9,10"
+            else {
+                this.state.interests = "";
             }
         }
         //console.log(this.state.interests.keys());
