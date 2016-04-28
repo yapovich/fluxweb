@@ -6,7 +6,7 @@ require('../vendor/jquery/jquery-easyui-1.3.6/themes/gray/easyui');
 require('../vendor/jquery/scrollbar/jquery.mCustomScrollbar');
 require('../vendor/bootstrap/css/bootstrap');
 require('../vendor/flatui/css/flat-ui');
-require('../../stylesheets/index');
+require('../../stylesheets/index.less');
 //导入语言环境相关文件
 var lang = $.i18n.browserLang().replace("-", "_");
 require("../vendor/jquery/jquery-easyui-1.3.6/locale/easyui-lang-" + lang)

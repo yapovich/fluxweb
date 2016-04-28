@@ -2,19 +2,28 @@
  * Created by yebo on 2016/4/11.
  */
 var Components = Flux.createView({
-    loadModel:function(name){
-        require(["./demo/"+name+"Demo"],function(Demo){
-            ReactDOM.render(
-                <Demo/>,
-                document.getElementById('apicontent')
-            );
-        });
-    },
-    //发起一个动作，此例为点击事件发起
-    handleClick: function (e) {
-        //IndexAction.openModal(true);
-        var name=e.currentTarget.innerHTML;
-        this.loadModel(name);
+    getButton:function(type){
+        return (<div>
+            <h4>{type}</h4>
+            <div className="row">
+                <div className="col-lg-12">
+                <Comp.Button type={type} size="lg">{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type}>{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type} disabled="true">{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type} size="sm">{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type} size="xs">{type}</Comp.Button>&nbsp;
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-12">
+                <Comp.Button type={type} size="lg" badge="4">{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type} badge="4">{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type} disabled="true" badge="4">{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type} size="sm" badge="4">{type}</Comp.Button>&nbsp;
+                <Comp.Button type={type} size="xs" badge="4">{type}</Comp.Button>&nbsp;
+                </div>
+            </div>
+        </div>)
     },
     //视图渲染，发生状态变化时自动调用
     render: function () {
@@ -36,17 +45,33 @@ var Components = Flux.createView({
             <div className="api_simple_layout">
                 <div className="apimenu">
                     <ul>
-                        <li><a href="javascript:void(0)" onClick={this.handleClick}>Button</a></li>
-                        <li><a href="javascript:void(0)">CheckBox</a></li>
-                        <li><a href="javascript:void(0)">RadioButton</a></li>
-                        <li><a href="javascript:void(0)">Input</a></li>
-                        <li><a href="javascript:void(0)">Switch</a></li>
-                        <li><a href="javascript:void(0)">Process</a></li>
-                        <li><a href="javascript:void(0)">Modal</a></li>
+                        <li><a href="#ui_Button">Button</a></li>
+                        <li><a href="#ui_CheckBox">CheckBox</a></li>
+                        <li><a href="#ui_RadioButton">RadioButton</a></li>
+                        <li><a href="#ui_Button">Input</a></li>
+                        <li><a href="#ui_Button">Switch</a></li>
+                        <li><a href="#ui_Button">Process</a></li>
+                        <li><a href="#ui_Button">Modal</a></li>
                     </ul>
                 </div>
                 <div className="container apicontainer">
-                    <div className="apirow"  id="apicontent"></div>
+                    <div className="apirow"  id="apicontent">
+                        <h3>
+                            Components<label style={{fontSize:18}}>for React</label>
+                        </h3>
+                        <h4 id="ui_Button"></h4>
+                        <h4>[Button]</h4>
+                        {this.getButton("default")}
+                        {this.getButton("primary")}
+                        {this.getButton("success")}
+                        {this.getButton("info")}
+                        {this.getButton("warning")}
+                        {this.getButton("danger")}
+                        <h4 id="ui_CheckBox"></h4>
+                        <h4>[CheckBox]</h4>
+                        <h4 id="ui_RadioButton"></h4>
+                        <h4>[RadioButton]</h4>
+                    </div>
                 </div>
             </div>
         )/*<h2>模态框---</h2>
