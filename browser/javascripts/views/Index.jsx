@@ -19,8 +19,8 @@ var Index = Flux.createView({
         //var v=e.target.attributes["value"].value;
         IndexAction.updateCurrent(v);
     },
-    handleCB:function(v){
-        IndexAction.updateInterest(v);
+    handleCB:function(interests){
+        IndexAction.updateInterests(v);
     },
     handleRD:function(v){
         IndexAction.updateMale(v);
@@ -56,11 +56,11 @@ var Index = Flux.createView({
                     <div className="col-sm-3"><Comp.Input disabled="true" size="sm" placeholder="this is a Input"></Comp.Input></div>
                 </div>
                 <h2>多选框(CheckBox)</h2>
-                <Comp.CheckBox onSelected={this.handleCB}>
+                <Comp.CheckBox onSelected={this.handleCB} value={this.state.interests}>
                     {[
-                        {name:"读书",value:1,checked:(this.state.interests.containsKey(1)?true:false)},
-                        {name:"音乐",value:2,checked:(this.state.interests.containsKey(2)?true:false),disabled:true},
-                        {name:"军事",value:3,checked:(this.state.interests.containsKey(3)?true:false)}
+                        {name:"读书",value:1},
+                        {name:"音乐",value:2},
+                        {name:"军事",value:3}
                     ]}
                 </Comp.CheckBox>
                 <Comp.Button type="primary" onClick={this.handleChooseAll}>全选</Comp.Button>

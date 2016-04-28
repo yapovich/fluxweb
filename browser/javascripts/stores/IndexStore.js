@@ -14,7 +14,7 @@ var IndexStore = Flux.createStore({
         //性别
         male:"male",
         //感兴趣的话题
-        interests:new HashMap()
+        interests:"1,3"
     },
     openModal:function(data) {
         this.state.open=data.resultOpen;
@@ -28,11 +28,11 @@ var IndexStore = Flux.createStore({
         this.state.open=false;
         //console.log(this.state);
     },
-    updateInterest:function(data){
-         if(this.state.interests.containsKey(data.interest)){
-             this.state.interests.remove(data.interest);
+    updateInterests:function(data){
+         if(this.state.interests.containsKey(data.interests)){
+             this.state.interests.remove(data.interests);
          }else{
-             this.state.interests.put(data.interest,data.interest);
+             this.state.interests.put(data.interest,data.interests);
          }
         console.log(this.state.interests.values());
     },

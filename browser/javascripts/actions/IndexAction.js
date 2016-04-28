@@ -11,8 +11,8 @@ var IndexAction = Flux.createAction({
     updateCurrent:function(current){
         this.dispatch("updateCurrent",{resultCurrent:current});
     },
-    updateInterest:function(interest){
-        this.dispatch("updateInterest",{interest:interest});
+    updateInterests:function(interests){
+        this.dispatch("updateInterests",{interests:interests});
     },
     updateMale:function(male){
         this.dispatch("updateMale",{male:male});
