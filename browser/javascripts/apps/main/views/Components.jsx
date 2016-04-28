@@ -4,7 +4,7 @@
 var Components = Flux.createView({
     getButton:function(type){
         return (<div>
-            <h4>{type}</h4>
+            <h5>{type}</h5>
             <div className="row">
                 <div className="col-lg-12">
                 <Comp.Button type={type} size="lg">{type}</Comp.Button>&nbsp;
@@ -59,18 +59,34 @@ var Components = Flux.createView({
                         <h3>
                             Components<label style={{fontSize:18}}>for React</label>
                         </h3>
-                        <h4 id="ui_Button"></h4>
-                        <h4>[Button]</h4>
+                        <h4 id="ui_Button">Button</h4>
                         {this.getButton("default")}
                         {this.getButton("primary")}
                         {this.getButton("success")}
                         {this.getButton("info")}
                         {this.getButton("warning")}
                         {this.getButton("danger")}
-                        <h4 id="ui_CheckBox"></h4>
-                        <h4>[CheckBox]</h4>
-                        <h4 id="ui_RadioButton"></h4>
-                        <h4>[RadioButton]</h4>
+                        <h4 id="ui_CheckBox">CheckBox</h4>
+                        <Comp.CheckBox onSelected={this.handleCB} value="1">
+                            {[
+                                {name:"读书",value:1},
+                                {name:"音乐",value:2},
+                                {name:"军事",value:3,disabled:true}
+                            ]}
+                        </Comp.CheckBox>
+                        <h4 id="ui_RadioButton">RadioButton</h4>
+                        <Comp.RadioButton onSelected={this.handleRD} value="male">
+                            {[
+                                {name:"男",value:"male"},
+                                {name:"女",value:"female"}
+                            ]}
+                        </Comp.RadioButton>
+                        <Comp.RadioButton onSelected={this.handleRD} value="male" disabled="true">
+                            {[
+                                {name:"男",value:"male"},
+                                {name:"女",value:"female"}
+                            ]}
+                        </Comp.RadioButton>
                     </div>
                 </div>
             </div>
