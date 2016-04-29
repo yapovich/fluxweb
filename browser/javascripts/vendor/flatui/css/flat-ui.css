@@ -1976,9 +1976,25 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   position: relative;
   -webkit-transition: color .25s linear;
           transition: color .25s linear;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 20px;
+  line-height: 20px;
 }
+.checkbox.lg,
+.radio.lg{
+  padding:0 12px 0 36px;
+  font-size:24px;
+}
+.checkbox.sm,
+.radio.sm{
+  padding:0 16px 0 28px;
+  font-size:16px;
+}
+.checkbox.xs,
+.radio.xs{
+  padding:0 12px 0 24px;
+  font-size:12px;
+}
+
 .checkbox .icons,
 .radio .icons {
   color: #bdc3c7;
@@ -1992,6 +2008,18 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   line-height: 20px;
   font-size: 20px;
   cursor: pointer;
+}
+.checkbox .icons.lg,
+.radio .icons.lg{
+  font-size: 24px;
+}
+.checkbox .icons.sm,
+.radio .icons.sm{
+  font-size: 16px;
+}
+.checkbox .icons.xs,
+.radio .icons.xs{
+  font-size: 12px;
 }
 .checkbox .icons .icon-checked,
 .radio .icons .icon-checked {

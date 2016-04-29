@@ -17,7 +17,7 @@ var ButtonGroup = Flux.createView({
         var group=_props.children;
         if(group){
             html=group.map(function(g){
-                return <li className={(g.active? "active" : "")} value={g.value} onClick={this.handleClick}><a href="javascript:void(0)">
+                return <li className={((g.value==_props.value)? "active" : "")} value={g.value} onClick={this.handleClick}><a href="javascript:void(0)">
                     {g.name}
                     {(g.badge || g.badge == 0) ? (<span className="badge">{g.badge}</span>) : ""}
                 </a></li>

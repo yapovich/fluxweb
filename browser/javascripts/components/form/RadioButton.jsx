@@ -14,13 +14,14 @@ var RadioButton = Flux.createView({
         var html;
         var group=_props.children;
         var name="radio_"+Math.random();
+        var size=_props.size?_props.size:"";
         if(group){
             html=group.map(function(g){
               var checked=(g.value==_props.value)?"checked":"";
               var disabled=(_props.disabled=="true"||_props.disabled==true)?"disabled":"";
-                return <label className="radio" style={{display:"inline-block"}}>
+                return <label className={"radio "+size} style={{display:"inline-block"}}>
                     <input type="radio" name={name} checked={checked} disabled={disabled} onChange={this.onChange} value={g.value} className="custom-radio"/>
-                  <span className="icons">
+                  <span className={"icons "+size}>
                       <span className="icon-unchecked"></span>
                       <span className="icon-checked"></span>
                   </span>{g.name}</label>;

@@ -22,14 +22,15 @@ var CheckBox = Flux.createView({
         var html;
         var group=_props.children;
         var value=","+_props.value+",";
+        var size=_props.size?_props.size:"";
         console.log("value:"+value);
         if(group){
             html=group.map(function(g){
               var checked=(value.indexOf(","+g.value+",")>-1)?"checked":"";
               var disabled=g.disabled?"disabled":"";
-              return <label className="checkbox" style={{display:"inline-block"}}>
+              return <label className={"checkbox "+size} style={{display:"inline-block"}}>
                   <input type="checkbox" checked={checked} disabled={disabled} onChange={this.onChange} value={g.value} className="custom-checkbox"/>
-                  <span className="icons">
+                  <span className={"icons "+size}>
                       <span className="icon-unchecked"></span>
                       <span className="icon-checked"></span>
                   </span>{g.name}</label>;

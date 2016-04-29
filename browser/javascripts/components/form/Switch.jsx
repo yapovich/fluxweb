@@ -4,10 +4,10 @@
  */
 var Switch = Flux.createView({
     onChange:function(e){
-        var v=e.currentTarget.attributes["value"].value;
-        if(this.props.onSelected){
-            this.props.onSelected.call(null,v);
-        }
+        //var v=e.currentTarget.attributes["value"].value;
+        //if(this.props.onSelected){
+            //this.props.onSelected.call(null,v);
+        //}
     },
     //按钮控件
     getComponent:function(_props){
@@ -24,6 +24,10 @@ var Switch = Flux.createView({
         return (comp);
     },
     didMount:function(){
+        var obj=$(ReactDOM.findDOMNode(this.refs.switch));
+        obj.bootstrapSwitch();
+    },
+    didUpdate:function(){
         var obj=$(ReactDOM.findDOMNode(this.refs.switch));
         obj.bootstrapSwitch();
     }

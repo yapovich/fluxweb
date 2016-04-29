@@ -7,12 +7,12 @@ var webpackconfig = {
     entry: {
         vendor:[
             //'./browser/javascripts/vendor/jquery/jquery-1.9.1.js',
-            './browser/javascripts/vendor/jquery/jquery.form.js',
-            './browser/javascripts/vendor/jquery/jquery.uploadPreview.min.js',
-            './browser/javascripts/vendor/jquery/jquery.i18n.properties-1.0.9.js',
-            './browser/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',/*
-            './browser/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
-            './browser/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'*/
+            //'./browser/javascripts/vendor/jquery/jquery.form.js',
+            //'./browser/javascripts/vendor/jquery/jquery.uploadPreview.min.js',
+            //'./browser/javascripts/vendor/jquery/jquery.i18n.properties-1.0.9.js',
+            //'./browser/javascripts/vendor/jquery/jquery-easyui-1.3.6/jquery.easyui.min.js',
+            //'./browser/javascripts/vendor/jquery/scrollbar/jquery.mousewheel.min.js',
+            //'./browser/javascripts/vendor/jquery/scrollbar/jquery.mCustomScrollbar.min.js'
             //'./browser/javascripts/vendor/bootstrap/js/bootstrap.js',
             './browser/javascripts/vendor/flatui/js/flat-ui.js',
             './node_modules/react',

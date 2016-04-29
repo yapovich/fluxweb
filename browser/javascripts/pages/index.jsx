@@ -8,8 +8,8 @@ require('../vendor/bootstrap/css/bootstrap');
 require('../vendor/flatui/css/flat-ui');
 require('../../stylesheets/index.less');
 //导入语言环境相关文件
-var lang = $.i18n.browserLang().replace("-", "_");
-require("../vendor/jquery/jquery-easyui-1.3.6/locale/easyui-lang-" + lang)
+//var lang = $.i18n.browserLang().replace("-", "_");
+//require("../vendor/jquery/jquery-easyui-1.3.6/locale/easyui-lang-" + lang)
 require(['../apps/main/views/Index'], function (Index) {
         //var array = [1, 2, 3];
         //ES6
